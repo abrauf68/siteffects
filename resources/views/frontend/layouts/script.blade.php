@@ -1,0 +1,45 @@
+<!-- Plugin JS File -->
+<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/gsap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/gsap-scroll-smoother.js') }}"></script>
+    <script src="{{ asset('assets/js/gsap-scroll-to-plugin.min.js') }}"></script>
+    <script src="{{ asset('assets/js/gsap-scroll-trigger.min.js') }}"></script>
+    <script src="{{ asset('assets/js/gsap-split-text.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('assets/js/swiper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets/js/counterup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/venobox.min.js') }}"></script>
+    <script src="{{ asset('assets/js/meanmenu.js') }}"></script>
+    <script src="{{ asset('assets/js/gsap-animation.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+    toastr.options = {
+        "closeButton": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "timeOut": "2000"
+    };
+    @if (session('success'))
+        toastr.success("{{ session('success') }}");
+    @endif
+
+    @if (session('error'))
+        toastr.error("{{ session('error') }}");
+    @endif
+
+    @if (session('message'))
+        toastr.info("{{ session('message') }}");
+    @endif
+
+    @if ($errors->any())
+        toastr.error("{{ $errors->first() }}");
+    @endif
+</script>

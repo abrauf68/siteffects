@@ -1,913 +1,669 @@
-/***************************************************
-==================== JS INDEX ======================
-****************************************************
-Preloader js
-Data js
-Sticky Nav Js
-Mobile Menu Js
-Search Bar Js
-Rating Js
-Nice Select Js
-Client-slider Js
-Testimonial Slider Js
-Testimonial Slider 2 Js
-Testimonial Slider 3 Js
-Project Slider Js
-Hero slider Js
-Blog post slider Js
-Service Slider Js
-CounterUp js
-VenoBox Js
-Backtotop Js
-Progressbar Js
-Pricing Toggle
-Accordion Js
-Services Tab Background
-Service 3 Js
-Hover active
-Contact map Js
+/**
+ * Main
+ */
 
-****************************************************/
+'use strict';
 
-(function ($) {
-  "use strict";
+window.isRtl = window.Helpers.isRtl();
+window.isDarkStyle = window.Helpers.isDarkStyle();
+let menu,
+  animate,
+  isHorizontalLayout = false;
 
-  /* --------------------------------------------
-		Preloader js
-	-------------------------------------------- */
-  $(window).on("load", function () {
-    const tjPreloader = $(".preloader");
-    if (tjPreloader?.length) {
-      setTimeout(function () {
-        tjPreloader.removeClass("is-loading").addClass("is-loaded");
-        setTimeout(function () {
-          tjPreloader.fadeOut(600);
-          gsapController();
-          counterController();
-        });
-      }, 1000);
-    } else {
-      gsapController();
-      counterController();
-    }
+if (document.getElementById('layout-menu')) {
+  isHorizontalLayout = document.getElementById('layout-menu').classList.contains('menu-horizontal');
+}
+
+(function () {
+  setTimeout(function () {
+    window.Helpers.initCustomOptionCheck();
+  }, 1000);
+
+  if (typeof Waves !== 'undefined') {
+    Waves.init();
+    Waves.attach(
+      ".btn[class*='btn-']:not(.position-relative):not([class*='btn-outline-']):not([class*='btn-label-'])",
+      ['waves-light']
+    );
+    Waves.attach("[class*='btn-outline-']:not(.position-relative)");
+    Waves.attach("[class*='btn-label-']:not(.position-relative)");
+    Waves.attach('.pagination .page-item .page-link');
+    Waves.attach('.dropdown-menu .dropdown-item');
+    Waves.attach('.light-style .list-group .list-group-item-action');
+    Waves.attach('.dark-style .list-group .list-group-item-action', ['waves-light']);
+    Waves.attach('.nav-tabs:not(.nav-tabs-widget) .nav-item .nav-link');
+    Waves.attach('.nav-pills .nav-item .nav-link', ['waves-light']);
+  }
+
+  // Initialize menu
+  //-----------------
+
+  let layoutMenuEl = document.querySelectorAll('#layout-menu');
+  layoutMenuEl.forEach(function (element) {
+    menu = new Menu(element, {
+      orientation: isHorizontalLayout ? 'horizontal' : 'vertical',
+      closeChildren: isHorizontalLayout ? true : false,
+      // ? This option only works with Horizontal menu
+      showDropdownOnHover: localStorage.getItem('templateCustomizer-' + templateName + '--ShowDropdownOnHover') // If value(showDropdownOnHover) is set in local storage
+        ? localStorage.getItem('templateCustomizer-' + templateName + '--ShowDropdownOnHover') === 'true' // Use the local storage value
+        : window.templateCustomizer !== undefined // If value is set in config.js
+          ? window.templateCustomizer.settings.defaultShowDropdownOnHover // Use the config.js value
+          : true // Use this if you are not using the config.js and want to set value directly from here
+    });
+    // Change parameter to true if you want scroll animation
+    window.Helpers.scrollToActive((animate = false));
+    window.Helpers.mainMenu = menu;
   });
 
-  /* --------------------------------------------
-		Data js
-	-------------------------------------------- */
-  $("[data-bg-image]").each(function () {
-    var $this = $(this),
-      $image = $this.data("bg-image");
-    $this.css("background-image", "url(" + $image + ")");
-  });
-
-  /* --------------------------------------------
-		Sticky Nav Js
-	-------------------------------------------- */
-  var lastScrollTop = "";
-  function stickyMenu($targetMenu, $toggleClass) {
-    var st = $(window).scrollTop();
-    if ($(window).scrollTop() > 500) {
-      if (st > lastScrollTop) {
-        $targetMenu.removeClass($toggleClass);
-      } else {
-        $targetMenu.addClass($toggleClass);
-      }
-    } else {
-      $targetMenu.removeClass($toggleClass);
-    }
-
-    lastScrollTop = st;
-  }
-
-  $(window).on("scroll", function () {
-    if ($(".header-area").length) {
-      stickyMenu($(".header-sticky"), "sticky");
-    }
-  });
-
-  /* --------------------------------------------
-		Mobile Menu Js
-	-------------------------------------------- */
-  $(".mobile_menu_bar").on("click", function () {
-    $(this).toggleClass("on");
-  });
-
-  // Mobile Menu Js
-  $("#mobile-menu").meanmenu({
-    meanMenuContainer: ".mobile_menu",
-    meanScreenWidth: "991",
-    meanExpand: ['<i class="tji-arrow-down"></i>'],
-  });
-
-  // Hamburger Menu Js
-  $(".mobile_menu_bar").on("click", function () {
-    $(".hamburger-area").addClass("opened");
-    $(".body-overlay").addClass("opened");
-    $("body").toggleClass("overflow-hidden");
-  });
-
-  // Offcanvas js
-  $(".menu_offcanvas").on("click", function () {
-    $(".tj-offcanvas-area").toggleClass("opened");
-    $(".body-overlay").addClass("opened");
-    $("body").toggleClass("overflow-hidden");
-  });
-  $(".hamburger_close_btn").on("click", function () {
-    $(".tj-offcanvas-area").removeClass("opened");
-    $(".hamburger-area").removeClass("opened");
-    $(".body-overlay").removeClass("opened");
-    $("body").toggleClass("overflow-hidden");
-  });
-  $(".body-overlay").on("click", function () {
-    $(".tj-offcanvas-area").removeClass("opened");
-    $(".hamburger-area").removeClass("opened");
-    $(".body-overlay").removeClass("opened");
-    $("body").toggleClass("overflow-hidden");
-  });
-
-  /* --------------------------------------------
-		Search Bar Js
-	-------------------------------------------- */
-  $(".header-search").on("click", function () {
-    $(".search_popup").addClass("search-opened");
-    $(".search-popup-overlay").addClass("opened");
-  });
-  $(".search_close_btn").on("click", function () {
-    $(".search_popup").removeClass("search-opened");
-    $(".search-popup-overlay").removeClass("opened");
-  });
-  $(".search-popup-overlay").on("click", function () {
-    $(".search_popup").removeClass("search-opened");
-    $(this).removeClass("opened");
-  });
-
-  /* --------------------------------------------
-		Rating  Js
-	-------------------------------------------- */
-  if ($(".star-ratings").length > 0) {
-    $(".star-ratings").each(function () {
-      var width = $(this).find(".empty-ratings span").width();
-      $(this).css("width", width);
-    });
-  }
-
-  /* --------------------------------------------
-		Nice Select Js
-	-------------------------------------------- */
-  if ($(".tj-select select").length > 0) {
-    $(".tj-select select").niceSelect();
-  }
-
-  /* --------------------------------------------
-		Client-slider Js
-	-------------------------------------------- */
-  if ($(".client-slider").length > 0) {
-    var client = new Swiper(".client-slider", {
-      slidesPerView: "auto",
-      spaceBetween: 0,
-      freemode: true,
-      centeredSlides: true,
-      loop: true,
-      speed: 5000,
-      allowTouchMove: false,
-      autoplay: {
-        delay: 1,
-        disableOnInteraction: true,
-      },
-    });
-  }
-
-  /* --------------------------------------------
-		Blog Slider Js
-	-------------------------------------------- */
-  if ($(".h8-blog-slider").length > 0) {
-    var h8_blog_slide = new Swiper(".h8-blog-slider", {
-      slidesPerView: 1,
-      spaceBetween: 15,
-      loop: true,
-      speed: 1500,
-      arrow: false,
-      autoplay: {
-        delay: 3000,
-      },
-      navigation: {
-        nextEl: ".slider-next",
-        prevEl: ".slider-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination-area",
-        clickable: true,
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-          centeredSlides: true,
-        },
-        992: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-          centeredSlides: true,
-        },
-
-        1200: {
-          slidesPerView: 3,
-          spaceBetween: 30,
-          centeredSlides: true,
-        },
-      },
-    });
-  }
-
-  /* --------------------------------------------
-		Testimonial Slider Js
-	-------------------------------------------- */
-  if ($(".thumb-slider").length > 0 && $(".testimonial-slider").length > 0) {
-    let thumbSlider = new Swiper(".thumb-slider", {
-      slidesPerView: 3,
-      spaceBetween: 12,
-      loop: true,
-      speed: 1200,
-      centeredSlides: true,
-      freeMode: true,
-      watchSlidesProgress: true,
-      slideToClickedSlide: true,
-    });
-
-    let testimonialSlider = new Swiper(".testimonial-slider", {
-      slidesPerView: 1,
-      spaceBetween: 30,
-      centeredSlides: true,
-      loop: true,
-      speed: 1200,
-      autoplay: {
-        delay: 3000,
-      },
-      navigation: {
-        nextEl: ".slider-next",
-        prevEl: ".slider-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination-area",
-        clickable: true,
-      },
-      breakpoints: {
-        0: {
-          slidesPerView: 1.01,
-          spaceBetween: 15,
-        },
-        576: {
-          slidesPerView: 1.5,
-          spaceBetween: 15,
-        },
-        992: {
-          slidesPerView: 1.5,
-          spaceBetween: 20,
-        },
-        1024: {
-          slidesPerView: 1.8,
-          spaceBetween: 25,
-        },
-        1400: {
-          slidesPerView: 2.08,
-          spaceBetween: 30,
-        },
-      },
-    });
-
-    // Connect the sliders
-    testimonialSlider.controller.control = thumbSlider;
-    thumbSlider.controller.control = testimonialSlider;
-  }
-
-  /* --------------------------------------------
-		Testimonial Slider 2
-	-------------------------------------------- */
-  if ($(".testimonial_slider_2").length > 0) {
-    var testimonial2 = new Swiper(".testimonial_slider_2", {
-      slidesPerView: 1,
-      spaceBetween: 15,
-      loop: true,
-      speed: 1500,
-      arrow: false,
-      autoplay: {
-        delay: 3000,
-      },
-      navigation: {
-        nextEl: ".slider-next",
-        prevEl: ".slider-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination-area",
-        clickable: true,
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 30,
-        },
-
-        1024: {
-          slidesPerView: 2,
-          spaceBetween: 30,
-        },
-        1200: {
-          slidesPerView: 3,
-          spaceBetween: 30,
-        },
-      },
-    });
-  }
-
-  /* --------------------------------------------
-		Testimonial Slider 3
-	-------------------------------------------- */
-  if ($(".h3_testimonial_slider").length > 0) {
-    var h3_testimonial = new Swiper(".h3_testimonial_slider", {
-      slidesPerView: "auto",
-      centeredSlides: true,
-      spaceBetween: 30,
-      loop: true,
-      speed: 1500,
-      arrow: false,
-      autoplay: {
-        delay: 3000,
-      },
-      pagination: {
-        el: ".swiper-pagination-area",
-        clickable: true,
-      },
-      breakpoints: {
-        320: {
-          spaceBetween: 20,
-        },
-        992: {
-          spaceBetween: 30,
-        },
-      },
-    });
-  }
-
-  /* --------------------------------------------
-		Testimonial Slider 4 Js
-	-------------------------------------------- */
-  if ($(".thumb-slider-2").length > 0 && $(".testimonial-slider-4").length > 0) {
-    let thumbSlider2 = new Swiper(".thumb-slider-2", {
-      slidesPerView: 3,
-      spaceBetween: 10,
-      loop: true,
-      speed: 1200,
-      centeredSlides: true,
-      freeMode: true,
-      watchSlidesProgress: true,
-      slideToClickedSlide: true,
-    });
-
-    let testimonialSlider4 = new Swiper(".testimonial-slider-4", {
-      slidesPerView: "auto",
-      spaceBetween: 30,
-      centeredSlides: false,
-      loop: true,
-      speed: 1200,
-      autoplay: {
-        delay: 3000,
-      },
-      navigation: {
-        nextEl: ".slider-next",
-        prevEl: ".slider-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination-area",
-        clickable: true,
-      },
-    });
-
-    // Connect the sliders
-    testimonialSlider4.controller.control = thumbSlider2;
-    thumbSlider2.controller.control = testimonialSlider4;
-  }
-
-  /* --------------------------------------------
-		Testimonial Slider 5 Js
-	-------------------------------------------- */
-  if ($(".h8-testimonial-slider").length > 0) {
-    var h8_testimonial = new Swiper(".h8-testimonial-slider", {
-      slidesPerView: 1,
-      spaceBetween: 15,
-      loop: true,
-      speed: 1500,
-      arrow: false,
-      autoplay: {
-        delay: 3000,
-      },
-      navigation: {
-        nextEl: ".slider-next",
-        prevEl: ".slider-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination-area",
-        clickable: true,
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-          centeredSlides: true,
-        },
-        992: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-          centeredSlides: true,
-        },
-
-        1200: {
-          slidesPerView: 3.4,
-          spaceBetween: 30,
-          centeredSlides: true,
-        },
-        1550: {
-          slidesPerView: 4.25,
-          spaceBetween: 30,
-          centeredSlides: true,
-        },
-      },
-    });
-  }
-
-  /* --------------------------------------------
-		Testimonial Slider 5 Js
-	-------------------------------------------- */
-  if ($(".h9-testimonial-slider").length > 0) {
-    var h9_testimonial = new Swiper(".h9-testimonial-slider", {
-      slidesPerView: 1,
-      spaceBetween: 15,
-      loop: true,
-      speed: 1500,
-      arrow: false,
-      autoplay: {
-        delay: 3000,
-      },
-      navigation: {
-        nextEl: ".slider-next",
-        prevEl: ".slider-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination-area",
-        clickable: true,
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        992: {
-          slidesPerView: 1.5,
-          spaceBetween: 20,
-        },
-
-        1200: {
-          slidesPerView: 1.8,
-          spaceBetween: 30,
-        },
-      },
-    });
-  }
-
-  /* --------------------------------------------
-		Project Slider Js
-	-------------------------------------------- */
-  if ($(".project-slider").length > 0) {
-    var project = new Swiper(".project-slider", {
-      slidesPerView: 1,
-      spaceBetween: 15,
-      loop: true,
-      speed: 1500,
-      arrow: false,
-      autoplay: {
-        delay: 3000,
-      },
-      navigation: {
-        nextEl: ".slider-next",
-        prevEl: ".slider-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination-area",
-        clickable: true,
-      },
-      breakpoints: {
-        600: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        992: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-        },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-        },
-        1540: {
-          slidesPerView: 4,
-          spaceBetween: 30,
-        },
-      },
-    });
-  }
-
-  /* --------------------------------------------
-		Hero slider
-	-------------------------------------------- */
-  if ($(".tj-hero-slider").length > 0) {
-    var hero = new Swiper(".tj-hero-slider", {
-      slidesPerView: 1,
-      spaceBetween: 0,
-      effect: "fade",
-      loop: true,
-      speed: 1400,
-      autoplay: {
-        delay: 5000,
-      },
-      navigation: {
-        nextEl: ".slider-next",
-        prevEl: ".slider-prev",
-      },
-    });
-  }
-
-  /* --------------------------------------------
-		Blog post slider
-	-------------------------------------------- */
-  if ($(".tj-post-slider").length > 0) {
-    var hero = new Swiper(".tj-post-slider", {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      loop: true,
-      speed: 1400,
-      autoplay: {
-        delay: 3000,
-      },
-      navigation: {
-        nextEl: ".slider-next",
-        prevEl: ".slider-prev",
-      },
-    });
-  }
-
-  /* --------------------------------------------
-		CounterUp js
-	-------------------------------------------- */
-  function counterController() {
-    if (jQuery(".counter").length > 0) {
-      $(".counter").counterUp({
-        delay: 10,
-        time: 1000,
-      });
-    }
-  }
-
-  /* --------------------------------------------
-		VenoBox Js
-	-------------------------------------------- */
-  if ($(".tj-gallery").length > 0) {
-    new VenoBox({
-      selector: ".tj-gallery",
-      numeration: true,
-      // infinigall: true,
-      spinner: "pulse",
-    });
-  }
-
-  if ($(".video-popup").length > 0) {
-    new VenoBox({
-      selector: ".video-popup",
-      numeration: true,
-      // infinigall: true,
-      spinner: "pulse",
-    });
-  }
-
-  /* --------------------------------------------
-		Back to Top Js
-	-------------------------------------------- */
-  function back_to_top() {
-    var btn = $("#back_to_top");
-    var btn_wrapper = $(".back-to-top-wrapper");
-
-    $(window).on("scroll", function () {
-      if ($(window).scrollTop() > 1200) {
-        btn_wrapper.addClass("back-to-top-btn-show");
-      } else {
-        btn_wrapper.removeClass("back-to-top-btn-show");
-      }
-    });
-
-    btn.on("click", function (e) {
-      e.preventDefault();
-      $("html, body").animate({ scrollTop: 0 }, "300");
-    });
-  }
-  back_to_top();
-
-  /* --------------------------------------------
-		Progress bar
-	-------------------------------------------- */
-  const progressBarController = () => {
-    const progressContainers = document.querySelectorAll(".tj-progress");
-
-    if (progressContainers?.length) {
-      progressContainers.forEach((progressContainer) => {
-        const targetedProgressBar = progressContainer.querySelector(".tj-progress-bar");
-        const completedPercent = parseInt(targetedProgressBar.getAttribute("data-percent", 10)) || 0;
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                // Animate the progress bar
-                targetedProgressBar.style.transition = "width 2s ease-out";
-                targetedProgressBar.style.width = `${completedPercent}%`;
-
-                // Animate the percentage text
-                const percentageText = progressContainer.querySelector(".tj-progress-percent");
-                if (percentageText) {
-                  let currentPercent = 0;
-
-                  const interval = setInterval(() => {
-                    currentPercent++;
-                    percentageText.textContent = `${currentPercent}%`;
-
-                    if (currentPercent >= completedPercent) {
-                      clearInterval(interval);
-                    }
-                  }, 15);
-                }
-              }
-            });
-          },
-          {
-            root: null,
-            threshold: [0.3, 0.9],
+  // Initialize menu togglers and bind click on each
+  let menuToggler = document.querySelectorAll('.layout-menu-toggle');
+  menuToggler.forEach(item => {
+    item.addEventListener('click', event => {
+      event.preventDefault();
+      window.Helpers.toggleCollapsed();
+      // Enable menu state with local storage support if enableMenuLocalStorage = true from config.js
+      if (config.enableMenuLocalStorage && !window.Helpers.isSmallScreen()) {
+        try {
+          localStorage.setItem(
+            'templateCustomizer-' + templateName + '--LayoutCollapsed',
+            String(window.Helpers.isCollapsed())
+          );
+          // Update customizer checkbox state on click of menu toggler
+          let layoutCollapsedCustomizerOptions = document.querySelector('.template-customizer-layouts-options');
+          if (layoutCollapsedCustomizerOptions) {
+            let layoutCollapsedVal = window.Helpers.isCollapsed() ? 'collapsed' : 'expanded';
+            layoutCollapsedCustomizerOptions.querySelector(`input[value="${layoutCollapsedVal}"]`).click();
           }
-        );
-        observer.observe(progressContainer);
-      });
-    }
-  };
-
-  progressBarController();
-
-  /* --------------------------------------------
-		Pricing Toggle
-	-------------------------------------------- */
-  if ($(".toggle-checkbox").length > 0) {
-    var toggle = $(".toggle-checkbox");
-    var price = $(".price");
-    var period = $(".period");
-
-    toggle.on("change", function () {
-      if ($(this).is(":checked")) {
-        // Yearly active
-        price.each(function () {
-          $(this).text($(this).data("year-price"));
-        });
-        period.each(function () {
-          $(this).text($(this).data("year-period"));
-        });
-      } else {
-        // Monthly active
-        price.each(function () {
-          $(this).text($(this).data("month-price"));
-        });
-        period.each(function () {
-          $(this).text($(this).data("month-period"));
-        });
+        } catch (e) {}
       }
     });
-  }
-
-  if ($(".toggle-checkbox").length > 0) {
-    $(".toggle-checkbox").on("change", function () {
-      var $card = $(this).closest(".pricing_item_inner");
-      var $price = $card.find(".tj_price");
-      var $period = $card.find(".tj_period");
-
-      if ($(this).is(":checked")) {
-        $price.text($price.data("year-price"));
-        $period.text($period.data("year-period"));
-      } else {
-        $price.text($price.data("month-price"));
-        $period.text($period.data("month-period"));
-      }
-    });
-  }
-
-  /* --------------------------------------------
-		Accordion Js
-	-------------------------------------------- */
-  if ($(".accordion_item").length > 0) {
-    $(".accordion_item .accordion_title").on("click", function () {
-      if ($(this).parent().hasClass("active")) {
-        $(this).parent().removeClass("active");
-      } else {
-        $(this).parent().siblings().removeClass("active");
-        $(this).parent().addClass("active");
-      }
-    });
-  }
-
-  /* --------------------------------------------
-		Services Tab Background
-	-------------------------------------------- */
-  if ($(".toggle-checkbox").length > 0) {
-    function filter_animation() {
-      var active_bg = $(".services_tabs .active-bg");
-      var element = $(".services_tabs .active");
-
-      $(".services_tabs button").on("click", function () {
-        var e = $(this);
-        activeFilterBtn(active_bg, e);
-      });
-
-      activeFilterBtn(active_bg, element);
-    }
-    function activeFilterBtn(active_bg, e) {
-      if (!e.length) {
-        return false;
-      }
-
-      var leftOff = e.offset().left;
-      var width = e.outerWidth();
-      var height = e.outerHeight();
-      var topOff = e.offset().top;
-      var menuTop = $(".services_tabs").offset().top;
-      var menuLeft = $(".services_tabs").offset().left;
-
-      e.siblings().removeClass("active");
-      e.addClass("active");
-
-      active_bg.css({
-        left: leftOff - menuLeft + "px",
-        width: width + "px",
-        height: height + "px",
-        top: topOff - menuTop + "px", // Adjust the top of active-bg to align with the active button
-      });
-    }
-
-    filter_animation();
-  }
-
-  /* --------------------------------------------
-		Service 3 Js
-	-------------------------------------------- */
-  if ($(".h3_services_wrap").length > 0) {
-    $(".h3_services_wrap .service_list_item")
-      .on("mouseenter", function () {
-        $(this).addClass("is-active").siblings().removeClass("is-active");
-      })
-      .on("mouseleave", function () {
-        $(this).siblings().addClass("is-active");
-      });
-  }
-
-  /* --------------------------------------------
-		Hover Active 3 Js
-	-------------------------------------------- */
-  if ($(".hover-active-wrapper").length > 0) {
-    $(".hover-active-wrapper .hover-active-item").on("mouseenter", function () {
-      $(this).addClass("active").siblings().removeClass("active");
-    });
-  }
-
-  /* --------------------------------------------
-		Service 4 Slider
-	-------------------------------------------- */
-  if ($(".service-slider").length > 0) {
-    var service = new Swiper(".service-slider", {
-      slidesPerView: 1,
-      spaceBetween: 15,
-      loop: true,
-      speed: 1500,
-      arrow: false,
-      autoplay: {
-        delay: 3000,
-      },
-      navigation: {
-        nextEl: ".slider-next",
-        prevEl: ".slider-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination-area",
-        clickable: true,
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-          centeredSlides: true,
-        },
-        992: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-          centeredSlides: true,
-        },
-
-        1200: {
-          slidesPerView: 3.4,
-          spaceBetween: 30,
-          centeredSlides: true,
-        },
-        1550: {
-          slidesPerView: 4.25,
-          spaceBetween: 30,
-          centeredSlides: true,
-        },
-      },
-    });
-  }
-
-  /* --------------------------------------------
-		Hover active
-	-------------------------------------------- */
-  function getHoverActive() {
-    const parentItems = document.querySelectorAll(".active-wrapper");
-    if (parentItems?.length) {
-      parentItems.forEach((parent) => {
-        parent.addEventListener(
-          "mouseenter",
-          (e) => {
-            if (e.target.classList.contains("active-item")) {
-              parent.querySelectorAll(".active-item").forEach((i) => i.classList.remove("active"));
-              e.target.classList.add("active");
-            }
-          },
-          true
-        );
-      });
-    }
-  }
-  getHoverActive();
-
-  /* --------------------------------------------
-		Contact map Js
-	-------------------------------------------- */
-  const maps = document.querySelectorAll("#map");
-  if (maps?.length) {
-    // Initialize map
-    const map = L.map("map", {
-      center: [42.361145, -71.062133], // Boston example
-      zoom: 20,
-      zoomControl: false,
-    });
-
-    // Dark basemap
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png").addTo(map);
-
-    // Custom red marker
-    const customMarker = L.divIcon({
-      className: "custom-marker tji-location",
-      iconSize: [45, 45],
-    });
-
-    L.marker([42.361145, -71.062233], {
-      icon: customMarker,
-    }).addTo(map);
-  }
-
-  /* --------------------------------------------
-		Hover active Js
-		-------------------------------------------- */
-  if ($(".hover-item").length > 0) {
-    $(".hover-item").on("mouseover", function () {
-      $(this).addClass("active").siblings().removeClass("active");
-    });
-  }
-
-  /* --------------------------------------------
-		Rounded Marquee
-		-------------------------------------------- */
-  const initRoundedMarquee = () => {
-    const parents = document.querySelectorAll(".tj-rounded-marquee");
-    if (!parents.length) return;
-    parents.forEach((parent) => {
-      const items = parent.querySelectorAll(".tj-rounded-marquee-icon");
-      const count = items.length;
-      if (!count) return;
-      const radius = parent.offsetWidth / 2;
-      items.forEach((item, index) => {
-        const itemWidth = item.offsetWidth;
-        const angle = (360 / count) * index;
-        item.style.margin = `-${itemWidth / 2}px`;
-        item.style.transform = `rotate(${angle}deg) translate(${radius}px) rotate(${-angle}deg)`;
-      });
-    });
-  };
-  let resizeRAF;
-  window.addEventListener("resize", () => {
-    cancelAnimationFrame(resizeRAF);
-    resizeRAF = requestAnimationFrame(initRoundedMarquee);
   });
-  // initial
-  initRoundedMarquee();
-})(jQuery);
+
+  // Menu swipe gesture
+
+  // Detect swipe gesture on the target element and call swipe In
+  window.Helpers.swipeIn('.drag-target', function (e) {
+    window.Helpers.setCollapsed(false);
+  });
+
+  // Detect swipe gesture on the target element and call swipe Out
+  window.Helpers.swipeOut('#layout-menu', function (e) {
+    if (window.Helpers.isSmallScreen()) window.Helpers.setCollapsed(true);
+  });
+
+  // Display in main menu when menu scrolls
+  let menuInnerContainer = document.getElementsByClassName('menu-inner'),
+    menuInnerShadow = document.getElementsByClassName('menu-inner-shadow')[0];
+  if (menuInnerContainer.length > 0 && menuInnerShadow) {
+    menuInnerContainer[0].addEventListener('ps-scroll-y', function () {
+      if (this.querySelector('.ps__thumb-y').offsetTop) {
+        menuInnerShadow.style.display = 'block';
+      } else {
+        menuInnerShadow.style.display = 'none';
+      }
+    });
+  }
+
+  // Update light/dark image based on current style
+  function switchImage(style) {
+    if (style === 'system') {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        style = 'dark';
+      } else {
+        style = 'light';
+      }
+    }
+    const switchImagesList = [].slice.call(document.querySelectorAll('[data-app-' + style + '-img]'));
+    switchImagesList.map(function (imageEl) {
+      const setImage = imageEl.getAttribute('data-app-' + style + '-img');
+      imageEl.src = assetsPath + 'img/' + setImage; // Using window.assetsPath to get the exact relative path
+    });
+  }
+
+  //Style Switcher (Light/Dark/System Mode)
+  let styleSwitcher = document.querySelector('.dropdown-style-switcher');
+
+  // Active class on style switcher dropdown items
+  const activeStyle = document.documentElement.getAttribute('data-style');
+
+  // Get style from local storage or use 'system' as default
+  let storedStyle =
+    localStorage.getItem('templateCustomizer-' + templateName + '--Style') || //if no template style then use Customizer style
+    (window.templateCustomizer?.settings?.defaultStyle ?? 'light'); //!if there is no Customizer then use default style as light
+
+  // Set style on click of style switcher item if template customizer is enabled
+  if (window.templateCustomizer && styleSwitcher) {
+    let styleSwitcherItems = [].slice.call(styleSwitcher.children[1].querySelectorAll('.dropdown-item'));
+    styleSwitcherItems.forEach(function (item) {
+      item.classList.remove('active');
+      item.addEventListener('click', function () {
+        let currentStyle = this.getAttribute('data-theme');
+        if (currentStyle === 'light') {
+          window.templateCustomizer.setStyle('light');
+        } else if (currentStyle === 'dark') {
+          window.templateCustomizer.setStyle('dark');
+        } else {
+          window.templateCustomizer.setStyle('system');
+        }
+      });
+
+      if (item.getAttribute('data-theme') === activeStyle) {
+        // Add 'active' class to the item if it matches the activeStyle
+        item.classList.add('active');
+      }
+    });
+
+    // Update style switcher icon based on the stored style
+
+    const styleSwitcherIcon = styleSwitcher.querySelector('i');
+
+    if (storedStyle === 'light') {
+      styleSwitcherIcon.classList.add('ti-sun');
+      new bootstrap.Tooltip(styleSwitcherIcon, {
+        title: 'Light Mode',
+        fallbackPlacements: ['bottom']
+      });
+    } else if (storedStyle === 'dark') {
+      styleSwitcherIcon.classList.add('ti-moon-stars');
+      new bootstrap.Tooltip(styleSwitcherIcon, {
+        title: 'Dark Mode',
+        fallbackPlacements: ['bottom']
+      });
+    } else {
+      styleSwitcherIcon.classList.add('ti-device-desktop-analytics');
+      new bootstrap.Tooltip(styleSwitcherIcon, {
+        title: 'System Mode',
+        fallbackPlacements: ['bottom']
+      });
+    }
+  }
+
+  // Run switchImage function based on the stored style
+  switchImage(storedStyle);
+
+  // Internationalization (Language Dropdown)
+  // ---------------------------------------
+
+  if (typeof i18next !== 'undefined' && typeof i18NextHttpBackend !== 'undefined') {
+    i18next
+      .use(i18NextHttpBackend)
+      .init({
+        lng: window.templateCustomizer ? window.templateCustomizer.settings.lang : 'en',
+        debug: false,
+        fallbackLng: 'en',
+        backend: {
+          loadPath: assetsPath + 'json/locales/{{lng}}.json'
+        },
+        returnObjects: true
+      })
+      .then(function (t) {
+        localize();
+      });
+  }
+
+  let languageDropdown = document.getElementsByClassName('dropdown-language');
+
+  if (languageDropdown.length) {
+    let dropdownItems = languageDropdown[0].querySelectorAll('.dropdown-item');
+
+    for (let i = 0; i < dropdownItems.length; i++) {
+      dropdownItems[i].addEventListener('click', function () {
+        let currentLanguage = this.getAttribute('data-language');
+        let textDirection = this.getAttribute('data-text-direction');
+
+        for (let sibling of this.parentNode.children) {
+          var siblingEle = sibling.parentElement.parentNode.firstChild;
+
+          // Loop through each sibling and push to the array
+          while (siblingEle) {
+            if (siblingEle.nodeType === 1 && siblingEle !== siblingEle.parentElement) {
+              siblingEle.querySelector('.dropdown-item').classList.remove('active');
+            }
+            siblingEle = siblingEle.nextSibling;
+          }
+        }
+        this.classList.add('active');
+
+        i18next.changeLanguage(currentLanguage, (err, t) => {
+          window.templateCustomizer ? window.templateCustomizer.setLang(currentLanguage) : '';
+          directionChange(textDirection);
+          if (err) return console.log('something went wrong loading', err);
+          localize();
+        });
+      });
+    }
+    function directionChange(textDirection) {
+      if (textDirection === 'rtl') {
+        if (localStorage.getItem('templateCustomizer-' + templateName + '--Rtl') !== 'true')
+          window.templateCustomizer ? window.templateCustomizer.setRtl(true) : '';
+      } else {
+        if (localStorage.getItem('templateCustomizer-' + templateName + '--Rtl') === 'true')
+          window.templateCustomizer ? window.templateCustomizer.setRtl(false) : '';
+      }
+    }
+  }
+
+  function localize() {
+    let i18nList = document.querySelectorAll('[data-i18n]');
+    // Set the current language in dd
+    let currentLanguageEle = document.querySelector('.dropdown-item[data-language="' + i18next.language + '"]');
+
+    if (currentLanguageEle) {
+      currentLanguageEle.click();
+    }
+
+    i18nList.forEach(function (item) {
+      item.innerHTML = i18next.t(item.dataset.i18n);
+    });
+  }
+
+  // Notification
+  // ------------
+  const notificationMarkAsReadAll = document.querySelector('.dropdown-notifications-all');
+  const notificationMarkAsReadList = document.querySelectorAll('.dropdown-notifications-read');
+
+  // Notification: Mark as all as read
+  if (notificationMarkAsReadAll) {
+    notificationMarkAsReadAll.addEventListener('click', event => {
+      notificationMarkAsReadList.forEach(item => {
+        item.closest('.dropdown-notifications-item').classList.add('marked-as-read');
+      });
+    });
+  }
+  // Notification: Mark as read/unread onclick of dot
+  if (notificationMarkAsReadList) {
+    notificationMarkAsReadList.forEach(item => {
+      item.addEventListener('click', event => {
+        item.closest('.dropdown-notifications-item').classList.toggle('marked-as-read');
+      });
+    });
+  }
+
+  // Notification: Mark as read/unread onclick of dot
+  const notificationArchiveMessageList = document.querySelectorAll('.dropdown-notifications-archive');
+  notificationArchiveMessageList.forEach(item => {
+    item.addEventListener('click', event => {
+      item.closest('.dropdown-notifications-item').remove();
+    });
+  });
+
+  // Init helpers & misc
+  // --------------------
+
+  // Init BS Tooltip
+  const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+
+  // Accordion active class
+  const accordionActiveFunction = function (e) {
+    if (e.type == 'show.bs.collapse' || e.type == 'show.bs.collapse') {
+      e.target.closest('.accordion-item').classList.add('active');
+    } else {
+      e.target.closest('.accordion-item').classList.remove('active');
+    }
+  };
+
+  const accordionTriggerList = [].slice.call(document.querySelectorAll('.accordion'));
+  const accordionList = accordionTriggerList.map(function (accordionTriggerEl) {
+    accordionTriggerEl.addEventListener('show.bs.collapse', accordionActiveFunction);
+    accordionTriggerEl.addEventListener('hide.bs.collapse', accordionActiveFunction);
+  });
+
+  // If layout is RTL add .dropdown-menu-end class to .dropdown-menu
+  // if (isRtl) {
+  //   Helpers._addClass('dropdown-menu-end', document.querySelectorAll('#layout-navbar .dropdown-menu'));
+  // }
+
+  // Auto update layout based on screen size
+  window.Helpers.setAutoUpdate(true);
+
+  // Toggle Password Visibility
+  window.Helpers.initPasswordToggle();
+
+  // Speech To Text
+  window.Helpers.initSpeechToText();
+
+  // Init PerfectScrollbar in Navbar Dropdown (i.e notification)
+  window.Helpers.initNavbarDropdownScrollbar();
+
+  let horizontalMenuTemplate = document.querySelector("[data-template^='horizontal-menu']");
+  if (horizontalMenuTemplate) {
+    // if screen size is small then set navbar fixed
+    if (window.innerWidth < window.Helpers.LAYOUT_BREAKPOINT) {
+      window.Helpers.setNavbarFixed('fixed');
+    } else {
+      window.Helpers.setNavbarFixed('');
+    }
+  }
+
+  // On window resize listener
+  // -------------------------
+  window.addEventListener(
+    'resize',
+    function (event) {
+      // Hide open search input and set value blank
+      if (window.innerWidth >= window.Helpers.LAYOUT_BREAKPOINT) {
+        if (document.querySelector('.search-input-wrapper')) {
+          document.querySelector('.search-input-wrapper').classList.add('d-none');
+          document.querySelector('.search-input').value = '';
+        }
+      }
+      // Horizontal Layout : Update menu based on window size
+      if (horizontalMenuTemplate) {
+        // if screen size is small then set navbar fixed
+        if (window.innerWidth < window.Helpers.LAYOUT_BREAKPOINT) {
+          window.Helpers.setNavbarFixed('fixed');
+        } else {
+          window.Helpers.setNavbarFixed('');
+        }
+        setTimeout(function () {
+          if (window.innerWidth < window.Helpers.LAYOUT_BREAKPOINT) {
+            if (document.getElementById('layout-menu')) {
+              if (document.getElementById('layout-menu').classList.contains('menu-horizontal')) {
+                menu.switchMenu('vertical');
+              }
+            }
+          } else {
+            if (document.getElementById('layout-menu')) {
+              if (document.getElementById('layout-menu').classList.contains('menu-vertical')) {
+                menu.switchMenu('horizontal');
+              }
+            }
+          }
+        }, 100);
+      }
+    },
+    true
+  );
+
+  // Manage menu expanded/collapsed with templateCustomizer & local storage
+  //------------------------------------------------------------------
+
+  // If current layout is horizontal OR current window screen is small (overlay menu) than return from here
+  if (isHorizontalLayout || window.Helpers.isSmallScreen()) {
+    return;
+  }
+
+  // If current layout is vertical and current window screen is > small
+
+  // Auto update menu collapsed/expanded based on the themeConfig
+  if (typeof TemplateCustomizer !== 'undefined') {
+    if (window.templateCustomizer.settings.defaultMenuCollapsed) {
+      window.Helpers.setCollapsed(true, false);
+    } else {
+      window.Helpers.setCollapsed(false, false);
+    }
+  }
+
+  // Manage menu expanded/collapsed state with local storage support If enableMenuLocalStorage = true in config.js
+  if (typeof config !== 'undefined') {
+    if (config.enableMenuLocalStorage) {
+      try {
+        if (localStorage.getItem('templateCustomizer-' + templateName + '--LayoutCollapsed') !== null)
+          window.Helpers.setCollapsed(
+            localStorage.getItem('templateCustomizer-' + templateName + '--LayoutCollapsed') === 'true',
+            false
+          );
+      } catch (e) {}
+    }
+  }
+})();
+
+// ! Removed following code if you do't wish to use jQuery. Remember that navbar search functionality will stop working on removal.
+if (typeof $ !== 'undefined') {
+  $(function () {
+    // ! TODO: Required to load after DOM is ready, did this now with jQuery ready.
+    window.Helpers.initSidebarToggle();
+    // Toggle Universal Sidebar
+
+    // Navbar Search with autosuggest (typeahead)
+    // ? You can remove the following JS if you don't want to use search functionality.
+    //----------------------------------------------------------------------------------
+
+    var searchToggler = $('.search-toggler'),
+      searchInputWrapper = $('.search-input-wrapper'),
+      searchInput = $('.search-input'),
+      contentBackdrop = $('.content-backdrop');
+
+    // Open search input on click of search icon
+    if (searchToggler.length) {
+      searchToggler.on('click', function () {
+        if (searchInputWrapper.length) {
+          searchInputWrapper.toggleClass('d-none');
+          searchInput.focus();
+        }
+      });
+    }
+    // Open search on 'CTRL+/'
+    $(document).on('keydown', function (event) {
+      let ctrlKey = event.ctrlKey,
+        slashKey = event.which === 191;
+
+      if (ctrlKey && slashKey) {
+        if (searchInputWrapper.length) {
+          searchInputWrapper.toggleClass('d-none');
+          searchInput.focus();
+        }
+      }
+    });
+    // Note: Following code is required to update container class of typeahead dropdown width on focus of search input. setTimeout is required to allow time to initiate Typeahead UI.
+    setTimeout(function () {
+      var twitterTypeahead = $('.twitter-typeahead');
+      searchInput.on('focus', function () {
+        if (searchInputWrapper.hasClass('container-xxl')) {
+          searchInputWrapper.find(twitterTypeahead).addClass('container-xxl');
+          twitterTypeahead.removeClass('container-fluid');
+        } else if (searchInputWrapper.hasClass('container-fluid')) {
+          searchInputWrapper.find(twitterTypeahead).addClass('container-fluid');
+          twitterTypeahead.removeClass('container-xxl');
+        }
+      });
+    }, 10);
+
+    if (searchInput.length) {
+      // Filter config
+      var filterConfig = function (data) {
+        return function findMatches(q, cb) {
+          let matches;
+          matches = [];
+          data.filter(function (i) {
+            if (i.name.toLowerCase().startsWith(q.toLowerCase())) {
+              matches.push(i);
+            } else if (
+              !i.name.toLowerCase().startsWith(q.toLowerCase()) &&
+              i.name.toLowerCase().includes(q.toLowerCase())
+            ) {
+              matches.push(i);
+              matches.sort(function (a, b) {
+                return b.name < a.name ? 1 : -1;
+              });
+            } else {
+              return [];
+            }
+          });
+          cb(matches);
+        };
+      };
+
+      // Search JSON
+      var searchJson = 'search-vertical.json'; // For vertical layout
+      if ($('#layout-menu').hasClass('menu-horizontal')) {
+        var searchJson = 'search-horizontal.json'; // For vertical layout
+      }
+      // Search API AJAX call
+      var searchData = $.ajax({
+        url: assetsPath + 'json/' + searchJson, //? Use your own search api instead
+        dataType: 'json',
+        async: false
+      }).responseJSON;
+      // Init typeahead on searchInput
+      searchInput.each(function () {
+        var $this = $(this);
+        searchInput
+          .typeahead(
+            {
+              hint: false,
+              classNames: {
+                menu: 'tt-menu navbar-search-suggestion',
+                cursor: 'active',
+                suggestion: 'suggestion d-flex justify-content-between px-4 py-2 w-100'
+              }
+            },
+            // ? Add/Update blocks as per need
+            // Pages
+            {
+              name: 'pages',
+              display: 'name',
+              limit: 5,
+              source: filterConfig(searchData.pages),
+              templates: {
+                header: '<h6 class="suggestions-header text-primary mb-0 mx-4 mt-3 pb-2">Pages</h6>',
+                suggestion: function ({ url, icon, name }) {
+                  return (
+                    '<a href="' +
+                    url +
+                    '">' +
+                    '<div>' +
+                    '<i class="ti ' +
+                    icon +
+                    ' me-2"></i>' +
+                    '<span class="align-middle">' +
+                    name +
+                    '</span>' +
+                    '</div>' +
+                    '</a>'
+                  );
+                },
+                notFound:
+                  '<div class="not-found px-4 py-2">' +
+                  '<h6 class="suggestions-header text-primary mb-2">Pages</h6>' +
+                  '<p class="py-2 mb-0"><i class="ti ti-alert-circle ti-xs me-2"></i> No Results Found</p>' +
+                  '</div>'
+              }
+            },
+            // Files
+            {
+              name: 'files',
+              display: 'name',
+              limit: 4,
+              source: filterConfig(searchData.files),
+              templates: {
+                header: '<h6 class="suggestions-header text-primary mb-0 mx-4 mt-3 pb-2">Files</h6>',
+                suggestion: function ({ src, name, subtitle, meta }) {
+                  return (
+                    '<a href="javascript:;">' +
+                    '<div class="d-flex w-50">' +
+                    '<img class="me-3" src="' +
+                    assetsPath +
+                    src +
+                    '" alt="' +
+                    name +
+                    '" height="32">' +
+                    '<div class="w-75">' +
+                    '<h6 class="mb-0">' +
+                    name +
+                    '</h6>' +
+                    '<small class="text-muted">' +
+                    subtitle +
+                    '</small>' +
+                    '</div>' +
+                    '</div>' +
+                    '<small class="text-muted">' +
+                    meta +
+                    '</small>' +
+                    '</a>'
+                  );
+                },
+                notFound:
+                  '<div class="not-found px-4 py-2">' +
+                  '<h6 class="suggestions-header text-primary mb-2">Files</h6>' +
+                  '<p class="py-2 mb-0"><i class="ti ti-alert-circle ti-xs me-2"></i> No Results Found</p>' +
+                  '</div>'
+              }
+            },
+            // Members
+            {
+              name: 'members',
+              display: 'name',
+              limit: 4,
+              source: filterConfig(searchData.members),
+              templates: {
+                header: '<h6 class="suggestions-header text-primary mb-0 mx-4 mt-3 pb-2">Members</h6>',
+                suggestion: function ({ name, src, subtitle }) {
+                  return (
+                    '<a href="app-user-view-account.html">' +
+                    '<div class="d-flex align-items-center">' +
+                    '<img class="rounded-circle me-3" src="' +
+                    assetsPath +
+                    src +
+                    '" alt="' +
+                    name +
+                    '" height="32">' +
+                    '<div class="user-info">' +
+                    '<h6 class="mb-0">' +
+                    name +
+                    '</h6>' +
+                    '<small class="text-muted">' +
+                    subtitle +
+                    '</small>' +
+                    '</div>' +
+                    '</div>' +
+                    '</a>'
+                  );
+                },
+                notFound:
+                  '<div class="not-found px-4 py-2">' +
+                  '<h6 class="suggestions-header text-primary mb-2">Members</h6>' +
+                  '<p class="py-2 mb-0"><i class="ti ti-alert-circle ti-xs me-2"></i> No Results Found</p>' +
+                  '</div>'
+              }
+            }
+          )
+          //On typeahead result render.
+          .bind('typeahead:render', function () {
+            // Show content backdrop,
+            contentBackdrop.addClass('show').removeClass('fade');
+          })
+          // On typeahead select
+          .bind('typeahead:select', function (ev, suggestion) {
+            // Open selected page
+            if (suggestion.url) {
+              window.location = suggestion.url;
+            }
+          })
+          // On typeahead close
+          .bind('typeahead:close', function () {
+            // Clear search
+            searchInput.val('');
+            $this.typeahead('val', '');
+            // Hide search input wrapper
+            searchInputWrapper.addClass('d-none');
+            // Fade content backdrop
+            contentBackdrop.addClass('fade').removeClass('show');
+          });
+
+        // On searchInput keyup, Fade content backdrop if search input is blank
+        searchInput.on('keyup', function () {
+          if (searchInput.val() == '') {
+            contentBackdrop.addClass('fade').removeClass('show');
+          }
+        });
+      });
+
+      // Init PerfectScrollbar in search result
+      var psSearch;
+      $('.navbar-search-suggestion').each(function () {
+        psSearch = new PerfectScrollbar($(this)[0], {
+          wheelPropagation: false,
+          suppressScrollX: true
+        });
+      });
+
+      searchInput.on('keyup', function () {
+        psSearch.update();
+      });
+    }
+  });
+}

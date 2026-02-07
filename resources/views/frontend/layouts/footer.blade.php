@@ -1,6 +1,6 @@
 <!-- start: Footer Section -->
         <footer class="tj-footer-section footer-1 section-gap-x">
-          <div class="bg-img" data-bg-image="assets/images/footer/footer-bg.webp"></div>
+          <div class="bg-img" data-bg-image="frontAssets/images/footer/footer-bg.webp"></div>
           <div class="footer-main-area">
             <div class="container">
               <div class="row">
@@ -9,15 +9,15 @@
                     <div class="footer-widget footer-col-1">
                       <div class="footer-logo">
                         <a href="index.html">
-                          <img src="assets/images/logos/primary-logo.webp" alt="Logo" />
+                          <img src="frontAssets/images/logos/siteffects-logo.png" alt="Logo" />
                         </a>
                       </div>
                       <div class="footer-text">
                         <p>Every great solution start understand the time into learn about.</p>
                       </div>
                       <div class="download-buttons">
-                        <a href="https://play.google.com/store/games"><img src="assets/images/footer/google-play.webp" alt="" /></a>
-                        <a href="https://www.apple.com/app-store/"><img src="assets/images/footer/app-store.webp" alt="" /></a>
+                        <a href="https://play.google.com/store/games"><img src="frontAssets/images/footer/google-play.webp" alt="" /></a>
+                        <a href="https://www.apple.com/app-store/"><img src="frontAssets/images/footer/app-store.webp" alt="" /></a>
                       </div>
                     </div>
                     <div class="footer-widget widget-nav-menu">

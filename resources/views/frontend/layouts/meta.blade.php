@@ -5,4 +5,4 @@
 <meta name="keywords" content="@yield('keywords')">
 <meta name="author" content="@yield('author')">
 <!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="" />
+<link rel="icon" type="image/x-icon" href="{{ asset('frontAssets/images/logos/siteffect-icon.png') }}" />

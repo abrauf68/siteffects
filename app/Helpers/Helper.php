@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\BusinessSetting;
 use App\Models\CompanySetting;
+use App\Models\Service;
 use App\Models\SystemSetting;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -48,6 +49,10 @@ class Helper
     public static function getCompanyFacebook()
     {
         return CompanySetting::first()->facebook ?? 'https://www.facebook.com/siteffects';
+    }
+    public static function getServices()
+    {
+        return Service::where('is_active', 'active')->get();
     }
 
     public static function getCompanyInstagram()

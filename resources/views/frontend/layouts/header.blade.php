@@ -350,22 +350,21 @@
                                         class="{{ request()->routeIs('frontend.home') ? 'current-menu-ancestor' : '' }}">
                                         <a href="{{ route('frontend.home') }}">Home</a>
                                     </li>
-                                    <li class="">
-                                        <a href="index.html">About</a>
+                                    <li class="{{ request()->routeIs('frontend.about') ? 'current-menu-ancestor' : '' }}">
+                                        <a href="{{ route('frontend.about') }}">About</a>
                                     </li>
-                                    <li class="has-dropdown">
-                                        <a href="service.html">Services</a>
+                                    <li class="{{ request()->routeIs('frontend.services') ? 'current-menu-ancestor' : '' }} has-dropdown">
+                                        <a href="{{ route('frontend.services') }}">Services</a>
                                         <ul class="sub-menu">
-                                            <li><a href="service.html">Services</a></li>
-                                            <li><a href="service-details.html">Services Details</a></li>
+                                            @forelse (\App\Helpers\Helper::getServices() as $service)
+                                                <li><a href="{{ route('frontend.services', $service->slug) }}">{{ $service->title }}</a></li>
+                                            @empty
+                                                <li><a href="{{ route('frontend.services') }}">Services</a></li>
+                                            @endforelse
                                         </ul>
                                     </li>
-                                    <li class="has-dropdown">
-                                        <a href="project.html">Projects</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="project.html">Projects</a></li>
-                                            <li><a href="project-details.html">Project Details</a></li>
-                                        </ul>
+                                    <li class="{{ request()->routeIs('frontend.projects') ? 'current-menu-ancestor' : '' }}">
+                                        <a href="{{ route('frontend.projects') }}">Projects</a>
                                     </li>
                                     <li class="has-dropdown">
                                         <a href="blog.html">Blog</a>
@@ -441,22 +440,21 @@
                                     <li class="{{ request()->routeIs('frontend.home') ? 'current-menu-ancestor' : '' }}">
                                         <a href="{{ route('frontend.home') }}">Home</a>
                                     </li>
-                                    <li class="current-menu-ancestor">
-                                        <a href="index.html">About</a>
+                                    <li class="{{ request()->routeIs('frontend.about') ? 'current-menu-ancestor' : '' }}">
+                                        <a href="{{ route('frontend.about') }}">About</a>
                                     </li>
-                                    <li class="has-dropdown">
-                                        <a href="service.html">Services</a>
+                                    <li class="{{ request()->routeIs('frontend.services') ? 'current-menu-ancestor' : '' }} has-dropdown">
+                                        <a href="{{ route('frontend.services') }}">Services</a>
                                         <ul class="sub-menu">
-                                            <li><a href="service.html">Services</a></li>
-                                            <li><a href="service-details.html">Services Details</a></li>
+                                            @forelse (\App\Helpers\Helper::getServices() as $service)
+                                                <li><a href="{{ route('frontend.services', $service->slug) }}">{{ $service->title }}</a></li>
+                                            @empty
+                                                <li><a href="{{ route('frontend.services') }}">Services</a></li>
+                                            @endforelse
                                         </ul>
                                     </li>
-                                    <li class="has-dropdown">
-                                        <a href="project.html">Projects</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="project.html">Projects</a></li>
-                                            <li><a href="project-details.html">Project Details</a></li>
-                                        </ul>
+                                    <li class="{{ request()->routeIs('frontend.projects') ? 'current-menu-ancestor' : '' }}">
+                                        <a href="{{ route('frontend.projects') }}">Projects</a>
                                     </li>
                                     <li class="has-dropdown">
                                         <a href="blog.html">Blog</a>

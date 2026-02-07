@@ -145,6 +145,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Frontend Pages Routes
 Route::name('frontend.')->group(function () {
 Route::get('/', [FrontendHomeController::class, 'home'])->name('home');
+Route::get('/about', [FrontendHomeController::class, 'about'])->name('about');
+Route::get('/services/{slug?}', [FrontendHomeController::class, 'services'])->name('services');
+Route::get('/projects/{category?}/{project?}', [FrontendHomeController::class, 'projects'])->name('projects');
 });
 
 

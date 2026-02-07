@@ -28,6 +28,9 @@ class DatabaseSeeder extends Seeder
             DesignationSeeder::class,
             TimezoneSeeder::class,
             SettingSeeder::class,
+            ServiceSeeder::class,
+            ProjectSeeder::class,
+            ServiceFaqSeeder::class,
         ]);
     }
 }

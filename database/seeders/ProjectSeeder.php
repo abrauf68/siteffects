@@ -16,105 +16,127 @@ class ProjectSeeder extends Seeder
     public function run(): void
     {
         DB::table('projects')->insert([
-            [
-                'title' => 'EstiMate Pro',
-                'slug' => Str::slug('EstiMate Pro'),
-                'main_image' => null,
-                'scroll_image' => null,
-                'live_url' => 'https://estimatepro.com',
-                'client' => 'EstiMate Pro',
-                'technologies' => 'Laravel, Livewire, Stripe, MySQL',
-                'completion_date' => Carbon::parse('2025-06-20'),
-                'meta_title' => 'EstiMate Pro – Smart Estimation Platform',
-                'meta_description' => 'Smart SaaS platform for automated project estimation and pricing.',
-                'description' => '
-<p>EstiMate Pro is a powerful SaaS platform designed to simplify and automate project estimation for businesses. The system focuses on accuracy, scalability, and performance, allowing companies to generate reliable estimates through structured surveys and intelligent pricing logic. Built with modern technologies, the platform ensures a smooth and secure user experience across all devices.</p>
 
-<h2>Our Approach to Estimation Systems</h2>
-<p>We followed a strategic development approach by understanding business workflows, designing scalable architecture, and implementing clean, maintainable code. The platform is optimized for speed, security, and long-term growth, ensuring businesses can manage clients, subscriptions, and estimates efficiently.</p>
+            /*
+            |--------------------------------------------------------------------------
+            | Very Pro Store
+            |--------------------------------------------------------------------------
+            */
+            [
+                'title' => 'Very Pro Store – E-Commerce Marketplace',
+                'slug' => Str::slug('Very Pro Store – E-Commerce Marketplace'),
+                'main_image' => null,
+                'scroll_image' => 'uploads/projects/veryprostore.png',
+                'live_url' => 'https://veryprostore.com/',
+                'client' => 'Very Pro Store',
+                'technologies' => 'Laravel, E-commerce, UI/UX, Payment Integration',
+                'completion_date' => Carbon::parse('2025-08-15'),
+                'meta_title' => 'Very Pro Store – Online Shopping Marketplace',
+                'meta_description' => 'A modern e-commerce marketplace offering electronics, fashion, home, and lifestyle products with secure checkout.',
+                'description' => '
+<p>Very Pro Store is a modern multi-category e-commerce marketplace designed to provide a smooth and reliable online shopping experience. The platform allows users to browse products across multiple categories including electronics, fashion, home essentials, and accessories.</p>
+
+<h2>E-Commerce Strategy</h2>
+<p>The store was structured with a focus on product discoverability, fast navigation, and a secure checkout flow. Performance optimization and customer trust were key priorities throughout the development process.</p>
 ',
                 'features' => json_encode([
-                    'Survey based estimation',
-                    'Stripe subscriptions',
-                    'Admin dashboard',
-                    'PDF export'
+                    'Multi-category product catalog',
+                    'Secure checkout system',
+                    'Customer account management',
+                    'Responsive shopping experience',
                 ]),
             ],
 
+            /*
+            |--------------------------------------------------------------------------
+            | Abdul Rauf Portfolio
+            |--------------------------------------------------------------------------
+            */
             [
-                'title' => 'Facebook Lead Management System',
-                'slug' => Str::slug('Facebook Lead Management System'),
+                'title' => 'Abdul Rauf – Developer Portfolio',
+                'slug' => Str::slug('Abdul Rauf – Developer Portfolio'),
                 'main_image' => null,
-                'scroll_image' => null,
-                'live_url' => '',
-                'client' => 'Marketing Agency',
-                'technologies' => 'Laravel, Facebook Graph API, Bootstrap',
-                'completion_date' => Carbon::parse('2025-04-10'),
-                'meta_title' => 'Facebook Lead Management System',
-                'meta_description' => 'Automated Facebook lead capture and management system.',
+                'scroll_image' => 'uploads/projects/rauf-portfolio.png',
+                'live_url' => 'https://rauf.jewellaa.com/',
+                'client' => 'Abdul Rauf',
+                'technologies' => 'Laravel, PHP, JavaScript, Full Stack Development',
+                'completion_date' => Carbon::parse('2025-09-10'),
+                'meta_title' => 'Abdul Rauf – Full Stack Web Developer Portfolio',
+                'meta_description' => 'Personal portfolio showcasing web development services, projects, and technical expertise.',
                 'description' => '
-<p>This project was built to centralize and automate Facebook lead handling for marketing teams. The system captures leads in real time and organizes them into a structured dashboard, enabling faster responses and better conversion rates.</p>
+<p>This personal portfolio website highlights the professional work and services of Abdul Rauf as a full stack web developer. The platform showcases completed projects, technical skills, and offered development services.</p>
 
-<h2>Lead Management Strategy</h2>
-<p>Our approach focused on seamless API integration, efficient data handling, and a clean user interface. The system ensures leads are properly assigned, tracked, and followed up, helping businesses maximize their marketing efforts.</p>
+<h2>Portfolio Focus</h2>
+<p>The site emphasizes clarity, performance, and professionalism while allowing potential clients to easily explore services, past work, and contact information.</p>
 ',
                 'features' => json_encode([
-                    'Facebook API integration',
-                    'Lead assignment',
-                    'Status tracking',
-                    'Notifications'
+                    'Project showcase',
+                    'Service listings',
+                    'Clean UI/UX',
+                    'Contact & inquiry system',
                 ]),
             ],
 
+            /*
+            |--------------------------------------------------------------------------
+            | YourKit.pro – Workwear Store
+            |--------------------------------------------------------------------------
+            */
             [
-                'title' => 'Grand City Faisalabad CRM',
-                'slug' => Str::slug('Grand City Faisalabad CRM'),
+                'title' => 'YourKit Pro – Custom Workwear Store',
+                'slug' => Str::slug('YourKit Pro – Custom Workwear Store'),
                 'main_image' => null,
-                'scroll_image' => null,
-                'live_url' => 'https://grandcityfaisalabad.com',
-                'client' => 'Grand City Faisalabad',
-                'technologies' => 'Laravel, MySQL, AdminLTE',
-                'completion_date' => Carbon::parse('2025-05-15'),
-                'meta_title' => 'Grand City Faisalabad – Real Estate CRM',
-                'meta_description' => 'CRM system for managing real estate leads and sales.',
+                'scroll_image' => 'uploads/projects/yourkit-pro.png',
+                'live_url' => 'https://yourkit.pro/',
+                'client' => 'YourKit Pro',
+                'technologies' => 'E-commerce, Product Customization, UI/UX',
+                'completion_date' => Carbon::parse('2025-10-05'),
+                'meta_title' => 'YourKit Pro – Custom Construction Workwear',
+                'meta_description' => 'Online store offering custom branded construction and workwear apparel for crews and professionals.',
                 'description' => '
-<p>This CRM system was developed to manage real estate leads, customers, and sales operations efficiently. It provides a centralized platform for tracking inquiries, managing properties, and monitoring sales performance.</p>
+<p>YourKit Pro is an online e-commerce platform specializing in custom construction and workwear apparel. The store allows businesses and crews to order branded shirts, hoodies, jackets, and safety wear in bulk.</p>
 
-<h2>CRM Development Approach</h2>
-<p>We designed the system with role-based access, data security, and scalability in mind. The platform ensures smooth operations for sales teams while providing management with clear insights and reporting.</p>
+<h2>Customization & Ordering</h2>
+<p>The platform focuses on product customization, bulk ordering, and a smooth purchasing experience tailored for professional teams and construction companies.</p>
 ',
                 'features' => json_encode([
-                    'Lead management',
-                    'Property listings',
-                    'Sales tracking',
-                    'Role-based access'
+                    'Custom branded apparel',
+                    'Bulk ordering system',
+                    'Workwear product catalog',
+                    'Business-focused checkout flow',
                 ]),
             ],
 
+            /*
+            |--------------------------------------------------------------------------
+            | Afrah Travel
+            |--------------------------------------------------------------------------
+            */
             [
-                'title' => 'Car Transport Quote System',
-                'slug' => Str::slug('Car Transport Quote System'),
+                'title' => 'Afrah Travel – Umrah & Flight Booking',
+                'slug' => Str::slug('Afrah Travel – Umrah & Flight Booking'),
                 'main_image' => null,
-                'scroll_image' => null,
-                'live_url' => '',
-                'client' => 'Logistics Company',
-                'technologies' => 'Laravel, BATS API, Google Maps',
-                'completion_date' => Carbon::parse('2025-03-28'),
-                'meta_title' => 'Car Transport Quote System',
-                'meta_description' => 'Instant car transport quotes with distance-based pricing.',
+                'scroll_image' => 'uploads/projects/afrahtravel-pk-sasta-ticket.png',
+                'live_url' => 'https://afrahtravel.com.pk/sasta_ticket/',
+                'client' => 'Afrah Travel & Tours',
+                'technologies' => 'Travel Booking, CMS, Service-Based Website',
+                'completion_date' => Carbon::parse('2025-11-20'),
+                'meta_title' => 'Afrah Travel – Affordable Umrah & Air Tickets',
+                'meta_description' => 'Travel agency website providing Umrah packages, air ticket booking, and travel services in Pakistan.',
                 'description' => '
-<p>The car transport quote system provides instant pricing based on distance, vehicle type, and delivery requirements. It simplifies the quotation process for both customers and logistics teams.</p>
+<p>Afrah Travel is a Pakistan-based travel agency website offering affordable Umrah packages, international flight bookings, and travel assistance services. The platform helps users easily explore travel options and connect with agents.</p>
 
-<h2>Quotation System Workflow</h2>
-<p>We implemented real-time distance calculation, API-based pricing logic, and a clean dashboard to manage quotes efficiently. The system is optimized for accuracy, speed, and ease of use.</p>
+<h2>Travel Services Approach</h2>
+<p>The website is designed to build trust, clearly present packages, and simplify inquiries for religious and international travel services.</p>
 ',
                 'features' => json_encode([
-                    'Distance calculation',
-                    'API-based pricing',
-                    'Quote dashboard',
-                    'Admin controls'
+                    'Umrah & religious packages',
+                    'Flight booking assistance',
+                    'Travel inquiry system',
+                    'Service-focused content layout',
                 ]),
             ],
+
         ]);
     }
 }

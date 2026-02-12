@@ -45,6 +45,8 @@ class ProjectSeeder extends Seeder
                     'Customer account management',
                     'Responsive shopping experience',
                 ]),
+                'position' => 1,
+                'is_featured' => '1',
             ],
 
             /*
@@ -75,6 +77,8 @@ class ProjectSeeder extends Seeder
                     'Clean UI/UX',
                     'Contact & inquiry system',
                 ]),
+                'position' => 2,
+                'is_featured' => '1',
             ],
 
             /*
@@ -105,6 +109,8 @@ class ProjectSeeder extends Seeder
                     'Workwear product catalog',
                     'Business-focused checkout flow',
                 ]),
+                'position' => 3,
+                'is_featured' => '1',
             ],
 
             /*
@@ -135,6 +141,8 @@ class ProjectSeeder extends Seeder
                     'Travel inquiry system',
                     'Service-focused content layout',
                 ]),
+                'position' => 4,
+                'is_featured' => '1',
             ],
 
         ]);

@@ -146,8 +146,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::name('frontend.')->group(function () {
 Route::get('/', [FrontendHomeController::class, 'home'])->name('home');
 Route::get('/about', [FrontendHomeController::class, 'about'])->name('about');
+Route::get('/contact', [FrontendHomeController::class, 'contact'])->name('contact');
 Route::get('/services/{slug?}', [FrontendHomeController::class, 'services'])->name('services');
 Route::get('/projects/{category?}/{project?}', [FrontendHomeController::class, 'projects'])->name('projects');
+Route::post('/contact/submit', [FrontendHomeController::class, 'contactSubmit'])->name('contact.submit');
+Route::post('/newsletter/store', [FrontendHomeController::class, 'newsletterStore'])->name('newsletter.store');
 });
 
 

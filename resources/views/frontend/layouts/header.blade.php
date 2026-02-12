@@ -261,7 +261,7 @@
                 <div class="col-12">
                     <div class="header-top-content">
                         <p class="topbar-text"><i class="tji-spark"></i> Fast & Reliable IT Solution Services. <a
-                                href="#">Join Now</a></p>
+                                href="{{ route('frontend.services') }}">Explore Now</a></p>
                         <div class="header-info">
                             <div class="info-item">
                                 <span>
@@ -311,7 +311,7 @@
                             </div>
                             <div class="info-item">
                                 <span><i class="tji-gear"></i></span>
-                                <a href="contact.html">Support</a>
+                                <a href="{{ route('frontend.contact') }}">Support</a>
                             </div>
                             <div class="info-item">
                                 <span><i class="tji-globe"></i></span>
@@ -373,7 +373,7 @@
                                             <li><a href="blog-details.html">Blog Details</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="{{ route('frontend.contact') }}">Contact</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -386,7 +386,7 @@
                                 </button>
                             </div> --}}
                             <div class="header-button d-xl-block d-none">
-                                <a class="tj-primary-btn" href="contact.html">
+                                <a class="tj-primary-btn" href="{{ route('frontend.contact') }}">
                                     <span class="btn-text"><span>Get a Quote</span></span>
                                     <span class="btn-icon"><i class="tji-arrow-right-2"></i></span>
                                 </a>
@@ -463,7 +463,7 @@
                                             <li><a href="blog-details.html">Blog Details</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="{{ route('frontend.contact') }}">Contact</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -476,7 +476,7 @@
                                 </button>
                             </div> --}}
                             <div class="header-button d-xl-block d-none">
-                                <a class="tj-primary-btn" href="contact.html">
+                                <a class="tj-primary-btn" href="{{ route('frontend.contact') }}">
                                     <span class="btn-text"><span>Get a Quote</span></span>
                                     <span class="btn-icon"><i class="tji-arrow-right-2"></i></span>
                                 </a>

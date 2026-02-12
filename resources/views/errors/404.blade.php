@@ -1,22 +1,41 @@
-@extends('layouts.errors.master')
+@extends('frontend.layouts.master')
 
 @section('title', 'Error 404')
 
 @section('css')
+
+@endsection
+
+@section('breadcrumb-items')
 @endsection
 
 @section('content')
-    <div class="misc-wrapper">
-        <h1 class="mb-2 mx-2" style="line-height: 6rem; font-size: 6rem">404</h1>
-        <h4 class="mb-2 mx-2">{{__('Page Not Found️ ⚠️')}}</h4>
-        <p class="mb-6 mx-2">{{__("we couldn't find the page you are looking for")}}</p>
-        <a href="{{ route('dashboard') }}" class="btn btn-primary mb-10">{{__('Back to home')}}</a>
-        <div class="mt-4">
-            <img src="{{ asset('assets/img/illustrations/page-misc-error.png') }}" alt="page-misc-error" width="225"
-                class="img-fluid" />
+    <!-- start: Error Section -->
+    <section class="tj-error-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="tj-error-wrap text-center">
+                        <div class="tj-error-content">
+                            <h2 class="error-title tj-split-text-1">Oooop! Page not found</h2>
+                            <div class="error-desc">
+                                {{ __("we couldn't find the page you are looking for") }}
+                            </div>
+                            <a class="tj-primary-btn error-btn" href="{{ route('frontend.home') }}">
+                                <span class="btn-text"><span>Go Back to Home</span></span>
+                                <span class="btn-icon"><i class="tji-arrow-right-2"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+    <!-- end: Error Section -->
+
+    @include('frontend.pages.sections.cta')
 @endsection
 
 @section('script')
+
 @endsection

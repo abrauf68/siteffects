@@ -1,6 +1,6 @@
 <!-- start: Footer Section -->
 <footer class="tj-footer-section footer-1 section-gap-x">
-    <div class="bg-img" data-bg-image="frontAssets/images/footer/footer-bg.webp"></div>
+    <div class="bg-img" data-bg-image="{{ asset('frontAssets/images/footer/footer-bg.webp') }}"></div>
     <div class="footer-main-area">
         <div class="container">
             <div class="row">
@@ -8,20 +8,19 @@
                     <div class="footer_widget_wrapper">
                         <div class="footer-widget footer-col-1">
                             <div class="footer-logo">
-                                <a href="index.html">
-                                    <img src="{{ asset(\App\Helpers\Helper::getLogoLight()) }}" alt="Logo" />
+                                <a href="{{ route('frontend.home') }}">
+                                    <img src="{{ asset(\App\Helpers\Helper::getLogoLight()) }}" alt="Company Logo" />
                                 </a>
                             </div>
+
                             <div class="footer-text">
-                                <p>Every great solution start understand the time into learn about.</p>
-                            </div>
-                            <div class="download-buttons">
-                                <a href="https://play.google.com/store/games"><img
-                                        src="frontAssets/images/footer/google-play.webp" alt="" /></a>
-                                <a href="https://www.apple.com/app-store/"><img
-                                        src="frontAssets/images/footer/app-store.webp" alt="" /></a>
+                                <p>
+                                    We deliver professional web development and IT solutions designed to help businesses grow online.
+                                    Our team builds secure, scalable, and high-performance digital solutions tailored to your needs.
+                                </p>
                             </div>
                         </div>
+
                         <div class="footer-widget widget-nav-menu">
                             <h5 class="title">Services</h5>
                             <ul>
@@ -36,22 +35,22 @@
                             <h5 class="title">Resourses</h5>
                             <ul>
                                 <li>
-                                    <a href="contact.html"><span>About Us</span></a>
+                                    <a href="{{ route('frontend.about') }}"><span>About Us</span></a>
                                 </li>
                                 <li>
-                                    <a href="contact.html"><span>Contact Us</span></a>
+                                    <a href="{{ route('frontend.contact') }}"><span>Contact Us</span></a>
                                 </li>
                                 <li>
-                                    <a href="blog-details.html"><span>Privacy Policy</span></a>
+                                    <a href="#"><span>Privacy Policy</span></a>
                                 </li>
                                 <li>
-                                    <a href="blog-details.html"><span>Terms and Conditions</span></a>
+                                    <a href="#"><span>Terms and Conditions</span></a>
                                 </li>
                                 <li>
-                                    <a href="about.html"><span>Portfolio</span></a>
+                                    <a href="{{ route('frontend.projects') }}"><span>Portfolio</span></a>
                                 </li>
                                 <li>
-                                    <a href="blog.html"><span>News</span></a>
+                                    <a href="#"><span>News</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -71,7 +70,7 @@
                                     <a href="mailto:{{ \App\Helpers\Helper::getCompanyEmail() }}">E: {{ \App\Helpers\Helper::getCompanyEmail() }}</a>
                                 </div>
                                 <div class="contact-item">
-                                    <span><i class="tji-clock"></i> Mon-Sat 09am-08pm</span>
+                                    <span><i class="tji-clock"></i> Mon-Sat 09am-09pm</span>
                                 </div>
                             </div>
                         </div>
@@ -92,8 +91,8 @@
                             </div>
                             <div class="copyright-menu">
                                 <ul>
-                                    <li><a href="contact.html">Privacy & Policy</a></li>
-                                    <li><a href="contact.html">Terms & Condition</a></li>
+                                    <li><a href="#">Privacy & Policy</a></li>
+                                    <li><a href="#">Terms & Condition</a></li>
                                 </ul>
                             </div>
                         </div>

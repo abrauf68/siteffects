@@ -3,7 +3,42 @@
 @section('title', 'Home')
 
 @section('css')
+    <style>
+        /* CARD IMAGE WRAPPER */
+        .project-img {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 12px;
 
+            /* SCROLL IMAGE */
+            background-size: cover;
+            background-position: top center;
+            background-repeat: no-repeat;
+
+            transition: background-position 6s linear;
+        }
+
+        /* MAIN IMAGE OVERLAY */
+        .project-img::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: opacity 0.3s ease;
+        }
+
+        /* HOVER EFFECT */
+        .project-item:hover .project-img {
+            background-position: bottom center;
+        }
+
+        .project-item:hover .project-img::before {
+            opacity: 0;
+        }
+    </style>
 @endsection
 
 @section('breadcrumb-items')
@@ -20,20 +55,24 @@
                         <span class="sub-title tj-fade-anim" data-duration="0.5">[ Siteffect Solutions ]</span>
                         <h1 class="banner-title tj-split-text-4">Innovative Tech Solutions for Growing Businesses</h1>
                         <div class="btn-area tj-fade-anim" data-delay=".6">
-                            <a class="tj-primary-btn" href="service.html">
+                            <a class="tj-primary-btn" href="{{ route('frontend.services') }}">
                                 <span class="btn-text"><span>Explore Services</span></span>
                                 <span class="btn-icon"><i class="tji-arrow-right-2"></i></span>
                             </a>
-                            <a class="number" href="tel:18883338181"><i class="tji-phone-2"></i><span>+1 (888)
-                                    333-8181</span></a>
+                            @php
+                                $phone = \App\Helpers\Helper::getCompanyPhone();
+                                $waPhone = preg_replace('/[^0-9]/', '', $phone);
+                            @endphp
+                            <a class="number" href="https://wa.me/{{ $waPhone }}"><i
+                                    class="tji-phone-2"></i><span>{{ $phone }}</span></a>
                         </div>
                         <div class="list-area tj-fade-anim" data-delay=".6" data-duration="1" data-direction="left">
                             <ul class="list-style-1">
                                 <li>
-                                    <span><i class="tji-check"></i></span>Innovate Smarter
+                                    <span><i class="tji-check"></i></span>Smart Solutions
                                 </li>
                                 <li>
-                                    <span><i class="tji-check"></i></span>Technology Simplified
+                                    <span><i class="tji-check"></i></span>Real Results
                                 </li>
                             </ul>
                         </div>
@@ -53,7 +92,7 @@
 
                         <div class="trusted tj-bounce tj-fade-anim" data-delay="1" data-direction="left">
                             <span class="icon"><i class="tji-shield"></i></span>
-                            <span class="text">Trusted by 800+ Tech Giants.</span>
+                            <span class="text">Trusted by 100+ Tech Companies.</span>
                         </div>
                         <div class="customers-box tj-fade-anim" data-delay="0.6" data-direction="right"
                             style="translate: none;rotate: none;scale: none;transform: translate(-45px, 15px);opacity: 1;">
@@ -84,234 +123,109 @@
                 </div>
             </div>
         </div>
-        <div class="banner-scroll tj-fade-anim" data-delay="1.2" data-direction="top">
+        {{-- <div class="banner-scroll tj-fade-anim" data-delay="1.2" data-direction="top">
             <a href="#client" class="scroll-down">
                 <span class="text">Scroll Down</span>
                 <span class="icon"><i class="tji-arrow-down-2"></i></span>
             </a>
-        </div>
+        </div> --}}
     </section>
     <!-- end: Banner Section -->
 
     <!-- start: Client Section -->
-    <section id="client" class="tj-client-section section-gap-top">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="client-content tj-fade-anim" data-delay="0.1">
-                        <h5 class="sec-title">Join Over <span>1000+</span> Companies with Siteffects</h5>
-                    </div>
-                    <div class="swiper client-slider">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide client-item">
-                                <div class="client-logo">
-                                    <img src="frontAssets/images/brands/brand-1.webp" alt="Image" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide client-item">
-                                <div class="client-logo">
-                                    <img src="frontAssets/images/brands/brand-2.webp" alt="Image" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide client-item">
-                                <div class="client-logo">
-                                    <img src="frontAssets/images/brands/brand-3.webp" alt="Image" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide client-item">
-                                <div class="client-logo">
-                                    <img src="frontAssets/images/brands/brand-4.webp" alt="Image" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide client-item">
-                                <div class="client-logo">
-                                    <img src="frontAssets/images/brands/brand-5.webp" alt="Image" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide client-item">
-                                <div class="client-logo">
-                                    <img src="frontAssets/images/brands/brand-6.webp" alt="Image" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('frontend.pages.sections.clients')
     <!-- end: Client Section -->
 
     <!-- start: Service Section -->
     <div class="tj-service-section section-gap">
         <div class="container">
             <div class="row rg-30">
+
+                <!-- Left Heading Column -->
                 <div class="col-lg-4 col-md-6">
                     <div class="sec-heading mt-30 mb-0 tj-fade-anim" data-delay=".1" data-direction="bottom">
                         <span class="sub-title tj-fade-anim">[ Explore Services ]</span>
-                        <h2 class="sec-title tj-split-text-1">Reliable IT Solution for a Smarter.</h2>
-                        <a class="tj-primary-btn mt-20 d-md-inline-flex d-none" href="service.html">
+                        <h2 class="sec-title tj-split-text-1">
+                            Reliable IT Solution for a Smarter.
+                        </h2>
+                        <a class="tj-primary-btn mt-20 d-md-inline-flex d-none" href="{{ route('frontend.services') }}">
                             <span class="btn-text"><span>Learn More</span></span>
                             <span class="btn-icon"><i class="tji-arrow-right-2"></i></span>
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item tj-fade-anim" data-delay="0.3" data-direction="bottom">
-                        <div class="service-inner">
-                            <div class="service-icon">
-                                <i class="tji-computer"></i>
+
+                @foreach ($services as $index => $service)
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-item tj-fade-anim" data-delay="{{ 0.3 + $index * 0.2 }}"
+                            data-direction="bottom">
+
+                            <div class="service-inner">
+
+                                <!-- Dynamic Icon -->
+                                <div class="service-icon">
+                                    <i class="{{ $service->icon }}"></i>
+                                </div>
+
+                                <!-- Dynamic Title & Short Description -->
+                                <div class="service-content">
+                                    <h4 class="title">
+                                        <a href="{{ route('frontend.services', $service->slug) }}">
+                                            {{ $service->title }}
+                                        </a>
+                                    </h4>
+
+                                    <p class="desc">
+                                        {{ Str::limit(strip_tags($service->description), 120) }}
+                                    </p>
+                                </div>
+
+                                <!-- Dynamic Features -->
+                                @if ($service->features)
+                                    <div class="service-list">
+                                        <ul class="list-style-2">
+                                            @foreach (json_decode($service->features) as $feature)
+                                                <li>
+                                                    <i class="tji-check-2"></i> {{ $feature }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
                             </div>
-                            <div class="service-content">
-                                <h4 class="title"><a href="service-details.html">Managed IT Services</a></h4>
-                                <p class="desc">Comprehensive IT management, including monitoring, maintenance.</p>
+
+                            <!-- Auto Numbering -->
+                            <span class="item-count">
+                                {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}.
+                            </span>
+
+                            <!-- Button -->
+                            <div class="service-btn">
+                                <a class="tj-text-btn" href="{{ route('frontend.services', $service->slug) }}">
+                                    <span class="btn-inner">
+                                        <span class="btn-icon">
+                                            <span><i class="tji-arrow-right-4"></i></span>
+                                        </span>
+                                        <span class="btn-text">
+                                            <span>Learn More</span>
+                                        </span>
+                                        <span class="btn-icon">
+                                            <span><i class="tji-arrow-right-4"></i></span>
+                                        </span>
+                                    </span>
+                                </a>
                             </div>
-                            <div class="service-list">
-                                <ul class="list-style-2">
-                                    <li><i class="tji-check-2"></i>24/7 system monitoring</li>
-                                    <li><i class="tji-check-2"></i>IT support & troubleshooting</li>
-                                    <li><i class="tji-check-2"></i>Remote IT assistance</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <span class="item-count">01.</span>
-                        <div class="service-btn">
-                            <a class="tj-text-btn" href="service-details.html">
-                                <span class="btn-inner">
-                                    <span class="btn-icon"><span><i class="tji-arrow-right-4"></i></span></span>
-                                    <span class="btn-text"><span>Learn More</span></span>
-                                    <span class="btn-icon"><span><i class="tji-arrow-right-4"></i></span></span>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item tj-fade-anim" data-delay="0.5" data-direction="bottom">
-                        <div class="service-inner">
-                            <div class="service-icon">
-                                <i class="tji-cloud"></i>
-                            </div>
-                            <div class="service-content">
-                                <h4 class="title"><a href="service-details.html">Cloud Computing</a></h4>
-                                <p class="desc">Scalable cloud-based services, including migration, storage, and
-                                    security.</p>
-                            </div>
-                            <div class="service-list">
-                                <ul class="list-style-2">
-                                    <li><i class="tji-check-2"></i>Scalable cloud storage</li>
-                                    <li><i class="tji-check-2"></i>SaaS, PaaS, and IaaS integration</li>
-                                    <li><i class="tji-check-2"></i>Hybrid & multi-cloud</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <span class="item-count">02.</span>
-                        <div class="service-btn">
-                            <a class="tj-text-btn" href="service-details.html">
-                                <span class="btn-inner">
-                                    <span class="btn-icon"><span><i class="tji-arrow-right-4"></i></span></span>
-                                    <span class="btn-text"><span>Learn More</span></span>
-                                    <span class="btn-icon"><span><i class="tji-arrow-right-4"></i></span></span>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item tj-fade-anim" data-delay="0.1" data-direction="bottom">
-                        <div class="service-inner">
-                            <div class="service-icon">
-                                <i class="tji-cybersecurity"></i>
-                            </div>
-                            <div class="service-content">
-                                <h4 class="title"><a href="service-details.html">Cybersecurity Solutions</a></h4>
-                                <p class="desc">Advanced security measures, including firewall protection, threat
-                                    detection.</p>
-                            </div>
-                            <div class="service-list">
-                                <ul class="list-style-2">
-                                    <li><i class="tji-check-2"></i>Firewall & network security</li>
-                                    <li><i class="tji-check-2"></i>Threat detection & prevention</li>
-                                    <li><i class="tji-check-2"></i>Endpoint protection</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <span class="item-count">03.</span>
-                        <div class="service-btn">
-                            <a class="tj-text-btn" href="service-details.html">
-                                <span class="btn-inner">
-                                    <span class="btn-icon"><span><i class="tji-arrow-right-4"></i></span></span>
-                                    <span class="btn-text"><span>Learn More</span></span>
-                                    <span class="btn-icon"><span><i class="tji-arrow-right-4"></i></span></span>
-                                </span>
-                            </a>
+
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item tj-fade-anim" data-delay="0.3" data-direction="bottom">
-                        <div class="service-inner">
-                            <div class="service-icon">
-                                <i class="tji-consulting"></i>
-                            </div>
-                            <div class="service-content">
-                                <h4 class="title"><a href="service-details.html">IT Consulting & Strategy</a></h4>
-                                <p class="desc">Expert guidance to optimize IT infrastructure, streamline operations, and
-                                    drive.</p>
-                            </div>
-                            <div class="service-list">
-                                <ul class="list-style-2">
-                                    <li><i class="tji-check-2"></i>Transformation planning</li>
-                                    <li><i class="tji-check-2"></i>IT infrastructure optimization</li>
-                                    <li><i class="tji-check-2"></i>Risk assessment</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <span class="item-count">04.</span>
-                        <div class="service-btn">
-                            <a class="tj-text-btn" href="service-details.html">
-                                <span class="btn-inner">
-                                    <span class="btn-icon"><span><i class="tji-arrow-right-4"></i></span></span>
-                                    <span class="btn-text"><span>Learn More</span></span>
-                                    <span class="btn-icon"><span><i class="tji-arrow-right-4"></i></span></span>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item tj-fade-anim" data-delay="0.5" data-direction="bottom">
-                        <div class="service-inner">
-                            <div class="service-icon">
-                                <i class="tji-network"></i>
-                            </div>
-                            <div class="service-content">
-                                <h4 class="title"><a href="service-details.html">Network Infrastructure</a></h4>
-                                <p class="desc">Expert guidance to optimize IT infrastructure, streamline operations, and
-                                    drive.</p>
-                            </div>
-                            <div class="service-list">
-                                <ul class="list-style-2">
-                                    <li><i class="tji-check-2"></i>Transformation planning</li>
-                                    <li><i class="tji-check-2"></i>IT infrastructure optimization</li>
-                                    <li><i class="tji-check-2"></i>Risk assessment</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <span class="item-count">05.</span>
-                        <div class="service-btn">
-                            <a class="tj-text-btn" href="service-details.html">
-                                <span class="btn-inner">
-                                    <span class="btn-icon"><span><i class="tji-arrow-right-4"></i></span></span>
-                                    <span class="btn-text"><span>Learn More</span></span>
-                                    <span class="btn-icon"><span><i class="tji-arrow-right-4"></i></span></span>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
+
+            <!-- Mobile Button -->
             <div class="d-md-none text-center mt-40">
-                <a class="tj-primary-btn" href="service.html">
+                <a class="tj-primary-btn" href="{{ route('frontend.services') }}">
                     <span class="btn-text"><span>Learn More</span></span>
                     <span class="btn-icon"><i class="tji-arrow-right-2"></i></span>
                 </a>
@@ -320,85 +234,9 @@
     </div>
     <!-- end: Service Section -->
 
+
     <!-- start: About Section -->
-    <section class="tj-about-section fix section-gap section-gap-x">
-        <div class="bg-img" data-bg-image="frontAssets/images/bg/common-bg.webp"></div>
-        <div class="container">
-            <div class="row rg-30">
-                <div class="col-lg-6 order-lg-1 order-2">
-                    <div class="about-left tj-fade-anim" data-delay=".1" data-direction="left">
-                        <div class="about-img">
-                            <img src="frontAssets/images/about/about-img-1.webp" alt="Image" />
-                        </div>
-                        <div class="about-left-bottom">
-                            <div class="experience-area tj-fade-anim" data-delay=".2">
-                                <span class="exp-badge">EXPERIENCE</span>
-                                <div class="countup-item">
-                                    <div class="inline-content">
-                                        <span class="counter">20</span>
-                                        <span class="count-plus"><sup>+</sup></span>
-                                    </div>
-                                    <span class="count-text">Years of Excellence in IT Solutions Company.</span>
-                                </div>
-                            </div>
-                            <div class="author-area tj-fade-anim" data-delay=".3">
-                                <div class="author-info">
-                                    <div class="author-img">
-                                        <img src="frontAssets/images/testimonial/client-1.webp" alt="Image" />
-                                    </div>
-                                    <div class="author-text">
-                                        <h6 class="author-name">Burdee Nicolas</h6>
-                                        <span>Co. Founder</span>
-                                    </div>
-                                </div>
-                                <div class="signature">
-                                    <img src="frontAssets/images/about/signature.webp" alt="Image" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 order-lg-2 order-1">
-                    <div class="about-content-area tj-fade-anim" data-delay=".1" data-direction="right">
-                        <div class="sec-heading">
-                            <span class="sub-title tj-fade-anim">[ About Tekmino ]</span>
-                            <h2 class="sec-title tj-split-text-1">Delivering Solution That Drive Our Innovation & Fast
-                                Success.</h2>
-                        </div>
-                        <p class="desc">
-                            We are a team of passionate tech experts delivering innovative IT solutions tailored to help
-                            businesses grow, adapt, and thrive in a digital. Stay ahead of the competition.
-                        </p>
-                        <div class="about-funfact">
-                            <div class="countup-item">
-                                <div class="inline-content">
-                                    <span class="counter">3</span>
-                                    <span class="count-plus">K<sup>+</sup></span>
-                                </div>
-                                <span class="count-text">Successful Projects.</span>
-                            </div>
-                            <div class="countup-item">
-                                <div class="inline-content">
-                                    <span class="counter">98</span>
-                                    <span class="count-plus"><sup>+</sup></span>
-                                </div>
-                                <span class="count-text">IT Professionals.</span>
-                            </div>
-                        </div>
-                        <a class="tj-primary-btn style-2 mt-25" href="about.html">
-                            <span class="btn-text"><span>Learn More</span></span>
-                            <span class="btn-icon"><i class="tji-arrow-right-2"></i></span>
-                        </a>
-                        <div class="circle-text-wrap award-circle"
-                            data-bg-image="frontAssets/images/about/award-circle-bg.webp">
-                            <span class="circle-text" data-bg-image="frontAssets/images/about/award-circle-text.png"></span>
-                            <span class="circle-icon"><span><i class="tji-award"></i></span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('frontend.pages.sections.about')
     <!-- end: About Section -->
 
     <!-- start: Marquee Section -->
@@ -501,403 +339,12 @@
     <!-- end: Marquee Section -->
 
     <!-- start: Integration Section -->
-    <section class="tj-integration-section section-gap-x">
-        <div class="integration-section-wrap">
-            <div class="bg-img" data-bg-image="./frontAssets/images/bg/common-bg-2.webp"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div
-                            class="sec-heading style-3 d-flex flex-wrap align-items-end justify-content-start justify-content-md-between gap-4 mb-0">
-                            <div class="sec_heading_wrap d-flex flex-column align-items-start">
-                                <span class="sub-title tj-fade-anim" data-delay="0.2" data-duration="0.5">
-                                    <i class="tji-subtitle-2"></i>
-                                    Our Technologies
-                                </span>
-                                <h2 class="sec-title tj-split-text-3">Effortless IT Integration for Solutions.</h2>
-                            </div>
-
-                            <div class="sec_content_wrap tj-fade-anim" data-delay=".2">
-                                <div class="desc">Comprehensive IT for management, including monitoring, maintenance &
-                                    support to keep your business running smooth.</div>
-                                <a class="tj-text-btn" href="blog-details.html">
-                                    <span class="btn-inner">
-                                        <span class="btn-icon"><span><i class="tji-arrow-right-4"></i></span></span>
-                                        <span class="btn-text"><span>Read More</span></span>
-                                        <span class="btn-icon"><span><i class="tji-arrow-right-4"></i></span></span>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="throwable_wrapper" data-tj-throwable-scene="true">
-                            <div class="throwable_items_wrap">
-                                <p data-tj-throwable-el>
-                                    <span class="integration_item">
-                                        <img src="./frontAssets/images/integration/gitlab.png" alt="" />
-                                    </span>
-                                </p>
-                                <p data-tj-throwable-el>
-                                    <span class="integration_item">
-                                        <img src="./frontAssets/images/integration/clickup.png" alt="" />
-                                    </span>
-                                </p>
-                                <p data-tj-throwable-el>
-                                    <span class="integration_item">
-                                        <img src="./frontAssets/images/integration/notion.png" alt="" />
-                                    </span>
-                                </p>
-                                <p data-tj-throwable-el>
-                                    <span class="integration_item">
-                                        <img src="./frontAssets/images/integration/asana.png" alt="" />
-                                    </span>
-                                </p>
-                                <p data-tj-throwable-el>
-                                    <span class="integration_item">
-                                        <img src="./frontAssets/images/integration/ovhcloud.png" alt="" />
-                                    </span>
-                                </p>
-                                <p data-tj-throwable-el>
-                                    <span class="integration_item">
-                                        <img src="./frontAssets/images/integration/zoom.png" alt="" />
-                                    </span>
-                                </p>
-                                <p data-tj-throwable-el>
-                                    <span class="integration_item">
-                                        <img src="./frontAssets/images/integration/slack.png" alt="" />
-                                    </span>
-                                </p>
-                                <p data-tj-throwable-el>
-                                    <span class="integration_item">
-                                        <img src="./frontAssets/images/integration/dropbox.png" alt="" />
-                                    </span>
-                                </p>
-                                <p data-tj-throwable-el>
-                                    <span class="integration_item">
-                                        <img src="./frontAssets/images/integration/sendgrid.png" alt="" />
-                                    </span>
-                                </p>
-                                <p data-tj-throwable-el>
-                                    <span class="integration_item">
-                                        <img src="./frontAssets/images/integration/microsoft.png" alt="" />
-                                    </span>
-                                </p>
-                                <p data-tj-throwable-el>
-                                    <span class="integration_item">
-                                        <img src="./frontAssets/images/integration/pipedrive.png" alt="" />
-                                    </span>
-                                </p>
-                                <p data-tj-throwable-el>
-                                    <span class="integration_item">
-                                        <img src="./frontAssets/images/integration/chatGPT.png" alt="" />
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('frontend.pages.sections.technologies')
     <!-- end: Integration Section -->
 
     <!-- start: Testimonial Section -->
-    <section class="tj-testimonial-section-2 section-gap overflow-hidden section-separator">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="sec-heading style-2 sec-heading-centered">
-                        <span class="sub-title tj-fade-anim"><span>//</span>Success Stories</span>
-                        <h2 class="sec-title tj-split-text-5">Building Success with Client <span>Feedback.</span></h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="testimonial-wrapper testimonial-wrapper-2 tj-fade-anim" data-delay="0.5">
-                        <div class="testimonial_slider_2 swiper swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="testimonial_item_3">
-                                        <div class="testimonial_header">
-                                            <ul class="author_avatar_wrapper">
-                                                <li>
-                                                    <i class="tji-quote"></i>
-                                                </li>
-                                                <li class="author_avatar">
-                                                    <img src="frontAssets/images/testimonial/client-1.webp" alt="">
-                                                </li>
-                                            </ul>
-                                            <div class="star-ratings">
-                                                <div class="fill-ratings" style="width: 90%">
-                                                    <span>★★★★★</span>
-                                                </div>
-                                                <div class="empty-ratings">
-                                                    <span>★★★★★</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="testimonial_content">
-                                            <div class="desc">
-                                                <p>
-                                                    Partnering with Nexor has been an absolute game-changer for our company.
-                                                    Their team delivered a tailored IT solution that met our unique business
-                                                    needs, and their
-                                                    proactive approach to problem.
-                                                </p>
-                                            </div>
-
-                                            <div class="author_info">
-                                                <h5 class="name">Devon Lane</h5>
-                                                <span class="designation">Co. Founder</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="testimonial_item_3">
-                                        <div class="testimonial_header">
-                                            <ul class="author_avatar_wrapper">
-                                                <li>
-                                                    <i class="tji-quote"></i>
-                                                </li>
-                                                <li class="author_avatar">
-                                                    <img src="frontAssets/images/testimonial/client-2.webp" alt="">
-                                                </li>
-                                            </ul>
-                                            <div class="star-ratings">
-                                                <div class="fill-ratings" style="width: 90%">
-                                                    <span>★★★★★</span>
-                                                </div>
-                                                <div class="empty-ratings">
-                                                    <span>★★★★★</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="testimonial_content">
-                                            <div class="desc">
-                                                <p>
-                                                    Nexor truly exceeded our expectations. From the initial consultation to
-                                                    the final implementation, their team provided excellent service and
-                                                    unwavering support. Their
-                                                    ability to integrate.
-                                                </p>
-                                            </div>
-
-                                            <div class="author_info">
-                                                <h5 class="name">Cameron Williamson</h5>
-                                                <span class="designation">Co. Founder</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="testimonial_item_3">
-                                        <div class="testimonial_header">
-                                            <ul class="author_avatar_wrapper">
-                                                <li>
-                                                    <i class="tji-quote"></i>
-                                                </li>
-                                                <li class="author_avatar">
-                                                    <img src="frontAssets/images/testimonial/client-3.webp" alt="">
-                                                </li>
-                                            </ul>
-                                            <div class="star-ratings">
-                                                <div class="fill-ratings" style="width: 90%">
-                                                    <span>★★★★★</span>
-                                                </div>
-                                                <div class="empty-ratings">
-                                                    <span>★★★★★</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="testimonial_content">
-                                            <div class="desc">
-                                                <p>
-                                                    When we approached Nexor for help with our technology integration, we
-                                                    were looking for a partner who could not only provide expertise but also
-                                                    deliver tangible
-                                                    results. They did exactly that.
-                                                </p>
-                                            </div>
-
-                                            <div class="author_info">
-                                                <h5 class="name">Eleanor Pena</h5>
-                                                <span class="designation">Co. Founder</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-pagination-area"></div>
-                        </div>
-                        <div class="testimonial-navigation d-none d-md-inline-flex">
-                            <div class="slider-prev" role="button">
-                                <span class="anim-icon">
-                                    <i class="tji-arrow-left-3"></i>
-                                    <i class="tji-arrow-left-3"></i>
-                                </span>
-                            </div>
-                            <div class="slider-next" role="button">
-                                <span class="anim-icon">
-                                    <i class="tji-arrow-right-3"></i>
-                                    <i class="tji-arrow-right-3"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('frontend.pages.sections.testimonials')
     <!-- end: Testimonial Section -->
-
-    <!-- start: Team Section -->
-    <section class="tj-team-section section-gap">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="sec-heading">
-                        <span class="sub-title tj-fade-anim">[ Meet Our Team ]</span>
-                        <div class="sec-heading-inner">
-                            <h2 class="sec-title tj-split-text-1">Creative Minds Behind our Team</h2>
-                            <div class="tj-fade-anim" data-delay="0.1">
-                                <p class="desc">Our teams are customized to meet your unique ideas.</p>
-                            </div>
-                            <div class="tj-fade-anim" data-delay="0.3">
-                                <a class="tj-primary-btn d-none d-lg-inline-flex" href="team.html">
-                                    <span class="btn-text"><span>More Member</span></span>
-                                    <span class="btn-icon"><i class="tji-arrow-right-2"></i></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row rg-30">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="team-item img-reveal-2">
-                        <div class="team-img">
-                            <img src="frontAssets/images/team/team-1.webp" alt="Image" />
-                            <div class="social-links">
-                                <span class="share-icon"><i class="tji-share"></i></span>
-                                <ul>
-                                    <li>
-                                        <a href="https://www.facebook.com/" target="_blank"><i
-                                                class="tji-facebook"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.instagram.com/" target="_blank"><i
-                                                class="tji-instagram"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.linkedin.com/" target="_blank"><i
-                                                class="tji-linkedin"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content">
-                            <h4 class="title"><a href="team-details.html">Eade Marren</a></h4>
-                            <span class="designation">Chief Executive</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="team-item img-reveal-2">
-                        <div class="team-img">
-                            <img src="frontAssets/images/team/team-2.webp" alt="Image" />
-                            <div class="social-links">
-                                <span class="share-icon"><i class="tji-share"></i></span>
-                                <ul>
-                                    <li>
-                                        <a href="https://www.facebook.com/" target="_blank"><i
-                                                class="tji-facebook"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.instagram.com/" target="_blank"><i
-                                                class="tji-instagram"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.linkedin.com/" target="_blank"><i
-                                                class="tji-linkedin"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content">
-                            <h4 class="title"><a href="team-details.html">Savannah Ngueen</a></h4>
-                            <span class="designation">Operations Head</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="team-item img-reveal-2">
-                        <div class="team-img">
-                            <img src="frontAssets/images/team/team-3.webp" alt="Image" />
-                            <div class="social-links">
-                                <span class="share-icon"><i class="tji-share"></i></span>
-                                <ul>
-                                    <li>
-                                        <a href="https://www.facebook.com/" target="_blank"><i
-                                                class="tji-facebook"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.instagram.com/" target="_blank"><i
-                                                class="tji-instagram"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.linkedin.com/" target="_blank"><i
-                                                class="tji-linkedin"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content">
-                            <h4 class="title"><a href="team-details.html">Cameron William</a></h4>
-                            <span class="designation">Marketing Lead</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="team-item img-reveal-2">
-                        <div class="team-img">
-                            <img src="frontAssets/images/team/team-4.webp" alt="Image" />
-                            <div class="social-links">
-                                <span class="share-icon"><i class="tji-share"></i></span>
-                                <ul>
-                                    <li>
-                                        <a href="https://www.facebook.com/" target="_blank"><i
-                                                class="tji-facebook"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.instagram.com/" target="_blank"><i
-                                                class="tji-instagram"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.linkedin.com/" target="_blank"><i
-                                                class="tji-linkedin"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content">
-                            <h4 class="title"><a href="team-details.html">Olivia Fox</a></h4>
-                            <span class="designation">Business Director</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="d-lg-none text-center mt-40">
-                <a class="tj-primary-btn" href="team.html">
-                    <span class="btn-text"><span>More Member</span></span>
-                    <span class="btn-icon"><i class="tji-arrow-right-2"></i></span>
-                </a>
-            </div>
-        </div>
-    </section>
-    <!-- end: Team Section -->
 
     <!-- start: Project Section -->
     <section class="tj-project-section section-gap section-gap-x fix">
@@ -936,78 +383,53 @@
                     <div class="project-wrapper tj-fade-anim" data-delay="0.2">
                         <div class="swiper project-slider">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="project-item">
-                                        <div class="project-img img-reveal-2">
-                                            <img src="frontAssets/images/project/project-1.webp" alt="" />
-                                        </div>
-                                        <div class="project-content">
-                                            <div class="content-inner">
-                                                <span class="categories"><a
-                                                        href="project-details.html">Solution</a></span>
-                                                <h4 class="title"><a href="project-details.html">Business
-                                                        Transformation</a></h4>
+                                @foreach ($projects as $project)
+                                    <div class="swiper-slide">
+                                        <div class="project-item">
+
+                                            {{-- IMAGE --}}
+                                            <div class="project-img"
+                                                style="background-image: url('{{ asset($project->scroll_image) }}');">
+                                                <style>
+                                                    .project-img::before {
+                                                        background-image: url('{{ asset($project->main_image ?? 'frontAssets/images/project/project-2.webp') }}');
+                                                    }
+                                                </style>
                                             </div>
-                                            <a class="tj-icon-btn" href="project-details.html">
-                                                <i class="tji-arrow-right-3"></i>
-                                            </a>
+
+                                            {{-- CONTENT --}}
+                                            <div class="project-content">
+                                                <div class="content-inner">
+                                                    <span class="categories">
+                                                        <a
+                                                            href="{{ route('frontend.projects', ['category' => $project->category]) }}">
+                                                            {{ ucwords($project->category) }}
+                                                        </a>
+                                                    </span>
+
+                                                    <h4 class="title">
+                                                        <a
+                                                            href="{{ route('frontend.projects', [
+                                                                'category' => $project->category,
+                                                                'project' => $project->slug,
+                                                            ]) }}">
+                                                            {{ $project->title }}
+                                                        </a>
+                                                    </h4>
+                                                </div>
+
+                                                <a class="tj-icon-btn"
+                                                    href="{{ route('frontend.projects', [
+                                                        'category' => $project->category,
+                                                        'project' => $project->slug,
+                                                    ]) }}">
+                                                    <i class="tji-arrow-right-3"></i>
+                                                </a>
+                                            </div>
+
                                         </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="project-item">
-                                        <div class="project-img img-reveal-2">
-                                            <img src="frontAssets/images/project/project-2.webp" alt="" />
-                                        </div>
-                                        <div class="project-content">
-                                            <div class="content-inner">
-                                                <span class="categories"><a
-                                                        href="project-details.html">Solution</a></span>
-                                                <h4 class="title"><a href="project-details.html">Cloud Migration
-                                                        Success</a></h4>
-                                            </div>
-                                            <a class="tj-icon-btn" href="project-details.html">
-                                                <i class="tji-arrow-right-3"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="project-item">
-                                        <div class="project-img img-reveal-2">
-                                            <img src="frontAssets/images/project/project-3.webp" alt="" />
-                                        </div>
-                                        <div class="project-content">
-                                            <div class="content-inner">
-                                                <span class="categories"><a
-                                                        href="project-details.html">Solution</a></span>
-                                                <h4 class="title"><a href="project-details.html">Digital Growth
-                                                        Strategy</a></h4>
-                                            </div>
-                                            <a class="tj-icon-btn" href="project-details.html">
-                                                <i class="tji-arrow-right-3"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="project-item">
-                                        <div class="project-img img-reveal-2">
-                                            <img src="frontAssets/images/project/project-4.webp" alt="" />
-                                        </div>
-                                        <div class="project-content">
-                                            <div class="content-inner">
-                                                <span class="categories"><a
-                                                        href="project-details.html">Solution</a></span>
-                                                <h4 class="title"><a href="project-details.html">Mobile App
-                                                        Development</a></h4>
-                                            </div>
-                                            <a class="tj-icon-btn" href="project-details.html">
-                                                <i class="tji-arrow-right-3"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                             <div class="swiper-pagination-area"></div>
                         </div>
@@ -1055,25 +477,33 @@
                             <div class="process-item tj-slide-left">
                                 <span class="process-step">01.</span>
                                 <div class="process-content">
-                                    <h4 class="title">Deep Discovery & Planning</h4>
-                                    <p class="desc">Every great solution starts understanding. We take the time to learn
-                                        about your business, challenges, and goals.</p>
+                                    <h4 class="title">Deep Discovery & Strategy</h4>
+                                    <p class="desc">
+                                        We analyze your business goals, target audience, and technical requirements to
+                                        create a clear roadmap for successful web and software development.
+                                    </p>
                                 </div>
                             </div>
+
                             <div class="process-item tj-slide-left">
                                 <span class="process-step">02.</span>
                                 <div class="process-content">
-                                    <h4 class="title">Development & Implement</h4>
-                                    <p class="desc">Every great solution starts understanding. We take the time to learn
-                                        about your business, challenges, and goals.</p>
+                                    <h4 class="title">Design & Development</h4>
+                                    <p class="desc">
+                                        Our team builds high-performance websites, custom software, and scalable digital
+                                        solutions using modern technologies to ensure speed, security, and reliability.
+                                    </p>
                                 </div>
                             </div>
+
                             <div class="process-item tj-slide-left">
                                 <span class="process-step">03.</span>
                                 <div class="process-content">
-                                    <h4 class="title">Optimization & Support</h4>
-                                    <p class="desc">Every great solution starts understanding. We take the time to learn
-                                        about your business, challenges, and goals.</p>
+                                    <h4 class="title">Testing, Launch & Ongoing Support</h4>
+                                    <p class="desc">
+                                        We thoroughly test, deploy, and continuously optimize your solution, providing
+                                        long-term maintenance and support to keep your business growing.
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -1087,7 +517,7 @@
     @include('frontend.pages.sections.contact')
 
     <!-- start: Blog Section -->
-    <section class="tj-blog-section section-gap fix">
+    {{-- <section class="tj-blog-section section-gap fix">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -1101,7 +531,8 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-item tj-fade-anim" data-delay="0.1">
                         <div class="blog-thumb img-reveal-2">
-                            <a href="blog-details.html"><img src="frontAssets/images/blog/blog-1.webp" alt="" /></a>
+                            <a href="blog-details.html"><img src="frontAssets/images/blog/blog-1.webp"
+                                    alt="" /></a>
                             <div class="blog-date">
                                 <span class="date">28</span>
                                 <span class="month">Feb</span>
@@ -1127,7 +558,8 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-item tj-fade-anim" data-delay="0.2">
                         <div class="blog-thumb img-reveal-2">
-                            <a href="blog-details.html"><img src="frontAssets/images/blog/blog-2.webp" alt="" /></a>
+                            <a href="blog-details.html"><img src="frontAssets/images/blog/blog-2.webp"
+                                    alt="" /></a>
                             <div class="blog-date">
                                 <span class="date">28</span>
                                 <span class="month">Feb</span>
@@ -1153,7 +585,8 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-item tj-fade-anim" data-delay="0.3">
                         <div class="blog-thumb img-reveal-2">
-                            <a href="blog-details.html"><img src="frontAssets/images/blog/blog-3.webp" alt="" /></a>
+                            <a href="blog-details.html"><img src="frontAssets/images/blog/blog-3.webp"
+                                    alt="" /></a>
                             <div class="blog-date">
                                 <span class="date">28</span>
                                 <span class="month">Feb</span>
@@ -1178,7 +611,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- end: Blog Section -->
 
     @include('frontend.pages.sections.cta')

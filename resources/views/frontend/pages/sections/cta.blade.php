@@ -9,7 +9,8 @@
                     </div>
                     <div class="cta-right">
                         <div class="subscribe-form cta-form">
-                            <form action="#">
+                            <form action="{{ route('frontend.newsletter.store') }}" method="POST">
+                                @csrf
                                 <input type="email" name="email" placeholder="Enter email here..." />
                                 <button class="tj-primary-btn style-2" type="submit">
                                     <span class="btn-text"><span>Subscribe Now</span></span>

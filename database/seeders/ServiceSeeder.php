@@ -33,6 +33,8 @@ class ServiceSeeder extends Seeder
                     'Fast & SEO Optimized',
                     'Secure Code & Best Practices'
                 ]),
+                'position' => 1,
+                'is_featured' => '1',
             ],
             [
                 'title' => 'UI/UX Design & Branding',
@@ -53,6 +55,8 @@ class ServiceSeeder extends Seeder
                     'Brand Identity Design',
                     'Interactive Prototypes'
                 ]),
+                'position' => 2,
+                'is_featured' => '1',
             ],
             [
                 'title' => 'Mobile App Development',
@@ -73,6 +77,8 @@ class ServiceSeeder extends Seeder
                     'App Store Deployment',
                     'Performance Optimization'
                 ]),
+                'position' => 3,
+                'is_featured' => '1',
             ],
             [
                 'title' => 'SEO & Website Optimization',
@@ -93,6 +99,8 @@ class ServiceSeeder extends Seeder
                     'Performance & Speed Optimization',
                     'Keyword Research & Analytics'
                 ]),
+                'position' => 4,
+                'is_featured' => '1',
             ],
             [
                 'title' => 'E-Commerce Development',
@@ -113,12 +121,14 @@ class ServiceSeeder extends Seeder
                     'Shopping Cart & Checkout Optimization',
                     'Inventory Management'
                 ]),
+                'position' => 5,
+                'is_featured' => '0',
             ],
             [
                 'title' => 'Website Maintenance & Support',
                 'slug' => Str::slug('Website Maintenance & Support'),
                 'image' => null,
-                'icon' => 'tji-computer',
+                'icon' => 'tji-consulting',
                 'meta_title' => 'Website Maintenance & Support Services',
                 'meta_description' => 'Ensuring your website stays secure, updated, and fully functional 24/7.',
                 'description' => '
@@ -133,6 +143,8 @@ class ServiceSeeder extends Seeder
                     'Bug Fixes & Troubleshooting',
                     'Performance Checks'
                 ]),
+                'position' => 6,
+                'is_featured' => '1',
             ],
         ];
 

@@ -68,6 +68,8 @@ return new class extends Migration
             ])->default('website');
 
             $table->enum('is_active', ['active', 'inactive'])->default('active');
+            $table->enum('is_featured', ['0', '1'])->default('0');
+            $table->integer('position')->nullable();
             $table->timestamps();
         });
     }

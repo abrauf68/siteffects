@@ -854,25 +854,28 @@ Contact map Js
 	-------------------------------------------- */
   const maps = document.querySelectorAll("#map");
   if (maps?.length) {
-    // Initialize map
     const map = L.map("map", {
-      center: [42.361145, -71.062133], // Boston example
-      zoom: 20,
-      zoomControl: false,
+      center: [24.9786, 67.0655], // Karachi Location
+      zoom: 16,
+      zoomControl: true,
     });
 
-    // Dark basemap
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png").addTo(map);
+    // Default Light Map
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
 
-    // Custom red marker
+    // Custom Marker
     const customMarker = L.divIcon({
       className: "custom-marker tji-location",
       iconSize: [45, 45],
     });
 
-    L.marker([42.361145, -71.062233], {
+    L.marker([24.9786, 67.0655], {
       icon: customMarker,
-    }).addTo(map);
+    }).addTo(map)
+    .bindPopup("<b>Sector 11 E North Karachi</b><br>Karachi 75850")
+    .openPopup();
   }
 
   /* --------------------------------------------

@@ -11,17 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('brands', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->string('image')->nullable();
-            $table->string('icon')->nullable();
-            $table->string('meta_title')->nullable();
-            $table->text('meta_description')->nullable();
-            $table->text('description')->nullable();
-            $table->text('features')->nullable();
-            $table->integer('position')->nullable();
+            $table->string('name');
+            $table->string('logo')->nullable();
             $table->enum('is_featured', ['0', '1'])->default('0');
             $table->enum('is_active', ['active', 'inactive'])->default('active');
             $table->timestamps();
@@ -33,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('brands');
     }
 };

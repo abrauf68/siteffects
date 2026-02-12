@@ -12,11 +12,12 @@
 <script src="{{ asset('frontAssets/js/counterup.min.js') }}"></script>
 <script src="{{ asset('frontAssets/js/venobox.min.js') }}"></script>
 <script src="{{ asset('frontAssets/js/meanmenu.js') }}"></script>
+<script src="{{ asset('frontAssets/js/leaflet.js') }}"></script>
 <script src="{{ asset('frontAssets/js/gsap-animation.js') }}"></script>
 <script src="{{ asset('frontAssets/js/matter.min.js') }}"></script>
 <script src="{{ asset('frontAssets/js/throwable.js') }}"></script>
 <script src="{{ asset('frontAssets/js/main.js') }}"></script>
-
+<!-- Leaflet JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
 <!-- Toastr JS -->

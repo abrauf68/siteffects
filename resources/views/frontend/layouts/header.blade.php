@@ -366,12 +366,8 @@
                                     <li class="{{ request()->routeIs('frontend.projects') ? 'current-menu-ancestor' : '' }}">
                                         <a href="{{ route('frontend.projects') }}">Projects</a>
                                     </li>
-                                    <li class="has-dropdown">
-                                        <a href="blog.html">Blog</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-details.html">Blog Details</a></li>
-                                        </ul>
+                                    <li class="{{ request()->routeIs('frontend.blogs') ? 'current-menu-ancestor' : '' }}">
+                                        <a href="{{ route('frontend.blogs') }}">Blogs</a>
                                     </li>
                                     <li><a href="{{ route('frontend.contact') }}">Contact</a></li>
                                 </ul>
@@ -456,12 +452,8 @@
                                     <li class="{{ request()->routeIs('frontend.projects') ? 'current-menu-ancestor' : '' }}">
                                         <a href="{{ route('frontend.projects') }}">Projects</a>
                                     </li>
-                                    <li class="has-dropdown">
-                                        <a href="blog.html">Blog</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-details.html">Blog Details</a></li>
-                                        </ul>
+                                    <li class="{{ request()->routeIs('frontend.blogs') ? 'current-menu-ancestor' : '' }}">
+                                        <a href="{{ route('frontend.blogs') }}">Blogs</a>
                                     </li>
                                     <li><a href="{{ route('frontend.contact') }}">Contact</a></li>
                                 </ul>

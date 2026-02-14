@@ -41,16 +41,16 @@
                                     <a href="{{ route('frontend.contact') }}"><span>Contact Us</span></a>
                                 </li>
                                 <li>
-                                    <a href="#"><span>Privacy Policy</span></a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>Terms and Conditions</span></a>
-                                </li>
-                                <li>
                                     <a href="{{ route('frontend.projects') }}"><span>Portfolio</span></a>
                                 </li>
                                 <li>
-                                    <a href="#"><span>News</span></a>
+                                    <a href="{{ route('frontend.blogs') }}"><span>News</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('frontend.privacy') }}"><span>Privacy Policy</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('frontend.terms') }}"><span>Terms and Conditions</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -91,8 +91,8 @@
                             </div>
                             <div class="copyright-menu">
                                 <ul>
-                                    <li><a href="#">Privacy & Policy</a></li>
-                                    <li><a href="#">Terms & Condition</a></li>
+                                    <li><a href="{{ route('frontend.privacy') }}">Privacy & Policy</a></li>
+                                    <li><a href="{{ route('frontend.terms') }}">Terms & Condition</a></li>
                                 </ul>
                             </div>
                         </div>

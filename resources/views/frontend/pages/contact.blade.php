@@ -1,6 +1,10 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Contact Us')
+@section('title', $page->title)
+@section('meta_title', $page->meta_title)
+@section('meta_description', $page->meta_description)
+@section('meta_keywords', $page->meta_keywords)
+@section('author', $page->author)
 
 @section('css')
 <style>
@@ -15,6 +19,9 @@
     .contact-list .social-icons:hover {
         color: #f62648 !important;
         background-color: #ffffff;
+    }
+    .contact-item.style-2 {
+        height: 280px;
     }
 </style>
 @endsection

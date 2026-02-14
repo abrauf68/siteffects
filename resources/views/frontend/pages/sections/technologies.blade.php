@@ -28,7 +28,7 @@
                         </div>
                         <div class="throwable_wrapper" data-tj-throwable-scene="true">
                             <div class="throwable_items_wrap">
-                                <p data-tj-throwable-el>
+                                {{-- <p data-tj-throwable-el>
                                     <span class="integration_item">
                                         <img src="{{ asset('frontAssets/images/integration/gitlab.png') }}" alt="" />
                                     </span>
@@ -87,7 +87,7 @@
                                     <span class="integration_item">
                                         <img src="{{ asset('frontAssets/images/integration/chatGPT.png') }}" alt="" />
                                     </span>
-                                </p>
+                                </p> --}}
                                 <p data-tj-throwable-el>
                                     <span class="integration_item">
                                         <img src="{{ asset('frontAssets/images/integration/PHP.png') }}" alt="" />

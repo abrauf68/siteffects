@@ -37,9 +37,9 @@ use Illuminate\Support\Facades\Session;
 
 Route::get('/lang/{lang}', function ($lang) {
     // dd($lang);
-    if(! in_array($lang, ['en','fr','ar','de'])){
+    if (! in_array($lang, ['en', 'fr', 'ar', 'de'])) {
         abort(404);
-    }else{
+    } else {
         session(['locale' => $lang]);
         App::setLocale($lang);
         Log::info("Locale set to: " . $lang);
@@ -139,18 +139,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         });
     });
-
 });
 
 // Frontend Pages Routes
 Route::name('frontend.')->group(function () {
-Route::get('/', [FrontendHomeController::class, 'home'])->name('home');
-Route::get('/about', [FrontendHomeController::class, 'about'])->name('about');
-Route::get('/contact', [FrontendHomeController::class, 'contact'])->name('contact');
-Route::get('/services/{slug?}', [FrontendHomeController::class, 'services'])->name('services');
-Route::get('/projects/{category?}/{project?}', [FrontendHomeController::class, 'projects'])->name('projects');
-Route::post('/contact/submit', [FrontendHomeController::class, 'contactSubmit'])->name('contact.submit');
-Route::post('/newsletter/store', [FrontendHomeController::class, 'newsletterStore'])->name('newsletter.store');
+    Route::get('/', [FrontendHomeController::class, 'home'])->name('home');
+    Route::get('/about', [FrontendHomeController::class, 'about'])->name('about');
+    Route::get('/contact', [FrontendHomeController::class, 'contact'])->name('contact');
+    Route::get('/services/{slug?}', [FrontendHomeController::class, 'services'])->name('services');
+    Route::get('/projects/{category?}/{project?}', [FrontendHomeController::class, 'projects'])->name('projects');
+    Route::post('/contact/submit', [FrontendHomeController::class, 'contactSubmit'])->name('contact.submit');
+    Route::post('/newsletter/store', [FrontendHomeController::class, 'newsletterStore'])->name('newsletter.store');
+    Route::get('/blogs/{category?}/{blog?}', [FrontendHomeController::class, 'blogs'])->name('blogs');
+    Route::post('/comment/submit', [FrontendHomeController::class, 'blogCommentSubmit'])->name('blogs.comment.submit');
+    Route::get('/privacy-policy', [FrontendHomeController::class, 'privacyPolicy'])->name('privacy');
+    Route::get('/terms', [FrontendHomeController::class, 'terms'])->name('terms');
 });
 
 
@@ -181,4 +184,3 @@ Route::middleware(['auth'])->group(function () {
         return "Optimization cache cleared!";
     })->name('clear.optimize');
 });
-

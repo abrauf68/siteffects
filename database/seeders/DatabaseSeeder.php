@@ -32,6 +32,10 @@ class DatabaseSeeder extends Seeder
             ProjectSeeder::class,
             ServiceFaqSeeder::class,
             BrandSeeder::class,
+            BlogCategorySeeder::class,
+            BlogSeeder::class,
+            QuoteSeeder::class,
+            PageSeeder::class,
         ]);
     }
 }

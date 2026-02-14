@@ -1416,8 +1416,8 @@ li.ui-timepicker-selected,
 }
 
 .bg-menu-theme {
-  background-color: #fff !important;
-  color: #444050;
+  background-color: #22055a !important;
+  color: #fff;
 }
 .bg-menu-theme.menu-horizontal {
   background-color: rgba(255, 255, 255, 0.95) !important;

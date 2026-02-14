@@ -3289,7 +3289,7 @@ textarea.form-control-lg {
   --bs-dropdown-spacer: 0.125rem;
   --bs-dropdown-font-size: 0.9375rem;
   --bs-dropdown-color: var(--bs-body-color);
-  --bs-dropdown-bg: #2f3349;
+  --bs-dropdown-bg: #22055a;
   --bs-dropdown-border-color: #44485e;
   --bs-dropdown-border-radius: var(--bs-border-radius);
   --bs-dropdown-border-width: 0;
@@ -4250,7 +4250,7 @@ textarea.form-control-lg {
   --bs-card-cap-color: #cfcde4;
   --bs-card-height: ;
   --bs-card-color: ;
-  --bs-card-bg: #2f3349;
+  --bs-card-bg: #22055a;
   --bs-card-img-overlay-padding: 1.5rem;
   --bs-card-group-margin: 1.5rem;
   position: relative;

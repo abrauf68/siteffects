@@ -3293,7 +3293,7 @@ textarea.form-control-lg {
   --bs-dropdown-spacer: 0.125rem;
   --bs-dropdown-font-size: 0.9375rem;
   --bs-dropdown-color: var(--bs-body-color);
-  --bs-dropdown-bg: #2f3349;
+  --bs-dropdown-bg: #22055a;
   --bs-dropdown-border-color: #44485e;
   --bs-dropdown-border-radius: var(--bs-border-radius);
   --bs-dropdown-border-width: 0;
@@ -4258,7 +4258,7 @@ textarea.form-control-lg {
   --bs-card-cap-color: #cfcde4;
   --bs-card-height: ;
   --bs-card-color: ;
-  --bs-card-bg: #2f3349;
+  --bs-card-bg: #22055a;
   --bs-card-img-overlay-padding: 1.5rem;
   --bs-card-group-margin: 1.5rem;
   position: relative;
@@ -5339,7 +5339,7 @@ textarea.form-control-lg {
   --bs-modal-padding: 1.5rem;
   --bs-modal-margin: 1.5rem;
   --bs-modal-color: ;
-  --bs-modal-bg: #2f3349;
+  --bs-modal-bg: #22055a;
   --bs-modal-border-color: #44485e;
   --bs-modal-border-width: 0px;
   --bs-modal-border-radius: 0.5rem;
@@ -6146,7 +6146,7 @@ textarea.form-control-lg {
   --bs-offcanvas-padding-x: 1.5rem;
   --bs-offcanvas-padding-y: 1.5rem;
   --bs-offcanvas-color: var(--bs-body-color);
-  --bs-offcanvas-bg: #2f3349;
+  --bs-offcanvas-bg: #22055a;
   --bs-offcanvas-border-width: 0px;
   --bs-offcanvas-border-color: #44485e;
   --bs-offcanvas-box-shadow: 0 0.25rem 1.125rem 0 rgba(19, 17, 32, 0.22);

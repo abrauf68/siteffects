@@ -61,36 +61,11 @@ Route::group(['middleware' => ['guest']], function () {
     Route::get('login', [LoginController::class, 'login'])->name('login');
     Route::post('login-attempt', [LoginController::class, 'login_attempt'])->name('login.attempt');
 
-    //User Register Authentication Routes
-    Route::get('register', [RegisterController::class, 'register'])->name('register');
-    Route::post('registration-attempt', [RegisterController::class, 'register_attempt'])->name('register.attempt');
-
-    // Google Authentication Routes
-    Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google.login');
-    Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('auth.google.login.callback');
-    // Github Authentication Routes
-    Route::get('auth/github', [GithubController::class, 'redirectToGithub'])->name('auth.github.login');
-    Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallback'])->name('auth.github.login.callback');
-    // Facebook Authentication Routes
-    // Route::controller(FacebookController::class)->group(function () {
-    //     Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
-    //     Route::get('auth/facebook/callback', 'handleFacebookCallback');
-    // });
-
 });
 
 // Authentication Routes
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('login-verification', [AuthController::class, 'login_verification'])->name('login.verification');
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-    Route::post('verify-account', [AuthController::class, 'verify_account'])->name('verify.account');
-    Route::post('resend-code', [AuthController::class, 'resend_code'])->name('resend.code');
-
-    // Verified notification
-    Route::get('email/verify/{id}/{hash}', [AuthController::class, 'verification_verify'])->middleware(['signed'])->name('verification.verify');
-    Route::get('email/verify', [AuthController::class, 'verification_notice'])->name('verification.notice');
-    Route::post('email/verification-notification', [AuthController::class, 'verification_send'])->middleware(['throttle:2,1'])->name('verification.send');
-    // Verified notification
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {

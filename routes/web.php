@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\RolePermission\PermissionController;
 use App\Http\Controllers\Dashboard\RolePermission\RoleController;
+use App\Http\Controllers\Dashboard\ServiceController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\User\ArchivedUserController;
 use App\Http\Controllers\Dashboard\User\UserController;
@@ -84,10 +85,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/notifications/{id}/delete', [NotificationController::class, 'deleteNotification']);
         Route::get('/notifications/send-test-noti/{id}', [NotificationController::class, 'testNotification']);
 
-        Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
+        Route::get('admin/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
         // Admin Dashboard Authentication Routes
-        Route::prefix('dashboard')->name('dashboard.')->group(function () {
+        Route::prefix('admin/dashboard')->name('dashboard.')->group(function () {
 
             Route::resource('user', UserController::class);
             Route::resource('archived-user', ArchivedUserController::class);
@@ -110,7 +111,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
             // User Dashboard Authentication Routes
 
-
+            Route::resource('services', ServiceController::class);
+            Route::get('services/status/{id}', [ServiceController::class, 'updateServiceStatus'])->name('services.status.update');
 
         });
     });

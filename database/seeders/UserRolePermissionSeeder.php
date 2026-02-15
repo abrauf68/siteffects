@@ -42,6 +42,11 @@ class UserRolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update setting']);
         Permission::create(['name' => 'delete setting']);
 
+        Permission::create(['name' => 'view service']);
+        Permission::create(['name' => 'create service']);
+        Permission::create(['name' => 'update service']);
+        Permission::create(['name' => 'delete service']);
+
 
         // Create Roles
         $superAdminRole = Role::create(['name' => 'super-admin']); //as super-admin

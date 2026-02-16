@@ -21,3 +21,6 @@
 
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="{{ asset('frontAssets/images/logos/siteffect-icon.png') }}" />
+
+<!-- Google Site Verification -->
+<meta name="google-site-verification" content="uNBKxFv7nGT7AIXvEW8ZzUqUI69sIkF65NZTs-QZKHo" />

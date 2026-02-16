@@ -24,3 +24,13 @@
 
 <!-- Google Site Verification -->
 <meta name="google-site-verification" content="uNBKxFv7nGT7AIXvEW8ZzUqUI69sIkF65NZTs-QZKHo" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R1B3CT5CD2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R1B3CT5CD2');
+</script>

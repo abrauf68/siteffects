@@ -20,11 +20,11 @@ class Helper
     }
     public static function getLogoLight()
     {
-        return CompanySetting::first()->light_logo ?? asset('frontAssets/images/logos/siteffects-logo.png');
+        return CompanySetting::first()->light_logo ?? asset('frontAssets/images/logos/siteffects-logo.webp');
     }
     public static function getLogoDark()
     {
-        return CompanySetting::first()->dark_logo ?? asset('frontAssets/images/logos/siteffects-logo.png');
+        return CompanySetting::first()->dark_logo ?? asset('frontAssets/images/logos/siteffects-logo.webp');
     }
     public static function getFavicon()
     {

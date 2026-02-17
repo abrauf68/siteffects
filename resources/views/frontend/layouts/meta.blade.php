@@ -20,7 +20,11 @@
 <meta name="twitter:image" content="{{ asset('frontAssets/images/social-og.png') }}">
 
 <!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="{{ asset('frontAssets/images/logos/siteffect-icon.png') }}" />
+<link rel="icon" type="image/png" href="{{ asset('favicons/favicon-96x96.png') }}" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="{{ asset('favicons/favicon.svg') }}" />
+<link rel="shortcut icon" href="{{ asset('favicons/favicon.ico') }}" />
+<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicons/apple-touch-icon.png') }}" />
+<link rel="manifest" href="{{ asset('favicons/site.webmanifest') }}" />
 
 <!-- Google Site Verification -->
 <meta name="google-site-verification" content="uNBKxFv7nGT7AIXvEW8ZzUqUI69sIkF65NZTs-QZKHo" />

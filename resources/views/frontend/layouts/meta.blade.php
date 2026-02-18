@@ -10,14 +10,14 @@
 
 <meta property="og:title" content="@yield('meta_title')" />
 <meta property="og:description" content="@yield('meta_description')" />
-<meta property="og:image" content="{{ asset('frontAssets/images/social-og.png') }}" />
+<meta property="og:image" content="{{ url('frontAssets/images/social-og.png') }}" />
 <meta property="og:url" content="{{ url()->current() }}" />
 <meta property="og:type" content="website" />
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="@yield('meta_title')">
 <meta name="twitter:description" content="@yield('meta_description')">
-<meta name="twitter:image" content="{{ asset('frontAssets/images/social-og.png') }}">
+<meta name="twitter:image" content="{{ url('frontAssets/images/social-og.png') }}">
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="{{ asset('favicons/favicon-96x96.png') }}" sizes="96x96" />

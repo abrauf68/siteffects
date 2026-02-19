@@ -21,7 +21,7 @@
                             <div class="author-area tj-fade-anim" data-delay=".3">
                                 <div class="author-info">
                                     <div class="author-img">
-                                        <img src="{{ asset('frontAssets/images/company/ceo.png') }}" alt="Image" />
+                                        <img src="{{ asset('frontAssets/images/company/ceo.webp') }}" alt="Image" />
                                     </div>
                                     <div class="author-text">
                                         <h6 class="author-name">Abdul Rauf</h6>
@@ -29,7 +29,7 @@
                                     </div>
                                 </div>
                                 <div class="signature">
-                                    <img src="{{ asset('frontAssets/images/company/ceo-sign.png') }}" alt="Image" />
+                                    <img src="{{ asset('frontAssets/images/company/ceo-sign.webp') }}" alt="Image" />
                                 </div>
                             </div>
                         </div>

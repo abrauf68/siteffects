@@ -28,7 +28,7 @@ class Helper
     }
     public static function getFavicon()
     {
-        return CompanySetting::first()->favicon ?? asset('frontAssets/images/logos/siteffect-icon.png');
+        return CompanySetting::first()->favicon ?? asset('frontAssets/images/logos/siteffect-icon.webp');
     }
     public static function getCompanyName()
     {

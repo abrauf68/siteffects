@@ -11,7 +11,7 @@
 <meta property="og:site_name" content="Siteffect Solutions" />
 <meta property="og:title" content="@yield('meta_title')" />
 <meta property="og:description" content="@yield('meta_description')" />
-<meta property="og:image" content="{{ url('frontAssets/images/social-og.png') }}" />
+<meta property="og:image" content="{{ url('frontAssets/images/social-og.webp') }}" />
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="{{ url()->current() }}" />
@@ -20,7 +20,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="@yield('meta_title')">
 <meta name="twitter:description" content="@yield('meta_description')">
-<meta name="twitter:image" content="{{ url('frontAssets/images/social-og.png') }}">
+<meta name="twitter:image" content="{{ url('frontAssets/images/social-og.webp') }}">
 
 <!-- Favicon -->
 <link rel="icon" href="{{ url('favicons/favicon.ico') }}" />

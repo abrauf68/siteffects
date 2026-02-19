@@ -343,11 +343,11 @@
     <!-- end: Marquee Section -->
 
     <!-- start: Integration Section -->
-    @include('frontend.pages.sections.technologies')
+    {{-- @include('frontend.pages.sections.technologies') --}}
     <!-- end: Integration Section -->
 
     <!-- start: Testimonial Section -->
-    @include('frontend.pages.sections.testimonials')
+    {{-- @include('frontend.pages.sections.testimonials') --}}
     <!-- end: Testimonial Section -->
 
     <!-- start: Project Section -->

@@ -7,6 +7,7 @@
 @section('author', $page->author)
 
 @section('css')
+<link rel="stylesheet" href="{{ asset('frontAssets/css/leaflet.css') }}" />
 <style>
     .contact-list .social-icons {
         color: #ffffff !important;
@@ -194,5 +195,5 @@
 @endsection
 
 @section('script')
-
+<script src="{{ asset('frontAssets/js/leaflet.js') }}"></script>
 @endsection

@@ -52,7 +52,8 @@ class Helper
     }
     public static function getServices()
     {
-        return Service::where('is_active', 'active')->get();
+        return Service::where('is_active', 'active')->orderByRaw('position IS NULL')
+                ->orderBy('position', 'asc')->get();
     }
 
     public static function getCompanyInstagram()

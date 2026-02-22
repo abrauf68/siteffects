@@ -24,12 +24,12 @@
                     <div class="row p-5">
                         <h3>{{ __('Add New Service') }}</h3>
                         <div class="mb-4 col-md-6">
-                            <label for="name" class="form-label">{{ __('Service Name') }}</label><span
+                            <label for="title" class="form-label">{{ __('Service Title') }}</label><span
                                 class="text-danger">*</span>
-                            <input class="form-control @error('name') is-invalid @enderror" type="text" id="name"
-                                name="name" required placeholder="{{ __('Enter service name') }}" autofocus
-                                value="{{ old('name') }}" />
-                            @error('name')
+                            <input class="form-control @error('title') is-invalid @enderror" type="text" id="title"
+                                name="title" required placeholder="{{ __('Enter service title') }}" autofocus
+                                value="{{ old('title') }}" />
+                            @error('title')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -73,22 +73,35 @@
                             @enderror
                         </div>
                         <div class="mb-4 col-md-12">
-                            <label for="details" class="form-label">{{ __('Details') }}</label><span
+                            <label for="meta_keywords" class="form-label">{{ __('Meta Keywords') }}</label><span
                                 class="text-danger">*</span>
-                            <textarea class="form-control @error('details') is-invalid @enderror" id="details" name="details"
-                                placeholder="{{ __('Enter service meta description') }}" cols="30" rows="10"></textarea>
-                            @error('details')
+                            <input class="form-control @error('meta_keywords') is-invalid @enderror" type="text"
+                                id="meta_keywords" name="meta_keywords" required
+                                placeholder="{{ __('Enter service meta keywords') }}"
+                                value="{{ old('meta_keywords') }}" />
+                            @error('meta_keywords')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
                         <div class="mb-4 col-md-12">
-                            <label for="meta_image" class="form-label">{{ __('Meta Image') }}</label><span
+                            <label for="description" class="form-label">{{ __('Description') }}</label><span
                                 class="text-danger">*</span>
-                            <input class="form-control @error('meta_image') is-invalid @enderror" type="file"
-                                id="meta_image" name="meta_image" required accept="image/*" />
-                            @error('meta_image')
+                            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
+                                placeholder="{{ __('Enter service description') }}" cols="30" rows="10"></textarea>
+                            @error('description')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mb-4 col-md-12">
+                            <label for="image" class="form-label">{{ __('Image') }}</label><span
+                                class="text-danger">*</span>
+                            <input class="form-control @error('image') is-invalid @enderror" type="file"
+                                id="image" name="image" required accept="image/*" />
+                            @error('image')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -264,7 +277,7 @@
         });
         $(document).ready(function() {
             tinymce.init({
-                selector: '#details',
+                selector: '#description',
                 height: 500,
                 plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
                 toolbar: `undo redo | formatselect | fontselect fontsizeselect |
@@ -277,10 +290,10 @@
                 content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
             });
 
-            // Generate slug from name
-            $('#name').on('keyup change', function() {
-                let name = $(this).val();
-                let slug = name.toLowerCase()
+            // Generate slug from title
+            $('#title').on('keyup change', function() {
+                let title = $(this).val();
+                let slug = title.toLowerCase()
                     .trim()
                     .replace(/[^a-z0-9\s-]/g, '')
                     .replace(/\s+/g, '-')
@@ -291,28 +304,28 @@
             // Handle form submission manually to validate TinyMCE
             $('form').on('submit', function(e) {
                 tinymce.triggerSave(); // sync content to <textarea>
-                const $details = $('#details');
-                const detailsContent = $details.val().trim();
+                const $description = $('#description');
+                const descriptionContent = $description.val().trim();
 
                 // Remove previous validation state
-                $details.removeClass('is-invalid');
-                $details.next('.invalid-feedback').remove();
+                $description.removeClass('is-invalid');
+                $description.next('.invalid-feedback').remove();
 
-                if (!detailsContent) {
+                if (!descriptionContent) {
                     e.preventDefault();
 
                     // Add Bootstrap invalid class
-                    $details.addClass('is-invalid');
+                    $description.addClass('is-invalid');
 
                     // Append validation message
-                    $details.after(`
+                    $description.after(`
                         <div class="invalid-feedback">
-                            {{ __('The details field is required.') }}
+                            {{ __('The description field is required.') }}
                         </div>
                     `);
 
                     // Optional: focus editor
-                    tinymce.get('details').focus();
+                    tinymce.get('description').focus();
                 }
             });
 

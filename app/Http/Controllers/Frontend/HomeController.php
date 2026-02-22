@@ -37,7 +37,7 @@ class HomeController extends Controller
                 ->orderByRaw('position IS NULL')
                 ->orderBy('position', 'asc')
                 ->get();
-            $allServices = Service::where('is_active', 'active')->get();
+            $allServices = Service::where('is_active', 'active')->orderByRaw('position IS NULL')->orderBy('position', 'asc')->get();
             $brands = Brand::where('is_active', 'active')->where('is_featured', '1')->get();
             $page = Page::where('page_name', 'home')->first();
             return view('frontend.pages.home', compact('services', 'projects', 'allServices', 'brands', 'page'));

@@ -21,6 +21,7 @@ class ServiceSeeder extends Seeder
                 'icon' => 'tji-computer',
                 'meta_title' => 'Professional Web Development Services',
                 'meta_description' => 'We build fast, secure, and scalable websites tailored to your business needs.',
+                'meta_keywords' => 'web development services, custom website development, professional web development company, full stack web developer, responsive website design, business website development, enterprise web solutions, PHP development services, Laravel development company, frontend and backend development, scalable web applications, website development agency',
                 'description' => '
 <p>At Siteffects Solutions, we specialize in creating websites that are not only visually appealing but also highly functional and optimized for performance. Our web development process focuses on clean, maintainable code, responsive design, and SEO-friendly structures that ensure your website performs seamlessly across all devices. By combining the latest technologies with innovative solutions, we deliver websites that meet your business goals and provide a superior user experience. From startups to large enterprises, our custom web solutions are tailored to fit your unique needs while ensuring scalability, security, and speed.</p>
 
@@ -43,6 +44,7 @@ class ServiceSeeder extends Seeder
                 'icon' => 'tji-computer',
                 'meta_title' => 'Creative UI/UX Design & Branding',
                 'meta_description' => 'Designing visually stunning interfaces and intuitive experiences that engage your users.',
+                'meta_keywords' => 'UI UX design services, professional UI designer, UX design agency, branding services, brand identity design, logo design services, website UI design, mobile app UI UX design, user experience optimization, creative branding agency, digital product design, modern website design company',
                 'description' => '
 <p>Our UI/UX design services at Siteffects Solutions focus on creating engaging, user-friendly interfaces that capture attention and drive action. We combine creativity with research to design experiences that are intuitive, visually appealing, and aligned with your brand identity. Each design is tailored to your audience, ensuring consistency, clarity, and usability across all digital touchpoints. By integrating branding strategies into UI/UX design, we help your business build credibility, recognition, and loyalty while maximizing conversions and engagement.</p>
 
@@ -65,6 +67,7 @@ class ServiceSeeder extends Seeder
                 'icon' => 'tji-computer',
                 'meta_title' => 'Mobile App Development Services',
                 'meta_description' => 'Building high-performance mobile apps for iOS and Android to grow your reach.',
+                'meta_keywords' => 'mobile app development services, Android app development, iOS app development, Flutter app development, React Native development, custom mobile application development, hybrid app development company, enterprise mobile app solutions, startup app development, cross platform app development, mobile software development company',
                 'description' => '
 <p>We develop robust and high-performance mobile applications tailored for iOS and Android platforms. At Siteffects Solutions, our focus is on delivering apps that are fast, reliable, and user-friendly. We leverage modern frameworks and technologies to ensure smooth functionality, scalability, and security. Each application is designed with the end-user in mind, providing seamless experiences that keep users engaged. Whether it’s a consumer-facing app or a business solution, our mobile applications help you expand your reach and drive growth in the competitive mobile market.</p>
 
@@ -87,6 +90,7 @@ class ServiceSeeder extends Seeder
                 'icon' => 'tji-search',
                 'meta_title' => 'SEO & Website Optimization Services',
                 'meta_description' => 'Optimizing websites to rank higher, drive traffic, and boost conversions.',
+                'meta_keywords' => 'SEO services, search engine optimization company, technical SEO services, on page SEO optimization, off page SEO services, website speed optimization, Google ranking services, ecommerce SEO services, local SEO services, digital marketing agency, organic traffic growth, website performance optimization',
                 'description' => '
 <p>At Siteffects Solutions, we help businesses increase their online visibility and drive organic traffic through effective SEO strategies and website optimization. Our services focus on improving search engine rankings, enhancing page load speed, and ensuring optimal user experience. We analyze your website structure, content, and performance to identify areas of improvement. By implementing best practices and tailored strategies, we help your website attract the right audience, generate leads, and achieve measurable results.</p>
 
@@ -109,6 +113,7 @@ class ServiceSeeder extends Seeder
                 'icon' => 'tji-computer',
                 'meta_title' => 'E-Commerce Website Development',
                 'meta_description' => 'Creating powerful online stores that deliver seamless shopping experiences.',
+                'meta_keywords' => 'ecommerce development services, online store development, Shopify development, WooCommerce development, custom ecommerce solutions, ecommerce website design, multivendor ecommerce platform, B2B ecommerce development, payment gateway integration, scalable ecommerce solutions, ecommerce app development, professional online store developers',
                 'description' => '
 <p>Siteffects Solutions builds feature-rich e-commerce websites that provide seamless shopping experiences. Our solutions are designed to drive sales, improve user engagement, and offer smooth checkout processes. We integrate secure payment gateways, inventory management, and customer-friendly navigation to create a store that meets your business needs. Our e-commerce websites are responsive, fast, and optimized for both search engines and users, helping your brand grow online effectively.</p>
 
@@ -131,6 +136,7 @@ class ServiceSeeder extends Seeder
                 'icon' => 'tji-consulting',
                 'meta_title' => 'Website Maintenance & Support Services',
                 'meta_description' => 'Ensuring your website stays secure, updated, and fully functional 24/7.',
+                'meta_keywords' => 'website maintenance services, website support services, WordPress maintenance, Laravel website support, website security updates, website performance monitoring, technical website support, website management services, website bug fixing, monthly website maintenance plans, website backup services, ongoing website support',
                 'description' => '
 <p>We provide reliable website maintenance and support to ensure your site remains secure, updated, and fully operational at all times. Siteffects Solutions monitors your website, fixes issues promptly, and implements improvements to maintain peak performance. Our services include regular updates, security checks, and troubleshooting to prevent downtime and ensure a seamless experience for your users. We aim to protect your investment and maintain the credibility of your online presence.</p>
 

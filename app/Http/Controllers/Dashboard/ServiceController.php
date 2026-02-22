@@ -58,37 +58,41 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $this->authorize('create service');
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|unique:company_services,slug',
+            'title' => 'required|string|max:255',
+            'slug' => 'required|string|unique:services,slug',
             'meta_title' => 'required|string|max:255',
-            'meta_description' => 'required|string|max:255',
-            'details' => 'required',
+            'meta_description' => 'required|string',
+            'meta_keywords' => 'required|string',
+            'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg|max_size',
             'is_featured' => 'nullable|in:on',
             'icon' => 'required|string|max:255',
-            'position' => 'required|integer',
             'features' => 'nullable',
         ]);
 
         if ($validator->fails()) {
+            Log::error('Service Validation Failed', [
+                'errors' => $validator->errors()->toArray(),
+            ]);
             return redirect()->back()->withErrors($validator)->withInput($request->all())->with('error', 'Validation Error!');
         }
 
         try {
             DB::beginTransaction();
+            $lastPosition = Service::max('position');
             $isFeatured = isset($request->is_featured) && $request->is_featured == 'on' ? '1' : '0';
             $service = new Service();
-            $service->title = $request->name;
+            $service->title = $request->title;
             $service->slug = $request->slug;
             $service->meta_title = $request->meta_title;
             $service->meta_description = $request->meta_description;
-            $service->description = $request->details;
+            $service->meta_keywords = $request->meta_keywords;
+            $service->description = $request->description;
             $service->is_featured = $isFeatured;
             $service->icon = $request->icon;
-            $service->position = $request->position;
+            $service->position = $lastPosition ? $lastPosition + 1 : 1;
             if($request->features)
             {
                 $features = json_encode(
@@ -135,7 +139,16 @@ class ServiceController extends Controller
         $this->authorize('update service');
         try {
             $service = Service::findOrFail($id);
-            return view('dashboard.services.edit', compact('service'));
+            $uniqueFeatures = collect(Service::pluck('features'))
+                ->map(function ($item) {
+                    return json_decode($item, true); // Convert string to array
+                })
+                ->flatten()
+                ->filter() // remove nulls
+                ->unique()
+                ->values()
+                ->all();
+            return view('dashboard.services.edit', compact('service', 'uniqueFeatures'));
         } catch (\Throwable $th) {
             Log::error('Service Edit Failed', ['error' => $th->getMessage()]);
             return redirect()->back()->with('error', "Something went wrong! Please try again later");
@@ -150,15 +163,15 @@ class ServiceController extends Controller
     {
         $this->authorize('update service');
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|unique:company_services,slug,' . $id,
+            'title' => 'required|string|max:255',
+            'slug' => 'required|string|unique:services,slug,' . $id,
             'meta_title' => 'required|string|max:255',
-            'meta_description' => 'required|string|max:255',
-            'details' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max_size',
+            'meta_description' => 'required|string', 
+            'meta_keywords' => 'required|string', 
+            'description' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max_size',
             'is_featured' => 'nullable|in:on',
             'icon' => 'required|string|max:255',
-            'position' => 'required|integer',
             'features' => 'nullable',
         ]);
 
@@ -168,15 +181,14 @@ class ServiceController extends Controller
         try {
             $isFeatured = isset($request->is_featured) && $request->is_featured == 'on' ? '1' : '0';
             $service = Service::findOrFail($id);
-            $service->title = $request->name;
+            $service->title = $request->title;
             $service->slug = $request->slug;
             $service->meta_title = $request->meta_title;
             $service->meta_description = $request->meta_description;
-            $service->details = $request->details;
-            $service->total_projects = $request->total_projects;
+            $service->meta_keywords = $request->meta_keywords;
+            $service->description = $request->description;
             $service->is_featured = $isFeatured;
             $service->icon = $request->icon;
-            $service->position = $request->position;
             if($request->features)
             {
                 $features = json_encode(
@@ -246,6 +258,50 @@ class ServiceController extends Controller
         } catch (\Throwable $th) {
             Log::error('Service Status Updation Failed', ['error' => $th->getMessage()]);
             return redirect()->back()->with('error', "Something went wrong! Please try again later");
+            throw $th;
+        }
+    }
+
+    public function shuffleShow()
+    {
+        try {
+            $this->authorize('update service');
+            $services = Service::orderBy('position', 'asc')->get();
+            return view('dashboard.services.shuffle', compact('services'));
+        } catch (\Throwable $th) {
+            Log::error('Services Shuffle Show Failed', ['error' => $th->getMessage()]);
+            return redirect()->back()->with('error', "Something went wrong! Please try again later");
+            throw $th;
+        }
+    }
+    public function shuffleStore(Request $request)
+    {
+        $this->authorize('update service');
+        $validator = Validator::make($request->all(), [
+            'ids' => 'required|array',
+            'ids.*' => 'exists:services,id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation Error!',
+            ], 404);
+        }
+        try {
+            foreach ($request->ids as $index => $serviceId) {
+                Service::where('id', $serviceId)->update(['position' => $index + 1]);
+            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Services Shuffled Successfully!',
+            ], 200);
+        } catch (\Throwable $th) {
+            Log::error('Services Shuffle Store Failed', ['error' => $th->getMessage()]);
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong! Please try again later',
+            ], 404);
             throw $th;
         }
     }

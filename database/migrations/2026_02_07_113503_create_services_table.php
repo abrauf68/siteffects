@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('icon')->nullable();
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
+            $table->text('meta_keywords')->nullable();
             $table->text('description')->nullable();
             $table->text('features')->nullable();
             $table->integer('position')->nullable();

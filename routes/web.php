@@ -11,6 +11,7 @@ use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\RolePermission\PermissionController;
 use App\Http\Controllers\Dashboard\RolePermission\RoleController;
 use App\Http\Controllers\Dashboard\ServiceController;
+use App\Http\Controllers\Dashboard\ServiceFaqsController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\User\ArchivedUserController;
 use App\Http\Controllers\Dashboard\User\UserController;
@@ -113,6 +114,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
             Route::resource('services', ServiceController::class);
             Route::get('services/status/{id}', [ServiceController::class, 'updateServiceStatus'])->name('services.status.update');
+            Route::get('services/shuffle/show', [ServiceController::class, 'shuffleShow'])->name('services.shuffle-show');
+            Route::post('services/shuffle/store', [ServiceController::class, 'shuffleStore'])->name('services.shuffle-store');
+
+            //Service FAQs
+            Route::get('service-faqs/{id}', [ServiceFaqsController::class, 'index'])->name('service-faqs.index');
+            Route::get('service-faqs/create/{id}', [ServiceFaqsController::class, 'create'])->name('service-faqs.create');
+            Route::post('service-faqs/store/{id}', [ServiceFaqsController::class, 'store'])->name('service-faqs.store');
+            Route::get('service-faqs/edit/{id}', [ServiceFaqsController::class, 'edit'])->name('service-faqs.edit');
+            Route::put('service-faqs/update/{id}', [ServiceFaqsController::class, 'update'])->name('service-faqs.update');
+            Route::delete('service-faqs/delete/{id}', [ServiceFaqsController::class, 'destroy'])->name('service-faqs.destroy');
+            Route::get('service-faqs/status/{id}', [ServiceFaqsController::class, 'updateServiceStatus'])->name('service-faqs.status.update');
 
         });
     });

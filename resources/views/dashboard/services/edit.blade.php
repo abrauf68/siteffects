@@ -3,13 +3,14 @@
 @section('title', __('Edit Service'))
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('frontAssets/css/vendor/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/tagify/tagify.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontAssets/css/tekmino-icon.css') }}" />
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
 @endsection
 
 
 @section('breadcrumb-items')
-    <li class="breadcrumb-item"><a href="{{ route('dashboard.company-services.index') }}">{{ __('Services') }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('dashboard.services.index') }}">{{ __('Services') }}</a></li>
     <li class="breadcrumb-item active">{{ __('Edit') }}</li>
 @endsection
 {{-- @dd($service) --}}
@@ -18,17 +19,17 @@
         <div class="card mb-6">
             <!-- Account -->
             <div class="card-body pt-4">
-                <form method="POST" action="{{ route('dashboard.company-services.update', $service->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('dashboard.services.update', $service->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row p-5">
                         <h3>{{ __('Edit Service') }}</h3>
                         <div class="mb-4 col-md-6">
-                            <label for="name" class="form-label">{{ __('Service Name') }}</label><span
+                            <label for="title" class="form-label">{{ __('Service Title') }}</label><span
                                 class="text-danger">*</span>
-                            <input class="form-control @error('name') is-invalid @enderror" type="text" id="name"
-                                name="name" required placeholder="{{ __('Enter service name') }}" autofocus value="{{old('name', $service->name)}}"/>
-                            @error('name')
+                            <input class="form-control @error('title') is-invalid @enderror" type="text" id="title"
+                                name="title" required placeholder="{{ __('Enter service title') }}" autofocus value="{{old('title', $service->title)}}"/>
+                            @error('title')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -70,51 +71,50 @@
                             @enderror
                         </div>
                         <div class="mb-4 col-md-12">
-                            <label for="details" class="form-label">{{ __('Details') }}</label><span
+                            <label for="meta_keywords" class="form-label">{{ __('Meta Keywords') }}</label><span
                                 class="text-danger">*</span>
-                            <textarea class="form-control @error('details') is-invalid @enderror" id="details" name="details"
+                            <input class="form-control @error('meta_keywords') is-invalid @enderror" type="text"
+                                id="meta_keywords" name="meta_keywords" required
+                                placeholder="{{ __('Enter service meta keywords') }}"
+                                value="{{ old('meta_keywords', $service->meta_keywords) }}" />
+                            @error('meta_keywords')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mb-4 col-md-12">
+                            <label for="description" class="form-label">{{ __('Description') }}</label><span
+                                class="text-danger">*</span>
+                            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
                                 placeholder="{{ __('Enter service meta description') }}" cols="30" rows="10">
-                                {{old('details', $service->details)}}
+                                {{old('description', $service->description)}}
                             </textarea>
-                            @error('details')
+                            @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
-                        <div class="mb-4 col-md-6">
-                            <label for="meta_image" class="form-label">{{ __('Meta Image') }}</label>
-                            <input class="form-control @error('meta_image') is-invalid @enderror" type="file"
-                                id="meta_image" name="meta_image" accept="image/*" />
-                            @error('meta_image')
+                        <div class="mb-4 col-md-12">
+                            <label for="image" class="form-label">{{ __('Image') }}</label>
+                            <input class="form-control @error('image') is-invalid @enderror" type="file"
+                                id="image" name="image" accept="image/*" />
+                            @error('image')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                            @if($service->meta_image)
-                                <img src="{{ asset($service->meta_image) }}" alt="Meta Image" class="mt-2" width="120">
+                            @if($service->image)
+                                <img src="{{ asset($service->image) }}" alt="Image" class="mt-2" width="120">
                             @endif
                         </div>
-                        <div class="mb-4 col-md-6">
-                            <label for="main_image" class="form-label">{{ __('Main Image') }}</label>
-                            <input class="form-control @error('main_image') is-invalid @enderror" type="file"
-                                id="main_image" name="main_image" accept="image/*" />
-                            @error('main_image')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            @if($service->main_image)
-                                <img src="{{ asset($service->main_image) }}" alt="Main Image" class="mt-2" width="120">
-                            @endif
-                        </div>
-                        <div class="mb-4 col-md-6">
-                            <label for="total_projects" class="form-label">{{ __('Total Projects') }}</label><span
-                                class="text-danger">*</span>
-                            <input class="form-control @error('total_projects') is-invalid @enderror" type="number"
-                                id="total_projects" name="total_projects" required
-                                placeholder="{{ __('Enter no of projects') }}"  value="{{old('total_projects',$service->total_projects)}}"/>
-                            @error('total_projects')
+                        <div class="mb-4 col-md-12">
+                            <label for="features" class="form-label">Features</label>
+                            <input id="features" name="features"
+                                class="form-control @error('features') is-invalid @enderror" placeholder="Select features"
+                                value="{{old('features', $service->features)}}" />
+                            @error('features')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -142,24 +142,92 @@
                             <div class="d-flex flex-wrap gap-3">
                                 @php
                                     $icons = [
-                                        'fa-cogs',
-                                        'fa-laptop-code',
-                                        'fa-paint-brush',
-                                        'fa-chart-line',
-                                        'fa-bezier-curve',
-                                        'fa-shield',
-                                        'fa-database',
-                                        'fa-network-wired',
-                                        'fa-cloud',
-                                        'fa-code',
-                                        'fa-robot',
-                                        'fa-mobile-screen-button',
-                                        'fa-lightbulb',
-                                        'fa-envelope',
-                                        'fa-pen-ruler',
-                                        'fa-pen-nib',
-                                        'fa-globe',
-                                        'fa-magnifying-glass',
+                                        'tji-quote-2',
+                                        'tji-download',
+                                        'tji-server',
+                                        'tji-star',
+                                        'tji-security',
+                                        'tji-speed-meter',
+                                        'tji-trust',
+                                        'tji-cloud-2',
+                                        'tji-chart-2',
+                                        'tji-envelop-2',
+                                        'tji-percent',
+                                        'tji-subtitle-5',
+                                        'tji-subtitle-4',
+                                        'tji-subtitle-3',
+
+                                        'tji-subtitle-2',
+                                        'tji-growth',
+                                        'tji-hand',
+                                        'tji-trophy',
+                                        'tji-team',
+                                        'tji-marquee',
+                                        'tji-marquee-2',
+                                        'tji-plane',
+                                        'tji-bell',
+                                        'tji-bell-2',
+                                        'tji-play',
+                                        'tji-quote',
+                                        'tji-home',
+
+                                        'tji-user',
+                                        'tji-budget',
+                                        'tji-location-2',
+                                        'tji-chart',
+                                        'tji-calendar',
+                                        'tji-comment',
+                                        'tji-window',
+                                        'tji-computer',
+                                        'tji-development',
+                                        'tji-network',
+                                        'tji-consulting',
+                                        'tji-cybersecurity',
+                                        'tji-cloud',
+                                        'tji-hand-2',
+                                        'tji-idea',
+                                        'tji-rocket',
+                                        'tji-search',
+                                        'tji-globe',
+                                        'tji-gear',
+                                        'tji-shield',
+                                        'tji-spark',
+                                        'tji-thumbs-up',
+                                        'tji-x-mark',
+                                        'tji-award',
+                                        'tji-check-3',
+                                        'tji-check-4',
+                                        'tji-clock',
+                                        'tji-clock-2',
+                                        'tji-location',
+                                        'tji-phone',
+                                        'tji-phone-2',
+                                        'tji-phone-3',
+                                        'tji-envelop',
+                                        'tji-chat',
+                                        'tji-share',
+
+                                        'tji-facebook',
+                                        'tji-messenger',
+                                        'tji-instagram',
+                                        'tji-whatsapp',
+                                        'tji-linkedin',
+                                        'tji-x-twitter',
+                                        'tji-telegram',
+                                        'tji-pinterest',
+                                        'tji-signal',
+                                        'tji-tiktok',
+                                        'tji-threads',
+                                        'tji-dribble',
+                                        'tji-apple',
+                                        'tji-google',
+                                        'tji-youtube',
+                                        'tji-vimeo',
+                                        'tji-github',
+                                        'tji-discord',
+                                        'tji-tumblr',
+                                        'tji-spotify',
+                                        'tji-twitch',
                                     ];
                                 @endphp
 
@@ -171,7 +239,7 @@
                                         <input class="form-check-input d-none icon-radio" type="radio" name="icon"
                                             id="icon{{ $key }}" value="{{ $icon }}" required {{ $isSelected ? 'checked' : '' }}>
                                         <label class="btn {{ $isSelected ? 'btn-primary' : 'btn-outline-secondary' }} icon-label" for="icon{{ $key }}">
-                                            <i class="fa-light {{ $icon }} fa-2x"></i>
+                                            <i class="{{ $icon }}"></i>
                                         </label>
                                     </div>
                                 @endforeach
@@ -196,12 +264,25 @@
 @section('script')
     <!-- Vendors JS -->
     <script src="https://cdn.jsdelivr.net/npm/tinymce@6.8.3/tinymce.min.js" referrerpolicy="origin"></script>
-
+    <script src="{{ asset('assets/vendor/libs/tagify/tagify.js') }}"></script>
     <!-- Page JS -->
     <script>
+        const tagsEl = document.querySelector('#features');
+        const whitelist = @json($uniqueFeatures);
+        // Inline
+        let tags = new Tagify(tagsEl, {
+            whitelist: whitelist,
+            maxTags: 10,
+            dropdown: {
+                maxItems: 20,
+                classname: 'tags-inline',
+                enabled: 0,
+                closeOnSelect: false
+            }
+        });
         $(document).ready(function() {
             tinymce.init({
-                selector: '#details',
+                selector: '#description',
                 height: 500,
                 plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
                 toolbar: `undo redo | formatselect | fontselect fontsizeselect |
@@ -214,10 +295,10 @@
                 content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
             });
 
-            // Generate slug from name
-            $('#name').on('keyup change', function() {
-                let name = $(this).val();
-                let slug = name.toLowerCase()
+            // Generate slug from title
+            $('#title').on('keyup change', function() {
+                let title = $(this).val();
+                let slug = title.toLowerCase()
                     .trim()
                     .replace(/[^a-z0-9\s-]/g, '')
                     .replace(/\s+/g, '-')
@@ -228,28 +309,28 @@
             // Handle form submission manually to validate TinyMCE
             $('form').on('submit', function(e) {
                 tinymce.triggerSave(); // sync content to <textarea>
-                const $details = $('#details');
-                const detailsContent = $details.val().trim();
+                const $description = $('#description');
+                const descriptionContent = $description.val().trim();
 
                 // Remove previous validation state
-                $details.removeClass('is-invalid');
-                $details.next('.invalid-feedback').remove();
+                $description.removeClass('is-invalid');
+                $description.next('.invalid-feedback').remove();
 
-                if (!detailsContent) {
+                if (!descriptionContent) {
                     e.preventDefault();
 
                     // Add Bootstrap invalid class
-                    $details.addClass('is-invalid');
+                    $description.addClass('is-invalid');
 
                     // Append validation message
-                    $details.after(`
+                    $description.after(`
                         <div class="invalid-feedback">
-                            {{ __('The details field is required.') }}
+                            {{ __('The description field is required.') }}
                         </div>
                     `);
 
                     // Optional: focus editor
-                    tinymce.get('details').focus();
+                    tinymce.get('description').focus();
                 }
             });
 

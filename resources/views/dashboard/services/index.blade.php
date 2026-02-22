@@ -20,6 +20,12 @@
                             class="d-none d-sm-inline-block">{{ __('Add New Service') }}</span>
                     </a>
                 @endcan
+                @canany(['update service'])
+                    <a href="{{route('dashboard.services.shuffle-show')}}" class="add-new btn btn-warning waves-effect waves-light">
+                        <i class="ti ti-arrows-shuffle me-0 me-sm-1 ti-xs"></i><span
+                            class="d-none d-sm-inline-block">{{ __('Shuffle Services') }}</span>
+                    </a>
+                @endcan
             </div>
             <div class="card-datatable table-responsive">
                 <table class="datatables-users table border-top custom-datatables">
@@ -84,6 +90,14 @@
                                                     @else
                                                         <i class="ti ti-toggle-left ti-md text-danger"></i>
                                                     @endif
+                                                </a>
+                                            </span>
+                                            <span class="text-nowrap">
+                                                <a href="{{ route('dashboard.service-faqs.index', $service->id) }}"
+                                                    class="btn btn-icon btn-text-warning waves-effect waves-light rounded-pill me-1"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="{{ __('Service FAQs') }}">
+                                                    <i class="ti ti-help-circle ti-md"></i>
                                                 </a>
                                             </span>
                                         @endcan

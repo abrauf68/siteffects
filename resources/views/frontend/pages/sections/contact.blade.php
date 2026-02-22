@@ -65,7 +65,7 @@
                                         <div class="tj-nice-select-box">
                                             <div class="tj-select">
                                                 <select name="service_id" id="service_id">
-                                                    @forelse ($services as $service)
+                                                    @forelse ($allServices as $service)
                                                         <option value="{{ $service->id }}" {{ old('service_id') == $service->id ? 'selected' : '' }}>{{ $service->title }}</option>
                                                     @empty
                                                         <option value="0">Select Subject</option>

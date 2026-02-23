@@ -147,29 +147,11 @@ Route::name('frontend.')->group(function () {
 
 
 //Artisan Routes
-Route::middleware(['auth'])->group(function () {
-    Route::get('/clear-cache', function () {
-        Artisan::call('cache:clear');
-        return "Application cache cleared!";
-    })->name('clear.cache');
-
-    Route::get('/clear-config', function () {
-        Artisan::call('config:clear');
-        return "Configuration cache cleared!";
-    })->name('clear.config');
-
-    Route::get('/clear-view', function () {
-        Artisan::call('view:clear');
-        return "View cache cleared!";
-    })->name('clear.view');
-
-    Route::get('/clear-route', function () {
-        Artisan::call('route:clear');
-        return "Route cache cleared!";
-    })->name('clear.route');
-
-    Route::get('/clear-optimize', function () {
-        Artisan::call('optimize:clear');
-        return "Optimization cache cleared!";
-    })->name('clear.optimize');
-});
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    Artisan::call('optimize:clear');
+    return "Application cache cleared!";
+})->name('clear.cache');

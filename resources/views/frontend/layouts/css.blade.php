@@ -1,11 +1,19 @@
-<!-- Toastr CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-<!-- Leaflet CSS -->
+<!-- Critical CSS + JS via Vite -->
+@vite([
+    'resources/css/bootstrap.min.css',
+    'resources/css/tekmino-icon.css',
+    'resources/css/nice-select.css',
+    'resources/css/swiper.min.css',
+    'resources/css/venobox.min.css',
+    'resources/css/meanmenu.css',
+    'resources/css/leaflet.css',
+    'resources/css/main.css',
+    'resources/js/app.js'
+])
 
-<link rel="stylesheet" href="{{ asset('frontAssets/css/bootstrap.min.css') }}" />
-<link rel="stylesheet" href="{{ asset('frontAssets/css/tekmino-icon.css') }}" />
-<link rel="stylesheet" href="{{ asset('frontAssets/css/nice-select.css') }}" />
-<link rel="stylesheet" href="{{ asset('frontAssets/css/swiper.min.css') }}" />
-<link rel="stylesheet" href="{{ asset('frontAssets/css/venobox.min.css') }}" />
-<link rel="stylesheet" href="{{ asset('frontAssets/css/meanmenu.css') }}" />
-<link rel="stylesheet" href="{{ asset('frontAssets/css/main.css') }}" />
+<!-- Optional / Non-critical CSS (Toastr) preloaded async -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+</noscript>

@@ -351,7 +351,7 @@
     <!-- end: Testimonial Section -->
 
     <!-- start: Project Section -->
-    @include('frontend.pages.sections.recent-projects')
+    {{-- @include('frontend.pages.sections.recent-projects') --}}
     <!-- end: Project Section -->
 
     <!-- start: Working Process Section -->

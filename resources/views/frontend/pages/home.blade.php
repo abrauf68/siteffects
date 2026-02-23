@@ -51,7 +51,7 @@
 @section('content')
     <!-- start: Banner Section -->
     <section class="tj-banner-section fix">
-        <div class="hero-bg" data-bg-image="frontAssets/images/hero/hero-bg.webp"></div>
+        <div class="hero-bg" data-bg-image="{{ asset('frontAssets/images/hero/hero-bg.webp') }}"></div>
         <div class="container">
             <div class="row">
                 <div class="col-xxl-6 col-xl-5 col-lg-6">
@@ -89,7 +89,7 @@
                     </div> --}}
                         <div class="banner-img tj-fade-anim" data-delay="0.3" data-direction="right">
                             <video autoplay muted loop playsinline class="w-100">
-                                <source src="frontAssets/images/hero/hero-vid3.mp4" type="video/mp4">
+                                <source src="{{ asset('frontAssets/images/hero/hero-vid3.mp4') }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -102,10 +102,10 @@
                             style="translate: none;rotate: none;scale: none;transform: translate(-45px, 15px);opacity: 1;">
                             <div class="customers">
                                 <ul>
-                                    <li><img src="frontAssets/images/testimonial/client-1.webp" alt="Image" /></li>
-                                    <li><img src="frontAssets/images/testimonial/client-2.webp" alt="Image" /></li>
-                                    <li><img src="frontAssets/images/testimonial/client-3.webp" alt="Image" /></li>
-                                    <li><img src="frontAssets/images/testimonial/client-4.webp" alt="Image" /></li>
+                                    <li><img src="{{ asset('frontAssets/images/testimonial/client-1.webp') }}" alt="Image" /></li>
+                                    <li><img src="{{ asset('frontAssets/images/testimonial/client-2.webp') }}" alt="Image" /></li>
+                                    <li><img src="{{ asset('frontAssets/images/testimonial/client-3.webp') }}" alt="Image" /></li>
+                                    <li><img src="{{ asset('frontAssets/images/testimonial/client-4.webp') }}" alt="Image" /></li>
                                 </ul>
                             </div>
                             <div class="customers-bottom">

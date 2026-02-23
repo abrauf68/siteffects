@@ -1,11 +1,16 @@
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="title" content="@yield('meta_title')">
 <meta name="description" content="@yield('meta_description')">
 <meta name="keywords" content="@yield('meta_keywords')">
 <meta name="author" content="@yield('author')">
-<link rel="canonical" href="{{ url()->current() }}" />
+@if (request()->is('/'))
+    <link rel="canonical" href="https://siteffects.com/" />
+@else
+    <link rel="canonical" href="{{ url()->current() }}" />
+@endif
 <meta name="robots" content="index, follow">
 
 <meta property="og:site_name" content="Siteffect Solutions" />
@@ -14,7 +19,11 @@
 <meta property="og:image" content="{{ url('frontAssets/images/social-og.webp') }}" />
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="{{ url()->current() }}" />
+@if (request()->is('/'))
+    <meta property="og:url" content="https://siteffects.com/" />
+@else
+    <meta property="og:url" content="{{ url()->current() }}" />
+@endif
 <meta property="og:type" content="website" />
 
 <meta name="twitter:card" content="summary_large_image">
@@ -36,9 +45,12 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-R1B3CT5CD2"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'G-R1B3CT5CD2');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-R1B3CT5CD2');
 </script>

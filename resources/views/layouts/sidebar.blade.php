@@ -36,6 +36,69 @@
                 </a>
             </li>
         @endcan
+        @can(['view project'])
+            <li class="menu-item {{ request()->routeIs('dashboard.projects.*') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.projects.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-code"></i>
+                    <div>{{ __('Projects') }}</div>
+                </a>
+            </li>
+        @endcan
+        @can(['view contact'])
+            <li class="menu-item {{ request()->routeIs('dashboard.contacts.*') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.contacts.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-message"></i>
+                    <div>{{ __('Contacts') }}</div>
+                </a>
+            </li>
+        @endcan
+        @can(['view newsletter'])
+            <li class="menu-item {{ request()->routeIs('dashboard.newsletters.*') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.newsletters.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-mail"></i>
+                    <div>{{ __('Newsletters') }}</div>
+                </a>
+            </li>
+        @endcan
+        @can(['view page'])
+            <li class="menu-item {{ request()->routeIs('dashboard.pages.*') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.pages.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-file-text"></i>
+                    <div>{{ __('Pages') }}</div>
+                </a>
+            </li>
+        @endcan
+        @canany(['view brand', 'view blog category', 'view quote'])
+            <li class="menu-item {{ request()->routeIs('dashboard.brands.*') || request()->routeIs('dashboard.blog-categories.*') || request()->routeIs('dashboard.quotes.*') ? 'open' : '' }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons ti ti-adjustments"></i>
+                    <div>{{__('Setup')}}</div>
+                </a>
+                <ul class="menu-sub">
+                    @can(['view brand'])
+                        <li class="menu-item {{ request()->routeIs('dashboard.brands.*') ? 'active' : '' }}">
+                            <a href="{{route('dashboard.brands.index')}}" class="menu-link">
+                                <div>{{__('Brands')}}</div>
+                            </a>
+                        </li>
+                    @endcan
+                    @can(['view blog category'])
+                        <li class="menu-item {{ request()->routeIs('dashboard.blog-categories.*') ? 'active' : '' }}">
+                            <a href="{{route('dashboard.blog-categories.index')}}" class="menu-link">
+                                <div>{{__('Blog Category')}}</div>
+                            </a>
+                        </li>
+                    @endcan
+                    @can(['view quote'])
+                        <li class="menu-item {{ request()->routeIs('dashboard.quotes.*') ? 'active' : '' }}">
+                            <a href="{{route('dashboard.quotes.index')}}" class="menu-link">
+                                <div>{{__('Quotes')}}</div>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcan
         @canany(['view user', 'view archived user'])
             <li class="menu-item {{ request()->routeIs('dashboard.user.*') || request()->routeIs('dashboard.archived-user.*') ? 'open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">

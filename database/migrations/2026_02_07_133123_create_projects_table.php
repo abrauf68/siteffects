@@ -23,6 +23,7 @@ return new class extends Migration
             $table->dateTime('completion_date')->nullable();
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
+            $table->text('meta_keywords')->nullable();
             $table->text('description')->nullable();
             $table->text('features')->nullable();
             $table->enum('category', [

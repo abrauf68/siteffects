@@ -1,4 +1,3 @@
-<!-- Plugin JS File -->
 <!-- Core JS Files -->
 <script src="{{ asset('frontAssets/js/jquery.min.js') }}" defer></script>
 <script src="{{ asset('frontAssets/js/bootstrap.bundle.min.js') }}" defer></script>

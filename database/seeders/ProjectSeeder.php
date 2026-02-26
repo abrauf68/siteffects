@@ -47,6 +47,8 @@ class ProjectSeeder extends Seeder
                 ]),
                 'position' => 1,
                 'is_featured' => '1',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
             /*
@@ -79,6 +81,8 @@ class ProjectSeeder extends Seeder
                 ]),
                 'position' => 2,
                 'is_featured' => '1',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
             /*
@@ -111,6 +115,8 @@ class ProjectSeeder extends Seeder
                 ]),
                 'position' => 3,
                 'is_featured' => '1',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
             /*
@@ -143,6 +149,8 @@ class ProjectSeeder extends Seeder
                 ]),
                 'position' => 4,
                 'is_featured' => '1',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
         ]);

@@ -5,14 +5,19 @@ use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Dashboard\BrandController;
 use App\Http\Controllers\Dashboard\HomeController;
+use App\Http\Controllers\Dashboard\ContactController;
 use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\RolePermission\PermissionController;
 use App\Http\Controllers\Dashboard\RolePermission\RoleController;
 use App\Http\Controllers\Dashboard\ServiceController;
 use App\Http\Controllers\Dashboard\ServiceFaqsController;
+use App\Http\Controllers\Dashboard\PagesController;
+use App\Http\Controllers\Dashboard\ProjectController;
 use App\Http\Controllers\Dashboard\SettingController;
+use App\Http\Controllers\Dashboard\NewsletterController;
 use App\Http\Controllers\Dashboard\User\ArchivedUserController;
 use App\Http\Controllers\Dashboard\User\UserController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
@@ -70,6 +75,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
+Route::get('/admin', function () {
+    return redirect()->route('dashboard');
+});
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/deactivated', function () {
         return view('errors.deactivated');
@@ -112,8 +121,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
             // User Dashboard Authentication Routes
 
+            //Service
             Route::resource('services', ServiceController::class);
-            Route::get('services/status/{id}', [ServiceController::class, 'updateServiceStatus'])->name('services.status.update');
+            Route::get('services/status/{id}', [ServiceController::class, 'updateStatus'])->name('services.status.update');
             Route::get('services/shuffle/show', [ServiceController::class, 'shuffleShow'])->name('services.shuffle-show');
             Route::post('services/shuffle/store', [ServiceController::class, 'shuffleStore'])->name('services.shuffle-store');
 
@@ -125,6 +135,25 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::put('service-faqs/update/{id}', [ServiceFaqsController::class, 'update'])->name('service-faqs.update');
             Route::delete('service-faqs/delete/{id}', [ServiceFaqsController::class, 'destroy'])->name('service-faqs.destroy');
             Route::get('service-faqs/status/{id}', [ServiceFaqsController::class, 'updateServiceStatus'])->name('service-faqs.status.update');
+
+            //Project
+            Route::resource('projects', ProjectController::class);
+            Route::get('projects/status/{id}', [ProjectController::class, 'updateStatus'])->name('projects.status.update');
+            Route::get('projects/shuffle/show', [ProjectController::class, 'shuffleShow'])->name('projects.shuffle-show');
+            Route::post('projects/shuffle/store', [ProjectController::class, 'shuffleStore'])->name('projects.shuffle-store');
+
+            //Contact
+            Route::resource('contacts', ContactController::class);
+
+            //Newsletters
+            Route::resource('newsletters', NewsletterController::class);
+
+            //Pages
+            Route::resource('pages', PagesController::class);
+
+            //brands
+            Route::resource('brands', BrandController::class);
+            Route::get('brands/status/{id}', [BrandController::class, 'updateStatus'])->name('brands.status.update');
 
         });
     });

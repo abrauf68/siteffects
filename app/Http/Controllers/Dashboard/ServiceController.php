@@ -66,7 +66,7 @@ class ServiceController extends Controller
             'meta_description' => 'required|string',
             'meta_keywords' => 'required|string',
             'description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max_size',
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max_size',
             'is_featured' => 'nullable|in:on',
             'icon' => 'required|string|max:255',
             'features' => 'nullable',
@@ -169,7 +169,7 @@ class ServiceController extends Controller
             'meta_description' => 'required|string', 
             'meta_keywords' => 'required|string', 
             'description' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max_size',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max_size',
             'is_featured' => 'nullable|in:on',
             'icon' => 'required|string|max:255',
             'features' => 'nullable',
@@ -241,7 +241,7 @@ class ServiceController extends Controller
         }
     }
 
-    public function updateServiceStatus(string $id)
+    public function updateStatus(string $id)
     {
         $this->authorize('update service');
         try {

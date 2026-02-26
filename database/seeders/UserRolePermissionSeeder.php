@@ -47,6 +47,46 @@ class UserRolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update service']);
         Permission::create(['name' => 'delete service']);
 
+        Permission::create(['name' => 'view project']);
+        Permission::create(['name' => 'create project']);
+        Permission::create(['name' => 'update project']);
+        Permission::create(['name' => 'delete project']);
+
+        Permission::create(['name' => 'view contact']);
+        Permission::create(['name' => 'create contact']);
+        Permission::create(['name' => 'update contact']);
+        Permission::create(['name' => 'delete contact']);
+
+        Permission::create(['name' => 'view newsletter']);
+        Permission::create(['name' => 'create newsletter']);
+        Permission::create(['name' => 'update newsletter']);
+        Permission::create(['name' => 'delete newsletter']);
+
+        Permission::create(['name' => 'view brand']);
+        Permission::create(['name' => 'create brand']);
+        Permission::create(['name' => 'update brand']);
+        Permission::create(['name' => 'delete brand']);
+
+        Permission::create(['name' => 'view blog category']);
+        Permission::create(['name' => 'create blog category']);
+        Permission::create(['name' => 'update blog category']);
+        Permission::create(['name' => 'delete blog category']);
+
+        Permission::create(['name' => 'view blog']);
+        Permission::create(['name' => 'create blog']);
+        Permission::create(['name' => 'update blog']);
+        Permission::create(['name' => 'delete blog']);
+
+        Permission::create(['name' => 'view quote']);
+        Permission::create(['name' => 'create quote']);
+        Permission::create(['name' => 'update quote']);
+        Permission::create(['name' => 'delete quote']);
+
+        Permission::create(['name' => 'view page']);
+        Permission::create(['name' => 'create page']);
+        Permission::create(['name' => 'update page']);
+        Permission::create(['name' => 'delete page']);
+
 
         // Create Roles
         $superAdminRole = Role::create(['name' => 'super-admin']); //as super-admin

@@ -41,7 +41,7 @@
                                 </span>
                             @enderror
                             @if($brand->logo)
-                                <img src="{{ asset($project->logo) }}" alt="main image" class="mt-2" width="120">
+                                <img src="{{ asset($brand->logo) }}" alt="main image" class="mt-2" width="120">
                             @endif
                         </div>
                         <div class="mb-4 col-md-6">

@@ -54,3 +54,5 @@
 
     gtag('config', 'G-R1B3CT5CD2');
 </script>
+
+<meta name="p:domain_verify" content="b37c1ef709946e88e87451eecae70112"/>

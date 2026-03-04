@@ -1,6 +1,10 @@
 @extends('frontend.layouts.master')
 
 @section('title', $blog->title)
+@section('meta_title', $blog->meta_title)
+@section('meta_description', $blog->meta_description)
+@section('meta_keywords', $blog->meta_keywords)
+@section('author', 'Siteffect Solutions')
 
 @section('css')
 
@@ -123,7 +127,7 @@
                         <div class="tj-comments-container">
                             <div class="tj-comments-wrap">
                                 <div class="comments-title">
-                                    <h3 class="title">Top Comments ({{ $blog->blog_comments_count }})</h3>
+                                    <h3 class="title">Top Comments ({{ count($blogComments) }})</h3>
                                 </div>
                                 <div class="tj-latest-comments">
                                     <ul>

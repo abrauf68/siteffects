@@ -17,7 +17,7 @@
             <div class="card-body pt-4">
                 <form method="POST" action="{{ route('dashboard.blog-categories.update', $blogCategory->id) }}" enctype="multipart/form-data">
                     @csrf
-
+                    @method('PUT')
                     <div class="row p-5">
                         <h3>{{ __('Edit Blog Category') }}</h3>
                         <div class="mb-4 col-md-6">
@@ -45,10 +45,9 @@
                             @enderror
                         </div>
                         <div class="mb-4 col-md-12">
-                            <label for="image" class="form-label">{{ __('Image') }}</label><span
-                                class="text-danger">*</span>
+                            <label for="image" class="form-label">{{ __('Image') }}</label>
                             <input class="form-control @error('image') is-invalid @enderror" type="file" id="image"
-                                name="image" accept="image/*" required />
+                                name="image" accept="image/*" />
                             @error('image')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

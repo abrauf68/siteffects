@@ -123,7 +123,7 @@ class BrandController extends Controller
         $this->authorize('update brand');
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'logo' => 'required|image|mimes:jpeg,png,jpg,webp|max_size',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max_size',
             'is_featured' => 'nullable|in:on',
         ]);
 

@@ -44,8 +44,7 @@
                             @enderror
                         </div>
                         <div class="mb-4 col-md-12">
-                            <label for="content" class="form-label">{{ __('Content') }}</label><span
-                                class="text-danger">*</span>
+                            <label for="content" class="form-label">{{ __('Content') }}</label>
                             <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content"
                                 placeholder="{{ __('Enter content') }}" cols="30" rows="10">
                                 {{ old('content', $page->content) }}
@@ -146,34 +145,6 @@
                     .replace(/\s+/g, '-')
                     .replace(/-+/g, '-');
                 $('#slug').val(slug);
-            });
-
-            // Handle form submission manually to validate TinyMCE
-            $('form').on('submit', function(e) {
-                tinymce.triggerSave(); // sync content to <textarea>
-                const $description = $('#content');
-                const descriptionContent = $description.val().trim();
-
-                // Remove previous validation state
-                $description.removeClass('is-invalid');
-                $description.next('.invalid-feedback').remove();
-
-                if (!descriptionContent) {
-                    e.preventDefault();
-
-                    // Add Bootstrap invalid class
-                    $description.addClass('is-invalid');
-
-                    // Append validation message
-                    $description.after(`
-                        <div class="invalid-feedback">
-                            {{ __('The description field is required.') }}
-                        </div>
-                    `);
-
-                    // Optional: focus editor
-                    tinymce.get('content').focus();
-                }
             });
 
         });

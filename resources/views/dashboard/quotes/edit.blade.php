@@ -17,7 +17,7 @@
             <div class="card-body pt-4">
                 <form method="POST" action="{{ route('dashboard.quotes.update', $quote->id) }}" enctype="multipart/form-data">
                     @csrf
-
+                    @method('PUT')
                     <div class="row p-5">
                         <h3>{{ __('Edit Quote') }}</h3>
                         <div class="mb-4 col-md-12">

@@ -45,10 +45,9 @@
                             @enderror
                         </div>
                         <div class="mb-4 col-md-12">
-                            <label for="image" class="form-label">{{ __('Image') }}</label><span
-                                class="text-danger">*</span>
+                            <label for="image" class="form-label">{{ __('Image') }}</label>
                             <input class="form-control @error('image') is-invalid @enderror" type="file" id="image"
-                                name="image" accept="image/*" required />
+                                name="image" accept="image/*" />
                             @error('image')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

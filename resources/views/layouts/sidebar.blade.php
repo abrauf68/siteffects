@@ -1,6 +1,6 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="{{ route('dashboard') }}" class="app-brand-link">
+        <a href="{{ route('frontend.home') }}" class="app-brand-link">
             <span class="app-brand-logo">
                 <img style="height: 50px" src="{{ asset(\App\Helpers\Helper::getLogoLight()) }}" alt="{{env('APP_NAME')}}">
             </span>
@@ -65,6 +65,14 @@
                 <a href="{{ route('dashboard.pages.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-file-text"></i>
                     <div>{{ __('Pages') }}</div>
+                </a>
+            </li>
+        @endcan
+        @can(['view blog'])
+            <li class="menu-item {{ request()->routeIs('dashboard.blogs.*') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.blogs.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-pencil"></i>
+                    <div>{{ __('Blogs') }}</div>
                 </a>
             </li>
         @endcan

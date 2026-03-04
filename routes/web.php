@@ -5,6 +5,9 @@ use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Dashboard\BlogCategoryController;
+use App\Http\Controllers\Dashboard\BlogCommentsController;
+use App\Http\Controllers\Dashboard\BlogController;
 use App\Http\Controllers\Dashboard\BrandController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\ContactController;
@@ -18,6 +21,7 @@ use App\Http\Controllers\Dashboard\PagesController;
 use App\Http\Controllers\Dashboard\ProjectController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\NewsletterController;
+use App\Http\Controllers\Dashboard\QuoteController;
 use App\Http\Controllers\Dashboard\User\ArchivedUserController;
 use App\Http\Controllers\Dashboard\User\UserController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
@@ -154,6 +158,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
             //brands
             Route::resource('brands', BrandController::class);
             Route::get('brands/status/{id}', [BrandController::class, 'updateStatus'])->name('brands.status.update');
+
+            //blog-categories
+            Route::resource('blog-categories', BlogCategoryController::class);
+            Route::get('blog-categories/status/{id}', [BlogCategoryController::class, 'updateStatus'])->name('blog-categories.status.update');
+
+            //quotes
+            Route::resource('quotes', QuoteController::class);
+            Route::get('quotes/status/{id}', [QuoteController::class, 'updateStatus'])->name('quotes.status.update');
+
+            //blogs
+            Route::resource('blogs', BlogController::class);
+            Route::get('blogs/status/{id}', [BlogController::class, 'updateStatus'])->name('blogs.status.update');
+
+            //blogs
+            Route::get('blog-comments/{id}', [BlogCommentsController::class, 'index'])->name('blog-comments.index');
+            Route::delete('blog-comments/{id}', [BlogCommentsController::class, 'destroy'])->name('blog-comments.destroy');
+            Route::get('blog-comments/status/{id}', [BlogCommentsController::class, 'updateStatus'])->name('blog-comments.status.update');
 
         });
     });

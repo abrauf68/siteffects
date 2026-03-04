@@ -1,6 +1,10 @@
 @extends('frontend.layouts.master')
 
 @section('title', $project->title)
+@section('meta_title', $project->meta_title)
+@section('meta_description', $project->meta_description)
+@section('meta_keywords', $project->meta_keywords)
+@section('author', 'Siteffect Solutions')
 
 @section('css')
 

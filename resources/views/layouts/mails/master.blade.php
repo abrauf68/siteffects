@@ -45,14 +45,6 @@
             border-bottom: 1px solid #e9eef3;
         }
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
         .greeting h1 {
             font-size: 30px;
             font-weight: 700;
@@ -302,15 +294,10 @@
     <div class="email-container">
         <!-- header with exact brand dark blue -->
         <div class="email-header">
-            <!-- Logo Centered -->
-            <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;">
-                <tr>
-                    <td style="text-align: center;">
-                        <img height="40" src="{{ url('frontAssets/images/logos/siteffects-logo.png') }}"
-                            alt="{{ \App\Helpers\Helper::getCompanyName() }}" style="display: block; margin: 0 auto;">
-                    </td>
-                </tr>
-            </table>
+            <div class="logo-area" style="text-align: center; margin-bottom:16px;">
+                <img height="40px" src="{{ url('frontAssets/images/logos/siteffects-logo.png') }}"
+                    alt="{{ \App\Helpers\Helper::getCompanyName() }}" style="display: block; margin: 0 auto;">
+            </div>
             <div class="greeting">
                 <h1>@yield('title')</h1>
                 <p>@yield('para')</p>

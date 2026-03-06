@@ -285,6 +285,14 @@
             .service-item {
                 flex: 1 1 100%;
             }
+
+            .stats-badge strong {
+                font-size: 20px;
+            }
+
+            .stats-badge span {
+                font-size: 14px;
+            }
         }
     </style>
     @yield('css')
@@ -295,7 +303,7 @@
         <!-- header with exact brand dark blue -->
         <div class="email-header">
             <div class="logo-area">
-                <img height="40px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path(\App\Helpers\Helper::getLogoLight()))) }}"
+                <img height="40px" src="{{ url(\App\Helpers\Helper::getLogoLight()) }}"
                     alt="{{ \App\Helpers\Helper::getCompanyName() }}">
             </div>
             <div class="greeting">
@@ -309,12 +317,23 @@
         </div>
 
         <div class="email-footer">
-            <div class="footer-links"
-                style="display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; margin-bottom: 20px;">
-                <a href="{{ route('frontend.services') }}">Services</a>
-                <a href="{{ route('frontend.projects') }}">Our Work</a>
-                <a href="{{ route('frontend.contact') }}">Contact</a>
-            </div>
+            <!-- Footer Links without flex -->
+            <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 20px;">
+                <tr>
+                    <td style="text-align: center; padding: 0 14px;">
+                        <a href="{{ route('frontend.services') }}"
+                            style="color:#fff; text-decoration:none; font-weight:500; font-size:15px;">Services</a>
+                    </td>
+                    <td style="text-align: center; padding: 0 14px;">
+                        <a href="{{ route('frontend.projects') }}"
+                            style="color:#fff; text-decoration:none; font-weight:500; font-size:15px;">Our Work</a>
+                    </td>
+                    <td style="text-align: center; padding: 0 14px;">
+                        <a href="{{ route('frontend.contact') }}"
+                            style="color:#fff; text-decoration:none; font-weight:500; font-size:15px;">Contact</a>
+                    </td>
+                </tr>
+            </table>
             <hr>
             <div class="signature">
                 Best regards,<br>

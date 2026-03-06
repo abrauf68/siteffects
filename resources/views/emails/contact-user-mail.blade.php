@@ -4,46 +4,20 @@
 @section('para', 'We’ve received your message and will get back to you shortly.')
 
 @section('css')
-    <style>
-        /* Override flex for email-safe */
-        .service-grid-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 0 auto;
-        }
+<style>
+    /* ----- Email-safe Table Layout ----- */
+    .service-grid-table { width: 100%; border-collapse: collapse; margin: 0 auto; }
+    .service-item-table { width: 100%; background: #22055a; border-radius: 24px; padding: 24px 18px; border: 1px solid #deeaf9; }
+    .service-item-table h4 { font-size: 19px; font-weight: 650; color: #fff; margin-bottom: 8px; }
+    .service-item-table p { font-size: 15px; color: #c5c5c5; margin-bottom: 14px; }
+    .service-tag-inline { background: #f62648; color: #fff; border-radius: 30px; padding: 5px 14px; font-size: 13px; font-weight: 600; display: inline-block; border: 1px solid #f62648; }
 
-        .service-item-table {
-            width: 100%;
-            background: #22055a;
-            border-radius: 24px;
-            padding: 24px 18px;
-            border: 1px solid #deeaf9;
-        }
-
-        .service-item-table h4 {
-            font-size: 19px;
-            font-weight: 650;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-
-        .service-item-table p {
-            font-size: 15px;
-            color: #c5c5c5;
-            margin-bottom: 14px;
-        }
-
-        .service-tag-inline {
-            background: #f62648;
-            color: #fff;
-            border-radius: 30px;
-            padding: 5px 14px;
-            font-size: 13px;
-            font-weight: 600;
-            display: inline-block;
-            border: 1px solid #f62648;
-        }
-    </style>
+    /* Responsive: Mobile = 1 card per row */
+    @media only screen and (max-width: 480px) {
+        .service-grid-table td { display: block !important; width: 100% !important; }
+        .service-item-table { margin-bottom: 16px; }
+    }
+</style>
 @endsection
 
 @section('content')
@@ -62,7 +36,7 @@
         <h3>Smart IT & Web Solutions for Modern Businesses</h3>
     </div>
 
-    <!-- Services Table (email-safe) -->
+    <!-- Services Table (Email-Safe) -->
     <table class="service-grid-table" cellpadding="0" cellspacing="0" border="0">
         <tr>
             <!-- Service 1 -->

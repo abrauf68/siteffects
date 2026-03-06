@@ -118,7 +118,7 @@ class HomeController extends Controller
             }
 
             try {
-                $adminMail = Helper::getCompanyEmail();
+                $adminMail = 'siteffectsolutions@gmail.com';
                 Mail::to($adminMail)->send(new ContactAdminMail($contactData));
             } catch (\Throwable $th) {
                 // throw $th;

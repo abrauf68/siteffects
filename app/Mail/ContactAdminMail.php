@@ -16,10 +16,10 @@ class ContactAdminMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public $contact;
-    public function __construct($contact)
+    public $contactData;
+    public function __construct($contactData)
     {
-        $this->contact = $contact;
+        $this->contactData = $contactData;
     }
 
     /**
@@ -40,7 +40,7 @@ class ContactAdminMail extends Mailable
         return new Content(
             view: 'emails.contact-admin-mail',
             with: [
-                'contact' => $this->contact,
+                'contact' => $this->contactData,
             ],
         );
     }

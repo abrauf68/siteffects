@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Mail\ContactAdminMail;
 use App\Mail\ContactUserMail;
@@ -100,8 +101,15 @@ class HomeController extends Controller
             $contact->service_id = $request->service_id;
             $contact->save();
 
-            $contact->load('service');
-
+            $service = Service::find($request->service_id);
+            $contactData = [
+                'name'    => $request->name,
+                'email'   => $request->email,
+                'phone'   => $request->phone,
+                'message' => $request->message,
+                'service' => $service ? $service->name : 'N/A',
+                'created_at' => $contact->created_at->format('d M Y H:i'),
+            ];
             try {
                 Mail::to($request->email)->send(new ContactUserMail());
             } catch (\Throwable $th) {
@@ -110,7 +118,8 @@ class HomeController extends Controller
             }
 
             try {
-                Mail::to($request->email)->send(new ContactAdminMail($contact));
+                $adminMail = Helper::getCompanyEmail();
+                Mail::to($adminMail)->send(new ContactAdminMail($contactData));
             } catch (\Throwable $th) {
                 // throw $th;
                  Log::error('Error Contact Admin Mail: ' . $th->getMessage());

@@ -295,7 +295,7 @@
         <!-- header with exact brand dark blue -->
         <div class="email-header">
             <div class="logo-area">
-                <img height="40px" src="{{ asset(\App\Helpers\Helper::getLogoLight()) }}"
+                <img height="40px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path(\App\Helpers\Helper::getLogoLight()))) }}"
                     alt="{{ \App\Helpers\Helper::getCompanyName() }}">
             </div>
             <div class="greeting">

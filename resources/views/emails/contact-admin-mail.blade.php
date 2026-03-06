@@ -39,29 +39,32 @@
 
         <div class="info-row">
             <span class="label">Name:</span>
-            <span class="value"> {{ $contact->name ?? 'N/A' }} </span>
+            <span class="value"> {{ $contactData->name ?? 'N/A' }} </span>
         </div>
 
         <div class="info-row">
             <span class="label">Email:</span>
-            <span class="value"> {{ $contact->email ?? 'N/A' }} </span>
+            <span class="value"> {{ $contactData->email ?? 'N/A' }} </span>
         </div>
 
         <div class="info-row">
             <span class="label">Phone:</span>
-            <span class="value"> {{ $contact->phone ?? 'N/A' }} </span>
+            <span class="value"> {{ $contactData->phone ?? 'N/A' }} </span>
         </div>
 
         <div class="info-row">
             <span class="label">Service:</span>
-            <span class="value"> {{ $contact->service ? $contact->service->name : 'N/A' }} </span>
+            <span class="value"> {{ $contactData->service ?? 'N/A' }} </span>
         </div>
 
         <div class="info-row">
             <span class="label">Message:</span>
-            <div class="value" style="margin-top:6px;">
-                {{ $contact->message ?? 'N/A' }}
-            </div>
+            <div class="value"> {{ $contactData->message ?? 'N/A' }}</div>
+        </div>
+
+        <div class="info-row">
+            <span class="label">Created At:</span>
+            <div class="value"> {{ $contactData->created_at->format('d M Y') ?? 'N/A' }}</div>
         </div>
 
     </div>

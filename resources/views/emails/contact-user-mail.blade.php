@@ -21,7 +21,7 @@
         <h3>Smart IT & Web Solutions for Modern Businesses</h3>
     </div>
 
-    <div class="service-grid" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
+    <div class="service-grid" style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
         <div class="service-item">
             <h4>Custom Software</h4>
             <p>Tailored development that improves efficiency and scales with your business.</p>

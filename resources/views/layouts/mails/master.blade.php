@@ -271,7 +271,7 @@
             }
 
             .greeting h1 {
-                font-size: 25px;
+                font-size: 22px;
             }
 
             .greeting p {
@@ -302,10 +302,15 @@
     <div class="email-container">
         <!-- header with exact brand dark blue -->
         <div class="email-header">
-            <div class="logo-area">
-                <img height="40px" src="{{ url(\App\Helpers\Helper::getLogoLight()) }}"
-                    alt="{{ \App\Helpers\Helper::getCompanyName() }}">
-            </div>
+            <!-- Logo Centered -->
+            <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;">
+                <tr>
+                    <td style="text-align: center;">
+                        <img height="40" src="{{ url('frontAssets/images/logos/siteffects-logo.png') }}"
+                            alt="{{ \App\Helpers\Helper::getCompanyName() }}" style="display: block; margin: 0 auto;">
+                    </td>
+                </tr>
+            </table>
             <div class="greeting">
                 <h1>@yield('title')</h1>
                 <p>@yield('para')</p>

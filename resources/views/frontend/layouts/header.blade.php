@@ -112,6 +112,8 @@
                         <span class="subtitle">Email</span>
                         <a class="contact-link"
                             href="mailto:{{ \App\Helpers\Helper::getCompanyEmail() }}">{{ \App\Helpers\Helper::getCompanyEmail() }}</a>
+                        <a class="contact-link"
+                            href="mailto:{{ \App\Helpers\Helper::getCompanyEmail2() }}">{{ \App\Helpers\Helper::getCompanyEmail2() }}</a>
                     </div>
                     <div class="contact-item">
                         <span class="subtitle">Location</span>
@@ -151,6 +153,12 @@
                     <li>
                         <a href="{{ \App\Helpers\Helper::getCompanyTiktok() }}" target="_blank">
                             <i class="tji-tiktok"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ \App\Helpers\Helper::getCompanyPinterest() }}" target="_blank">
+                            <i class="tji-pinterest"></i>
                         </a>
                     </li>
                 </ul>
@@ -246,6 +254,12 @@
                             <i class="tji-tiktok"></i>
                         </a>
                     </li>
+
+                    <li>
+                        <a href="{{ \App\Helpers\Helper::getCompanyPinterest() }}" target="_blank">
+                            <i class="tji-pinterest"></i>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -302,6 +316,14 @@
                                     </a>
                                 </span>
                             </div>
+
+                            <div class="info-item">
+                                <span>
+                                    <a href="{{ \App\Helpers\Helper::getCompanyPinterest() }}" target="_blank">
+                                        <i class="tji-pinterest"></i>
+                                    </a>
+                                </span>
+                            </div>
                         </div>
 
                         {{-- <div class="header-info">
@@ -350,23 +372,29 @@
                                         class="{{ request()->routeIs('frontend.home') ? 'current-menu-ancestor' : '' }}">
                                         <a href="{{ route('frontend.home') }}">Home</a>
                                     </li>
-                                    <li class="{{ request()->routeIs('frontend.about') ? 'current-menu-ancestor' : '' }}">
+                                    <li
+                                        class="{{ request()->routeIs('frontend.about') ? 'current-menu-ancestor' : '' }}">
                                         <a href="{{ route('frontend.about') }}">About</a>
                                     </li>
-                                    <li class="{{ request()->routeIs('frontend.services') ? 'current-menu-ancestor' : '' }} has-dropdown">
+                                    <li
+                                        class="{{ request()->routeIs('frontend.services') ? 'current-menu-ancestor' : '' }} has-dropdown">
                                         <a href="{{ route('frontend.services') }}">Services</a>
                                         <ul class="sub-menu">
                                             @forelse (\App\Helpers\Helper::getServices() as $service)
-                                                <li><a href="{{ route('frontend.services', $service->slug) }}">{{ $service->title }}</a></li>
+                                                <li><a
+                                                        href="{{ route('frontend.services', $service->slug) }}">{{ $service->title }}</a>
+                                                </li>
                                             @empty
                                                 <li><a href="{{ route('frontend.services') }}">Services</a></li>
                                             @endforelse
                                         </ul>
                                     </li>
-                                    <li class="{{ request()->routeIs('frontend.projects') ? 'current-menu-ancestor' : '' }}">
+                                    <li
+                                        class="{{ request()->routeIs('frontend.projects') ? 'current-menu-ancestor' : '' }}">
                                         <a href="{{ route('frontend.projects') }}">Projects</a>
                                     </li>
-                                    <li class="{{ request()->routeIs('frontend.blogs') ? 'current-menu-ancestor' : '' }}">
+                                    <li
+                                        class="{{ request()->routeIs('frontend.blogs') ? 'current-menu-ancestor' : '' }}">
                                         <a href="{{ route('frontend.blogs') }}">Blogs</a>
                                     </li>
                                     <li><a href="{{ route('frontend.contact') }}">Contact</a></li>
@@ -433,26 +461,33 @@
                         <div class="menu-area d-none d-lg-inline-flex align-items-center">
                             <nav class="mainmenu">
                                 <ul>
-                                    <li class="{{ request()->routeIs('frontend.home') ? 'current-menu-ancestor' : '' }}">
+                                    <li
+                                        class="{{ request()->routeIs('frontend.home') ? 'current-menu-ancestor' : '' }}">
                                         <a href="{{ route('frontend.home') }}">Home</a>
                                     </li>
-                                    <li class="{{ request()->routeIs('frontend.about') ? 'current-menu-ancestor' : '' }}">
+                                    <li
+                                        class="{{ request()->routeIs('frontend.about') ? 'current-menu-ancestor' : '' }}">
                                         <a href="{{ route('frontend.about') }}">About</a>
                                     </li>
-                                    <li class="{{ request()->routeIs('frontend.services') ? 'current-menu-ancestor' : '' }} has-dropdown">
+                                    <li
+                                        class="{{ request()->routeIs('frontend.services') ? 'current-menu-ancestor' : '' }} has-dropdown">
                                         <a href="{{ route('frontend.services') }}">Services</a>
                                         <ul class="sub-menu">
                                             @forelse (\App\Helpers\Helper::getServices() as $service)
-                                                <li><a href="{{ route('frontend.services', $service->slug) }}">{{ $service->title }}</a></li>
+                                                <li><a
+                                                        href="{{ route('frontend.services', $service->slug) }}">{{ $service->title }}</a>
+                                                </li>
                                             @empty
                                                 <li><a href="{{ route('frontend.services') }}">Services</a></li>
                                             @endforelse
                                         </ul>
                                     </li>
-                                    <li class="{{ request()->routeIs('frontend.projects') ? 'current-menu-ancestor' : '' }}">
+                                    <li
+                                        class="{{ request()->routeIs('frontend.projects') ? 'current-menu-ancestor' : '' }}">
                                         <a href="{{ route('frontend.projects') }}">Projects</a>
                                     </li>
-                                    <li class="{{ request()->routeIs('frontend.blogs') ? 'current-menu-ancestor' : '' }}">
+                                    <li
+                                        class="{{ request()->routeIs('frontend.blogs') ? 'current-menu-ancestor' : '' }}">
                                         <a href="{{ route('frontend.blogs') }}">Blogs</a>
                                     </li>
                                     <li><a href="{{ route('frontend.contact') }}">Contact</a></li>

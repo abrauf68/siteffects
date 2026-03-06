@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactAdminMail;
+use App\Mail\ContactUserMail;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\BlogComment;
@@ -20,6 +22,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
@@ -96,6 +99,22 @@ class HomeController extends Controller
             $contact->message = $request->message;
             $contact->service_id = $request->service_id;
             $contact->save();
+
+            $contact->load('service');
+
+            try {
+                Mail::to($request->email)->send(new ContactUserMail());
+            } catch (\Throwable $th) {
+                // throw $th;
+                 Log::error('Error Contact User Mail: ' . $th->getMessage());
+            }
+
+            try {
+                Mail::to($request->email)->send(new ContactAdminMail($contact));
+            } catch (\Throwable $th) {
+                // throw $th;
+                 Log::error('Error Contact Admin Mail: ' . $th->getMessage());
+            }
 
             return redirect()->back()->with('success', 'Your message has been sent successfully!');
         } catch (\Throwable $th) {

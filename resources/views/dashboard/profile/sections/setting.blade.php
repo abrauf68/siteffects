@@ -14,7 +14,7 @@
                         <span class="d-none d-sm-block">{{ __('Upload new photo') }}</span>
                         <i class="ti ti-upload d-block d-sm-none"></i>
                         <input type="file" id="upload" class="account-file-input" name="profile_image" hidden
-                            accept="image/png, image/jpeg" />
+                            accept="image/*" />
                     </label>
                     <button type="button" class="btn btn-label-secondary account-image-reset mb-4">
                         <i class="ti ti-refresh-dot d-block d-sm-none"></i>

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('favicon')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('email')->nullable();
+            $table->string('email2')->nullable();
             $table->string('country')->nullable();
             $table->string('city')->nullable();
             $table->string('zip')->nullable();
@@ -29,6 +30,7 @@ return new class extends Migration
             $table->string('linkedin')->nullable();
             $table->string('twitter')->nullable();
             $table->string('tiktok')->nullable();
+            $table->string('pinterest')->nullable();
             $table->timestamps();
         });
     }

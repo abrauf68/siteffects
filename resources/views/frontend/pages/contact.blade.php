@@ -7,24 +7,26 @@
 @section('author', $page->author)
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('frontAssets/css/leaflet.css') }}" />
-<style>
-    .contact-list .social-icons {
-        color: #ffffff !important;
-        background-color: #f62648;
-        padding: 8px;
-        margin-right: 10px;
-        border-radius: 50px;
-        transition: color 0.3s ease;
-    }
-    .contact-list .social-icons:hover {
-        color: #f62648 !important;
-        background-color: #ffffff;
-    }
-    .contact-item.style-2 {
-        height: 280px;
-    }
-</style>
+    <link rel="stylesheet" href="{{ asset('frontAssets/css/leaflet.css') }}" />
+    <style>
+        .contact-list .social-icons {
+            color: #ffffff !important;
+            background-color: #f62648;
+            padding: 8px;
+            margin-right: 10px;
+            border-radius: 50px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-list .social-icons:hover {
+            color: #f62648 !important;
+            background-color: #ffffff;
+        }
+
+        .contact-item.style-2 {
+            height: 280px;
+        }
+    </style>
 @endsection
 
 @section('breadcrumb-items')
@@ -62,6 +64,9 @@
                             <li><a
                                     href="mailto:{{ \App\Helpers\Helper::getCompanyEmail() }}">{{ \App\Helpers\Helper::getCompanyEmail() }}</a>
                             </li>
+                            <li><a
+                                    href="mailto:{{ \App\Helpers\Helper::getCompanyEmail2() }}">{{ \App\Helpers\Helper::getCompanyEmail2() }}</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -89,32 +94,44 @@
                         <h3 class="contact-title">Social Connect</h3>
                         <ul class="contact-list d-flex justify-content-center align-items-center">
                             <li>
-                                <a class="social-icons" href="{{ \App\Helpers\Helper::getCompanyFacebook() }}" target="_blank">
+                                <a class="social-icons" href="{{ \App\Helpers\Helper::getCompanyFacebook() }}"
+                                    target="_blank">
                                     <i class="tji-facebook"></i>
                                 </a>
                             </li>
 
                             <li>
-                                <a class="social-icons" href="{{ \App\Helpers\Helper::getCompanyLinkedin() }}" target="_blank">
+                                <a class="social-icons" href="{{ \App\Helpers\Helper::getCompanyLinkedin() }}"
+                                    target="_blank">
                                     <i class="tji-linkedin"></i>
                                 </a>
                             </li>
 
                             <li>
-                                <a class="social-icons" href="{{ \App\Helpers\Helper::getCompanyInstagram() }}" target="_blank">
+                                <a class="social-icons" href="{{ \App\Helpers\Helper::getCompanyInstagram() }}"
+                                    target="_blank">
                                     <i class="tji-instagram"></i>
                                 </a>
                             </li>
 
                             <li>
-                                <a class="social-icons" href="{{ \App\Helpers\Helper::getCompanyTwitter() }}" target="_blank">
+                                <a class="social-icons" href="{{ \App\Helpers\Helper::getCompanyTwitter() }}"
+                                    target="_blank">
                                     <i class="tji-x-twitter"></i>
                                 </a>
                             </li>
 
                             <li>
-                                <a class="social-icons" href="{{ \App\Helpers\Helper::getCompanyTiktok() }}" target="_blank">
+                                <a class="social-icons" href="{{ \App\Helpers\Helper::getCompanyTiktok() }}"
+                                    target="_blank">
                                     <i class="tji-tiktok"></i>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="social-icons" href="{{ \App\Helpers\Helper::getCompanyPinterest() }}"
+                                    target="_blank">
+                                    <i class="tji-pinterest"></i>
                                 </a>
                             </li>
                         </ul>
@@ -137,17 +154,20 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-input">
-                                        <input type="text" name="name" placeholder="Name*" value="{{ old('name') }}" />
+                                        <input type="text" name="name" placeholder="Name*"
+                                            value="{{ old('name') }}" />
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-input">
-                                        <input type="email" name="email" placeholder="Email*" value="{{ old('email') }}" />
+                                        <input type="email" name="email" placeholder="Email*"
+                                            value="{{ old('email') }}" />
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-input">
-                                        <input type="tel" name="phone" placeholder="Phone*" value="{{ old('phone') }}" />
+                                        <input type="tel" name="phone" placeholder="Phone*"
+                                            value="{{ old('phone') }}" />
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -156,7 +176,9 @@
                                             <div class="tj-select">
                                                 <select name="service_id" id="service_id">
                                                     @forelse ($services as $service)
-                                                        <option value="{{ $service->id }}" {{ old('service_id') == $service->id ? 'selected' : '' }}>{{ $service->title }}</option>
+                                                        <option value="{{ $service->id }}"
+                                                            {{ old('service_id') == $service->id ? 'selected' : '' }}>
+                                                            {{ $service->title }}</option>
                                                     @empty
                                                         <option value="0">Select Subject</option>
                                                     @endforelse
@@ -195,5 +217,5 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('frontAssets/js/leaflet.js') }}"></script>
+    <script src="{{ asset('frontAssets/js/leaflet.js') }}"></script>
 @endsection

@@ -42,6 +42,10 @@ class Helper
     {
         return CompanySetting::first()->email ?? 'siteffectsolutions@gmail.com';
     }
+    public static function getCompanyEmail2()
+    {
+        return CompanySetting::first()->email2 ?? 'info@siteffects.com';
+    }
     public static function getCompanyAddress()
     {
         return CompanySetting::first()->address ?? 'Sector 11 E North Karachi 75850, Karachi';
@@ -74,6 +78,11 @@ class Helper
     public static function getCompanyTiktok()
     {
         return CompanySetting::first()->tiktok ?? 'https://www.tiktok.com/@siteffects';
+    }
+
+    public static function getCompanyPinterest()
+    {
+        return CompanySetting::first()->pinterest ?? 'https://www.pinterest.com/siteffects';
     }
 
     public static function getSidebarText()

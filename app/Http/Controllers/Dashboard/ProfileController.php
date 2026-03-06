@@ -80,7 +80,7 @@ class ProfileController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(), [
-            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max_size',
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max_size',
             'first_name' => 'required|string|max:255',
             'last_name' => 'nullable|string|max:255',
             'dob' => 'nullable|date',

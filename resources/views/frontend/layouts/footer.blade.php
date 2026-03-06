@@ -68,6 +68,7 @@
                                     @endphp
                                     <a href="https://wa.me/{{ $waPhone }}" target="_blank">P: {{ $phone }}</a>
                                     <a href="mailto:{{ \App\Helpers\Helper::getCompanyEmail() }}">E: {{ \App\Helpers\Helper::getCompanyEmail() }}</a>
+                                    <a href="mailto:{{ \App\Helpers\Helper::getCompanyEmail2() }}">E2: {{ \App\Helpers\Helper::getCompanyEmail2() }}</a>
                                 </div>
                                 <div class="contact-item">
                                     <span><i class="tji-clock"></i> Mon-Sat 09am-09pm</span>

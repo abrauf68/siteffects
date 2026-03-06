@@ -50,6 +50,12 @@
                                         <i class="tji-tiktok"></i>
                                     </a>
                                 </li>
+
+                                <li>
+                                    <a href="{{ \App\Helpers\Helper::getCompanyPinterest() }}" target="_blank">
+                                        <i class="tji-pinterest"></i>
+                                    </a>
+                                </li>
                             </ul>
 
                         </div>

@@ -8,7 +8,7 @@
 
             <div class="row p-5">
                 <h3>{{ __('Company Settings') }}</h3>
-                <div class="mb-4 col-md-4">
+                <div class="mb-4 col-md-6">
                     <div class="d-flex align-items-start align-items-sm-center gap-6 mb-5">
                         <img src="{{ asset($companySetting->light_logo ?? 'assets/img/default/img.png') }}"
                             alt="light-logo" class="d-block w-px-100 h-px-100 rounded" id="uploadedLightLogo" />
@@ -17,7 +17,7 @@
                                 <span class="d-none d-sm-block">{{ __('Upload light logo') }}</span>
                                 <i class="ti ti-upload d-block d-sm-none"></i>
                                 <input type="file" id="upload1" class="account-file-input" name="light_logo" hidden
-                                    accept="image/png, image/jpeg" />
+                                    accept="image/*" />
                             </label>
                             <button type="button" id="reset1"
                                 class="btn btn-label-secondary account-image-reset mb-4">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-4 col-md-4">
+                {{-- <div class="mb-4 col-md-4">
                     <div class="d-flex align-items-start align-items-sm-center gap-6 mb-5">
                         <img src="{{ asset($companySetting->dark_logo ?? 'assets/img/default/img.png') }}"
                             alt="dark-logo" class="d-block w-px-100 h-px-100 rounded" id="uploadedDarkLogo" />
@@ -42,7 +42,7 @@
                                 <span class="d-none d-sm-block">{{ __('Upload dark logo') }}</span>
                                 <i class="ti ti-upload d-block d-sm-none"></i>
                                 <input type="file" id="upload2" class="account-file-input" name="dark_logo" hidden
-                                    accept="image/png, image/jpeg" />
+                                    accept="image/*" />
                             </label>
                             <button type="button" id="reset2"
                                 class="btn btn-label-secondary account-image-reset mb-4">
@@ -57,8 +57,8 @@
                             @enderror
                         </div>
                     </div>
-                </div>
-                <div class="mb-4 col-md-4">
+                </div> --}}
+                <div class="mb-4 col-md-6">
                     <div class="d-flex align-items-start align-items-sm-center gap-6 mb-5">
                         <img src="{{ asset($companySetting->favicon ?? 'assets/img/default/img.png') }}"
                             alt="favicon" class="d-block w-px-100 h-px-100 rounded" id="uploadedFavicon" />
@@ -67,7 +67,7 @@
                                 <span class="d-none d-sm-block">{{ __('Upload favicon') }}</span>
                                 <i class="ti ti-upload d-block d-sm-none"></i>
                                 <input type="file" id="upload3" class="account-file-input" name="favicon" hidden
-                                    accept="image/png, image/jpeg" />
+                                    accept="image/*" />
                             </label>
                             <button type="button" id="reset3"
                                 class="btn btn-label-secondary account-image-reset mb-4">
@@ -85,7 +85,7 @@
                 </div>
                 <div class="mb-4 col-md-4">
                     <label for="company_name" class="form-label">{{ __('Company Name') }}</label><span class="text-danger">*</span>
-                    <input class="form-control @error('company_name') is-invalid @enderror" type="text" id="company_name" name="company_name" required value="{{$companySetting->company_name}}" placeholder="{{ __('Enter your company name') }}" autofocus />
+                    <input class="form-control @error('company_name') is-invalid @enderror" type="text" id="company_name" name="company_name" required value="{{$companySetting->company_name}}" placeholder="{{ __('Enter your company name') }}" />
                     @error('company_name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -94,8 +94,17 @@
                 </div>
                 <div class="mb-4 col-md-4">
                     <label for="email" class="form-label">{{ __('Company Email') }}</label>
-                    <input class="form-control @error('email') is-invalid @enderror" type="email" id="email" name="email" value="{{$companySetting->email}}" placeholder="{{ __('Enter your company email') }}" autofocus />
+                    <input class="form-control @error('email') is-invalid @enderror" type="email" id="email" name="email" value="{{$companySetting->email}}" placeholder="{{ __('Enter your company email') }}" />
                     @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="mb-4 col-md-4">
+                    <label for="email2" class="form-label">{{ __('Company Email 2') }}</label>
+                    <input class="form-control @error('email2') is-invalid @enderror" type="email" id="email2" name="email2" value="{{$companySetting->email2}}" placeholder="{{ __('Enter your company 2nd email') }}" />
+                    @error('email2')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -113,7 +122,7 @@
                     </div>
                 </div>
                 <div class="mb-4 col-md-4">
-                    <label class="form-label" for="country">{{ __('Phone Number') }}</label>
+                    <label class="form-label" for="country">{{ __('Country') }}</label>
                     <div class="input-group input-group-merge">
                         <input type="text" id="country" name="country" class="form-control @error('country') is-invalid @enderror" value="{{$companySetting->country}}" placeholder="i.e. United States" />
                         @error('country')
@@ -197,6 +206,16 @@
                         <input type="text" id="tiktok" name="tiktok" class="form-control @error('tiktok') is-invalid @enderror"
                             value="{{ $companySetting->tiktok }}" placeholder="i.e. https://tiktok.com/" />
                         @error('tiktok')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fab fa-pinterest fa-lg"></i></span>
+                        <input type="text" id="pinterest" name="pinterest" class="form-control @error('pinterest') is-invalid @enderror"
+                            value="{{ $companySetting->pinterest }}" placeholder="i.e. https://pinterest.com/" />
+                        @error('pinterest')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

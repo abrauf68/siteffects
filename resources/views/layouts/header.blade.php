@@ -157,7 +157,7 @@
                                 class="align-middle">{{ __('My Profile') }}</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a class="dropdown-item" href="{{ route('profile.index', ['tab' => 'account']) }}">
                             <i class="ti ti-settings me-3 ti-md"></i><span
                                 class="align-middle">{{ __('Settings') }}</span>
@@ -171,7 +171,7 @@
                             <i class="ti ti-question-mark me-3 ti-md"></i><span
                                 class="align-middle">{{ __('FAQ') }}</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <div class="d-grid px-2 pt-2 pb-1">
                             <a class="btn btn-sm btn-danger d-flex" style="color: #fff ;"

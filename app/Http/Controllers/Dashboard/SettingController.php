@@ -108,19 +108,21 @@ class SettingController extends Controller
         $validate = Validator::make($request->all(), [
             'company_name' => 'required|string|max:255',
             'email' => 'nullable|email|max:255',
-            'phone_number' => 'nullable|numeric', // Changed from integer
+            'email2' => 'nullable|email|max:255',
+            'phone_number' => 'nullable|string',
             'country' => 'required|string|max:255',
             'city' => 'nullable|string|max:255',
-            'zip' => 'nullable|digits:6', // Ensuring it's exactly 6 digits
+            'zip' => 'nullable|string',
             'address' => 'nullable|string|max:255',
-            'light_logo' => 'nullable|file|mimes:jpeg,png,jpg|max_size',
-            'dark_logo' => 'nullable|file|mimes:jpeg,png,jpg|max_size',
-            'favicon' => 'nullable|file|mimes:jpeg,png,jpg|max_size',
+            'light_logo' => 'nullable|file|mimes:jpeg,png,jpg,webp|max_size',
+            'dark_logo' => 'nullable|file|mimes:jpeg,png,jpg,webp|max_size',
+            'favicon' => 'nullable|file|mimes:jpeg,png,jpg,webp|max_size',
             'facebook' => 'required|string|max:255',
             'linkedin' => 'required|string|max:255',
             'twitter' => 'required|string|max:255',
             'instagram' => 'required|string|max:255',
             'tiktok' => 'required|string|max:255',
+            'pinterest' => 'required|string|max:255',
         ]);
 
         if ($validate->fails()) {
@@ -133,11 +135,18 @@ class SettingController extends Controller
             }
             $companySetting->company_name = $request->company_name;
             $companySetting->email = $request->email;
+            $companySetting->email2 = $request->email2;
             $companySetting->phone_number = $request->phone_number;
             $companySetting->country = $request->country;
             $companySetting->city = $request->city;
             $companySetting->zip = $request->zip;
             $companySetting->address = $request->address;
+            $companySetting->facebook = $request->facebook;
+            $companySetting->linkedin = $request->linkedin;
+            $companySetting->twitter = $request->twitter;
+            $companySetting->instagram = $request->instagram;
+            $companySetting->tiktok = $request->tiktok;
+            $companySetting->pinterest = $request->pinterest;
             if ($request->hasFile('light_logo')) {
                 if (isset($companySetting->light_logo) && File::exists(public_path($companySetting->light_logo))) {
                     File::delete(public_path($companySetting->light_logo));

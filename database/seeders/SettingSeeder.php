@@ -20,6 +20,7 @@ class SettingSeeder extends Seeder
         CompanySetting::create([
             'company_name' => 'Siteffect Solutions',
             'email' => 'siteffectsolutions@gmail.com',
+            'email2' => 'info@siteffects.com',
             'phone_number' => '+92 310 3792073',
             'country' => 'Pakistan',
             'city' => 'Karachi',
@@ -30,6 +31,7 @@ class SettingSeeder extends Seeder
             'linkedin' => 'https://www.linkedin.com/in/siteffects',
             'twitter' => 'https://x.com/Siteffects1',
             'tiktok' => 'https://www.tiktok.com/@siteffects',
+            'pinterest' => 'https://www.pinterest.com/siteffects',
         ]);
 
         RecaptchaSetting::create([

@@ -80,13 +80,13 @@
                             {{ __('Profile') }}
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link profile-tab" href="#" data-target="#account-settings-section"
                             data-query="account">
                             <i class="ti-sm ti ti-settings me-1_5"></i>
                             {{ __('Account Settings') }}
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link profile-tab" href="#" data-target="#security-section"
                             data-query="security">
@@ -248,11 +248,11 @@
                 </div>
             </div>
             <div id="profile-section" style="display: none;">
-                @include('dashboard.profile.sections.activity')
-            </div>
-            <div id="account-settings-section" style="display: none;">
                 @include('dashboard.profile.sections.setting')
             </div>
+            {{-- <div id="account-settings-section" style="display: none;">
+                @include('dashboard.profile.sections.setting')
+            </div> --}}
             <div id="security-section" style="display: none;">
                 @include('dashboard.profile.sections.security')
             </div>
@@ -272,7 +272,7 @@
 
                 var tabMapping = {
                     'profile': '#profile-section',
-                    'account': '#account-settings-section',
+                    // 'account': '#account-settings-section',
                     'security': '#security-section',
                 };
 

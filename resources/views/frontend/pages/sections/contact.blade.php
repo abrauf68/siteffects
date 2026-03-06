@@ -26,6 +26,7 @@
                                 @endphp
                                 <a class="contact-link" href="https://wa.me/{{ $waPhone }}">{{ $phone }}</a>
                                 <a class="contact-link" href="mailto:{{ \App\Helpers\Helper::getCompanyEmail() }}">{{ \App\Helpers\Helper::getCompanyEmail() }}</a>
+                                <a class="contact-link" href="mailto:{{ \App\Helpers\Helper::getCompanyEmail2() }}">{{ \App\Helpers\Helper::getCompanyEmail2() }}</a>
                             </div>
                             <div class="contact-item">
                                 <h6 class="title">Find Us:</h6>

@@ -137,6 +137,7 @@ class HomeController extends Controller
     {
         try {
             $services = Service::where('is_active', 'active')->get();
+            $allServices = Service::where('is_active', 'active')->get();
             if ($slug != null) {
                 $service = Service::where('slug', $slug)->where('is_active', 'active')->first();
                 $nextService = Service::where('id', '>', $service->id)->where('is_active', 'active')->orderBy('id')->first();
@@ -151,7 +152,7 @@ class HomeController extends Controller
                 return view('frontend.pages.service-details', compact('service', 'services', 'nextService', 'previousService', 'serviceFaqs'));
             }
             $page = Page::where('page_name', 'services')->first();
-            return view('frontend.pages.services', compact('services','page'));
+            return view('frontend.pages.services', compact('services','page','allServices'));
         } catch (\Throwable $th) {
             //throw $th;
             Log::error('Error loading services page: ' . $th->getMessage());
